@@ -1,0 +1,774 @@
+# Универсальная интеграционная платформа для GREEN-API
+
+## Поддержка
+
+[![Support](https://img.shields.io/badge/support@green--api.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:support@greenapi.com)
+[![Support](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/greenapi_support_bot)
+[![Support](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/77273122366)
+
+## Руководства и новости
+
+[![Guides](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://www.youtube.com/@green-api)
+[![News](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/green_api)
+[![News](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://whatsapp.com/channel/0029VaLj6J4LNSa2B5Jx6s3h)
+
+- [Documentation in English](./README.md)
+
+Гибкая интеграционная платформа, разработанная для упрощения процесса подключения WhatsApp шлюза GREEN-API к различным
+сторонним сервисам.
+
+## Содержание
+
+- [Установка](#установка)
+- [Основные компоненты](#основные-компоненты)
+- [Руководство разработчика](#руководство-разработчика)
+- [Рабочий пример](#рабочий-пример)
+- [Реальные примеры](#реальные-примеры)
+- [Лучшие практики](#лучшие-практики)
+
+## Установка
+
+```bash
+npm install @green-api/greenapi-integration
+```
+
+## Основные компоненты
+
+### 1. BaseAdapter
+
+Основа вашей интеграции. Управляет сообщениями и инстансами, а также логикой взаимодействия с платформой.
+BaseAdapter внутренне использует GreenApiClient для всех общих операций, поэтому в большинстве случаев вам не нужно
+использовать
+методы GreenApiClient напрямую.
+
+**Когда использовать BaseAdapter, а когда GreenApiClient**:
+
+✅ Используйте методы BaseAdapter для всех стандартных операций (отправка сообщений, обработка вебхуков, управление
+инстансами)
+
+⚠️ Используйте GreenApiClient напрямую только для специальных операций, не покрытых BaseAdapter (например,
+setProfilePicture, getAuthorizationCode)
+
+```typescript
+abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage> {
+	public constructor(
+		transformer: MessageTransformer<TPlatformWebhook, TPlatformMessage>,
+		storage: StorageProvider
+	);
+
+	public abstract createPlatformClient(params: any): Promise<any>;
+
+	public abstract sendToPlatform(message: TPlatformMessage, instance: TInstance): Promise<void>;
+}
+```
+
+**Пример правильного использования:**
+
+```typescript
+// ✅ ПРАВИЛЬНО: Использование BaseAdapter для стандартных операций
+const adapter = new YourAdapter(transformer, storage);
+await adapter.handlePlatformWebhook(webhook, instanceId);
+await adapter.createInstance(instance, settings, userCred);
+await adapter.sendMessage(transformedWebhook);
+
+// ⚠️ ТОЛЬКО ПРИ НЕОБХОДИМОСТИ: Прямое использование GreenApiClient для специальных операций
+const client = new GreenApiClient(instance);
+await client.setProfilePicture(fileBlob);
+await client.getAuthorizationCode(phoneNumber);
+```
+
+### 2. MessageTransformer
+
+Преобразовывает форматы сообщений между GREEN-API и вашей платформой.
+
+```typescript
+abstract class MessageTransformer<TPlatformWebhook, TPlatformMessage> {
+	abstract toPlatformMessage(webhook: IncomingGreenApiWebhook): TPlatformMessage;
+
+	abstract toGreenApiMessage(message: TPlatformWebhook): Message;
+}
+```
+
+### 3. StorageProvider
+
+Интерфейс для операций с хранением данных.
+
+```typescript
+abstract class StorageProvider<TUser extends BaseUser = BaseUser, TInstance extends BaseInstance = Instance> {
+	abstract createInstance(instance: BaseInstance, userId: bigint | number, settings?: Settings): Promise<TInstance>;
+
+	abstract getInstance(idInstance: number | bigint): Promise<TInstance | null>;
+
+	abstract removeInstance(instanceId: number | bigint): Promise<TInstance>;
+
+	abstract createUser(data: any): Promise<TUser>;
+
+	abstract findUser(identifier: string): Promise<TUser | null>;
+
+	abstract updateUser(identifier: string, data: any): Promise<TUser>;
+}
+```
+
+### 4. BaseGreenApiAuthGuard
+
+Аутентифицирует входящие вебхуки от GREEN-API.
+
+```typescript
+abstract class BaseGreenApiAuthGuard<T extends BaseRequest = BaseRequest> {
+	constructor(protected storage: StorageProvider);
+
+	// Валидация входящих вебхуков
+	async validateRequest(request: T): Promise<boolean>;
+}
+```
+
+Пример использования `BaseGreenApiAuthGuard`:
+
+```typescript
+class YourAuthGuard extends BaseGreenApiAuthGuard<YourRequest> {
+	constructor(storage: StorageProvider) {
+		super(storage);
+	}
+}
+
+// Использование с Express
+app.post('/webhook', async (req, res) => {
+	const guard = new YourAuthGuard(storage);
+	try {
+		await guard.validateRequest(req);
+		// Обработка вебхука ...
+	} catch (error) {
+		if (error instanceof AuthenticationError) {
+			res.status(401).json({error: error.message});
+			return;
+		}
+		res.status(500).json({error: 'Internal server error'});
+	}
+});
+```
+
+### 5. GreenApiClient
+
+Прямой интерфейс к эндпоинтам GREEN-API. Хотя большинство операций должны выполняться через BaseAdapter, GreenApiClient
+может использоваться напрямую для операций, непокрытых в `BaseAdapter`.
+
+```typescript
+const client = new GreenApiClient({
+	idInstance: 'your_instance_id',
+	apiTokenInstance: 'your_token'
+});
+
+// Примеры специальных операций:
+await client.setProfilePicture(fileBlob);
+await client.getAuthorizationCode(phoneNumber);
+await client.getQR();
+```
+
+## Руководство разработчика
+
+### Структура проекта
+
+```
+your-integration/
+├── src/
+│   ├── core/
+│   │   ├── adapter.ts         # Адаптер платформы
+│   │   ├── transformer.ts     # Преобразователь сообщений
+│   │   ├── storage.ts         # Реализация хранилища
+│   │   └── router.ts          # Эндпоинты для вебхуков
+│   ├── types/
+│   │   └── types.ts           # Типы
+│   └── main.ts                # Точка запуска приложения
+├── package.json
+└── tsconfig.json
+```
+
+### Этапы реализации
+
+1. **Определение типов платформы**
+
+```typescript
+// types/types.ts
+export interface YourPlatformWebhook {
+	id: string;
+	from: string;
+	message: string;
+	timestamp: number;
+	// Добавьте другие поля, специфичные для вашей платформы
+}
+
+export interface YourPlatformMessage {
+	recipient: string;
+	content: string;
+	// Добавьте другие поля, специфичные для вашей платформы
+}
+```
+
+2. **Создание преобразователя сообщений**
+
+```typescript
+// core/transformer.ts
+import { MessageTransformer, Message, IncomingGreenApiWebhook } from '@green-api/greenapi-integration';
+import { YourPlatformWebhook, YourPlatformMessage } from '../types/types';
+
+export class YourTransformer extends MessageTransformer<YourPlatformWebhook, YourPlatformMessage> {
+	toPlatformMessage(webhook: IncomingGreenApiWebhook): YourPlatformMessage {
+		// Преобразование вебхука GREEN-API в формат вашей платформы
+		return {
+			recipient: webhook.senderData.sender,
+			content: webhook.messageData.textMessageData?.textMessage || '',
+		};
+	}
+
+	toGreenApiMessage(message: YourPlatformWebhook): Message {
+		// Преобразование вебхука вашей платформы в формат GREEN-API
+		return {
+			type: 'text',
+			chatId: message.from,
+			message: message.message,
+		};
+	}
+}
+```
+
+3. **Реализация хранилища**
+
+```typescript
+// core/storage.ts
+import { StorageProvider, BaseUser, BaseInstance, Settings } from '@green-api/greenapi-integration';
+import { PrismaClient } from '@prisma/client'; // Or your database client
+
+export class YourStorage extends StorageProvider {
+	private db: PrismaClient;
+
+	constructor() {
+		this.db = new PrismaClient();
+	}
+
+	async createInstance(instance: BaseInstance, userId: bigint, settings?: Settings) {
+		return this.db.instance.create({
+			data: {
+				idInstance: instance.idInstance,
+				apiTokenInstance: instance.apiTokenInstance,
+				userId,
+				settings: settings || {},
+			},
+		});
+	}
+
+	// Остальные методы
+}
+```
+
+4. **Создание адаптера платформы**
+
+```typescript
+// core/adapter.ts
+import { BaseAdapter, BaseInstance } from '@green-api/greenapi-integration';
+import { YourPlatformClient } from 'your-platform-sdk';
+import { YourPlatformWebhook, YourPlatformMessage } from '../types/types';
+
+export class YourAdapter extends BaseAdapter<YourPlatformWebhook, YourPlatformMessage> {
+	async createPlatformClient(config: { apiKey: string, apiUrl: string }) {
+		return new YourPlatformClient({
+			baseUrl: config.apiUrl,
+			apiKey: config.apiKey,
+		});
+	}
+
+	async sendToPlatform(message: YourPlatformMessage, instance: BaseInstance) {
+		const client = await this.createPlatformClient(instance.config);
+		await client.sendMessage(message);
+	}
+}
+```
+
+5. **Реализация контроллера вебхуков**
+
+```typescript
+// core/webhook.ts
+import express from 'express';
+import { YourAdapter } from '../core/adapter';
+import { YourTransformer } from '../core/transformer';
+import { YourStorage } from '../core/storage';
+
+const router = express.Router();
+const storage = new YourStorage();
+const transformer = new YourTransformer();
+const adapter = new YourAdapter(transformer, storage);
+
+class WebhookGuard extends BaseGreenApiAuthGuard {
+	constructor(storage: StorageProvider) {
+		super(storage);
+	}
+}
+
+const guard = new WebhookGuard(storage);
+
+// Эндпоинты для вебхуков
+router.post('/green-api', async (req, res) => {
+	try {
+		// Проверка вебхука
+		await guard.validateRequest(req);
+
+		// Обработка вебхука после проверки. 
+		// В списке вторым параметром укажите типы вебхуков, которые необходимо обработать
+		await adapter.handleGreenApiWebhook(req.body, ['incomingMessageReceived']);
+		res.status(200).json({status: 'ok'});
+	} catch (error) {
+		if (error instanceof AuthenticationError) {
+			res.status(401).json({error: 'Ошибка аутентификации'});
+			return;
+		}
+		console.error('Ошибка обработки вебхука:', error);
+		res.status(500).json({error: 'Внутренняя ошибка сервера'});
+	}
+});
+
+router.post('/platform', async (req, res) => {
+	try {
+		const instanceId = req.query.instanceId;
+		await adapter.handlePlatformWebhook(req.body, instanceId);
+		res.status(200).json({status: 'ok'});
+	} catch (error) {
+		console.error('Ошибка обработки вебхука платформы:', error);
+		res.status(500).json({error: 'Внутренняя ошибка сервера'});
+	}
+});
+
+router.post('/instance', async (req, res) => {
+	try {
+		const {idInstance, apiTokenInstance, userEmail} = req.body;
+
+		if (!idInstance || !apiTokenInstance || !userEmail) {
+			throw new BadRequestError('Отсутствуют обязательные поля');
+		}
+
+		const instance = await adapter.createInstance({
+			idInstance: Number(idInstance),
+			apiTokenInstance
+		}, {
+			webhookUrl: `${process.env.APP_URL}/webhook/green-api`,
+			webhookUrlToken: `token_${Date.now()}`, // В продакшене используйте безопасный генератор токенов
+			incomingWebhook: 'yes'
+		}, userEmail);
+
+		res.status(200).json({
+			status: 'ok',
+			data: instance,
+			message: 'Инстанс успешно создан. Подождите 2 минуты для применения настроек.'
+		});
+
+	} catch (error) {
+		console.error('Ошибка создания инстанса:', error);
+		res.status(500).json({error: 'Не удалось создать инстанс'});
+	}
+});
+
+export default router;
+```
+
+6. **Создание точки входа приложения**
+
+```typescript
+// main.ts
+import express from 'express';
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+import webhookRouter from './controllers/webhook';
+import { YourAdapter } from './core/adapter';
+import { YourTransformer } from './core/transformer';
+import { YourStorage } from './core/storage';
+
+// Загрузка переменных окружения
+dotenv.config();
+
+async function bootstrap() {
+	// Инициализация компонентов
+	const storage = new YourStorage();
+	const transformer = new YourTransformer();
+	const adapter = new YourAdapter(transformer, storage);
+
+	// Создание Express приложения
+	const app = express();
+	app.use(bodyParser.json());
+
+	// Настройка маршрутов для вебхуков
+	app.use('/webhook', webhookRouter);
+
+	// Запуск сервера
+	const port = process.env.PORT || 3000;
+	app.listen(port, () => {
+		console.log(`Сервер запущен на порту ${port}`);
+	});
+
+	console.log('Интеграционная платформа готова!');
+}
+
+// Обработка ошибок
+bootstrap();
+```
+
+Или с NestJS:
+
+```typescript
+// main.ts
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import helmet from 'helmet';
+
+async function bootstrap() {
+	const app = await NestFactory.create(AppModule);
+	app.setGlobalPrefix('api');
+	app.use(helmet());
+	await app.listen(process.env.PORT ?? 3000);
+}
+
+bootstrap();
+```
+
+### Сборка приложения
+
+1. **Подготовка package.json**
+
+```json
+{
+  "name": "greenapi-integration-yourplatform",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@green-api/greenapi-integration": "^1.0.0",
+    "@prisma/client": "^5.0.0",
+    "express": "^4.18.2"
+    // другие зависимости
+  }
+}
+```
+
+2. **Сборка**
+
+```bash
+npm run build
+npm publish
+```
+
+## Рабочий пример
+
+В директории `/examples/custom-adapter` вы найдете полный рабочий пример, демонстрирующий:
+
+- Двустороннюю передачу сообщений между WhatsApp и пользовательской платформой
+- Обработку вебхуков
+- Настройку и конфигурацию инстанса
+- Преобразование сообщений
+- Обработку ошибок
+
+### Запуск примера
+
+1. Клонируйте репозиторий
+2. Обновите .env данными ваших инстансов GREEN-API:
+
+```env
+VISITOR_ID_INSTANCE=your_visitor_instance_id
+VISITOR_API_TOKEN=your_visitor_instance_token
+AGENT_ID_INSTANCE=your_agent_instance_id
+AGENT_API_TOKEN=your_agent_instance_token
+AGENT_PHONE_NUMBER=your_agent_phone_number
+WEBHOOK_URL=your_webhook_url
+PORT=3000
+```
+
+3. Установите зависимости и запустите:
+
+```bash
+cd examples/custom-adapter
+npm install
+npm start
+```
+
+# Полная реализация примера
+
+### Структура проекта
+
+```
+examples/
+└── custom-adapter/
+    ├── src/
+    │   ├── main.ts
+    │   ├── simple-adapter.ts
+    │   ├── simple-transformer.ts
+    │   ├── simple-storage.ts
+    │   └── types.ts
+    ├── .env
+    ├── package.json
+    └── tsconfig.json
+```
+
+### types.ts
+
+```typescript
+interface SimplePlatformWebhook {
+	messageId: string;
+	from: string;
+	text: string;
+	timestamp: number;
+}
+
+interface SimplePlatformMessage {
+	to: string;
+	content: string;
+	replyTo?: string;
+}
+```
+
+### simple-transformer.ts
+
+```typescript
+import { MessageTransformer, Message, IncomingGreenApiWebhook, formatPhoneNumber } from 'greenapi-integration';
+
+export class SimpleTransformer extends MessageTransformer<SimplePlatformWebhook, SimplePlatformMessage> {
+	toPlatformMessage(webhook: IncomingGreenApiWebhook): SimplePlatformMessage {
+		if (webhook.messageData.typeMessage !== 'extendedTextMessage') {
+			throw new Error('Поддерживаются только текстовые сообщения');
+		}
+
+		return {
+			to: webhook.senderData.sender,
+			content: webhook.messageData.extendedTextMessageData?.text || '',
+		};
+	}
+
+	toGreenApiMessage(message: SimplePlatformWebhook): Message {
+		return {
+			type: 'text',
+			chatId: formatPhoneNumber(message.from),
+			message: message.text,
+		};
+	}
+}
+```
+
+### simple-storage.ts
+
+```typescript
+import { StorageProvider, BaseUser, BaseInstance, Settings } from 'greenapi-integration';
+
+export class SimpleStorage extends StorageProvider {
+	private users: Map<string, BaseUser> = new Map();
+	private instances: Map<number, BaseInstance> = new Map();
+
+	async createInstance(instance: BaseInstance, userId: bigint, settings?: Settings): Promise<BaseInstance> {
+		this.instances.set(Number(instance.idInstance), {
+			...instance,
+			settings: settings || {}
+		});
+		return instance;
+	}
+
+	async getInstance(idInstance: number): Promise<BaseInstance | null> {
+		return this.instances.get(idInstance) || null;
+	}
+
+	async removeInstance(instanceId: number): Promise<BaseInstance> {
+		const instance = this.instances.get(instanceId);
+		if (!instance) throw new Error('Инстанс не найден');
+		this.instances.delete(instanceId);
+		return instance;
+	}
+
+	async createUser(data: any): Promise<BaseUser> {
+		const user = {id: Date.now(), ...data};
+		this.users.set(data.email, user);
+		return user;
+	}
+
+	async findUser(identifier: string): Promise<BaseUser | null> {
+		return this.users.get(identifier) || null;
+	}
+
+	async updateUser(identifier: string, data: any): Promise<BaseUser> {
+		const user = await this.findUser(identifier);
+		if (!user) throw new Error('Пользователь не найден');
+		const updated = {...user, ...data};
+		this.users.set(identifier, updated);
+		return updated;
+	}
+}
+```
+
+### simple-adapter.ts
+
+```typescript
+import { BaseAdapter, BaseInstance } from "greenapi-integration";
+import axios from 'axios';
+
+export class SimpleAdapter extends BaseAdapter<SimplePlatformWebhook, SimplePlatformMessage> {
+	async createPlatformClient(config: { apiKey: string, apiUrl: string }) {
+		return axios.create({
+			baseURL: config.apiUrl,
+			headers: {
+				'Authorization': `Bearer ${config.apiKey}`,
+				'Content-Type': 'application/json'
+			}
+		});
+	}
+
+	async sendToPlatform(message: SimplePlatformMessage, instance: BaseInstance): Promise<void> {
+		// В реальной реализации мы бы отправляли сообщение на платформу
+		// Для демонстрации просто логируем и симулируем ответ
+		console.log('Платформа получила сообщение:', message);
+
+		// Симулируем обработку и ответ платформы
+		setTimeout(() => {
+			console.log('Обработка платформой завершена, отправляем ответ...');
+			this.simulatePlatformResponse(message, instance.idInstance);
+		}, 1000);
+	}
+
+	private async simulatePlatformResponse(originalMessage: SimplePlatformMessage, idInstance: number | bigint) {
+		const platformWebhook: SimplePlatformWebhook = {
+			messageId: `resp_${Date.now()}`,
+			from: originalMessage.to.replace('@c.us', ''),
+			text: `Спасибо за ваше сообщение: "${originalMessage.content}". Это автоматический ответ.`,
+			timestamp: Date.now()
+		};
+
+		await this.handlePlatformWebhook(platformWebhook, idInstance);
+	}
+}
+```
+
+### main.ts
+
+```typescript
+import express from "express";
+import bodyParser from "body-parser";
+import { formatPhoneNumber, GreenApiClient } from "greenapi-integration";
+import { SimpleTransformer } from "./simple-transformer";
+import { SimpleStorage } from "./simple-storage";
+import { SimpleAdapter } from "./simple-adapter";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
+async function main() {
+	// Инициализация компонентов
+	const transformer = new SimpleTransformer();
+	const storage = new SimpleStorage();
+	const adapter = new SimpleAdapter(transformer, storage);
+
+	// Конфигурация обоих инстансов
+	const visitorInstance = {
+		idInstance: Number(process.env.VISITOR_ID_INSTANCE),
+		apiTokenInstance: process.env.VISITOR_API_TOKEN!,
+	};
+
+	const agentInstance = {
+		idInstance: Number(process.env.AGENT_ID_INSTANCE),
+		apiTokenInstance: process.env.AGENT_API_TOKEN!,
+	};
+
+	// Создание клиента GREEN-API для посетителя (для отправки начального сообщения)
+	const visitorClient = new GreenApiClient(visitorInstance);
+
+	// Настройка инстанса агента
+	console.log("Настройка инстанса агента...");
+	const user = await adapter.createUser("agent@example.com", {
+		email: "agent@example.com",
+		name: "Agent",
+	});
+
+	const instance = await adapter.createInstance(agentInstance, {
+		webhookUrl: process.env.WEBHOOK_URL + "/webhook/green-api",
+		webhookUrlToken: "your-secure-token",
+		incomingWebhook: "yes",
+	}, user.email);
+
+	console.log("Ожидание 2 минуты для применения настроек...");
+	await new Promise(resolve => setTimeout(resolve, 120000));
+	console.log("Инстанс готов!");
+
+	// Настройка веб-сервера
+	const app = express();
+	app.use(bodyParser.json());
+
+	// Обработка вебхуков от GREEN-API
+	app.post("/webhook/green-api", async (req, res) => {
+		try {
+			console.log("Получен вебхук от GREEN-API:", req.body);
+			await adapter.handleGreenApiWebhook(req.body, ["incomingMessageReceived"]);
+			res.status(200).json({status: "ok"});
+		} catch (error) {
+			console.error("Ошибка обработки вебхука:", error);
+			res.status(500).json({error: "Внутренняя ошибка сервера"});
+		}
+	});
+
+	// Запуск сервера
+	const port = process.env.PORT || 3000;
+	app.listen(port, () => {
+		console.log(`Сервер вебхуков запущен на порту ${port}`);
+	});
+
+	// Отправка начального сообщения от посетителя
+	console.log("Отправка начального сообщения от посетителя...");
+	await visitorClient.sendMessage({
+		chatId: formatPhoneNumber(process.env.AGENT_PHONE_NUMBER!),
+		message: "Здравствуйте! Это тестовое сообщение от посетителя.",
+		type: "text",
+	});
+
+	console.log("Начальное сообщение отправлено! Проверьте WhatsApp агента для просмотра ответа.");
+}
+
+main().catch(console.error);
+```
+
+### .env
+
+```env
+VISITOR_ID_INSTANCE=your_visitor_instance_id
+VISITOR_API_TOKEN=your_visitor_instance_token
+AGENT_ID_INSTANCE=your_agent_instance_id
+AGENT_API_TOKEN=your_agent_instance_token
+AGENT_PHONE_NUMBER=your_agent_phone_number
+WEBHOOK_URL=your_webhook_url
+PORT=3000
+```
+
+## Реальные примеры
+
+Для полных примеров реальных интеграций, смотрите:
+
+- [Интеграция с Rocket.Chat](link-to-rocket-chat-repo)
+
+## Лучшие практики
+
+1. **Преобразование сообщений**:
+    - Обрабатывайте только релевантные типы сообщений
+
+2. **Безопасность**:
+    - Проверяйте все входящие вебхуки
+    - Используйте безопасные вебхук-токены
+    - Реализуйте ограничение частоты запросов
+    - Используйте HTTPS для всех эндпоинтов
+
+## Утилиты
+
+Платформа предоставляет несколько вспомогательных функций:
+
+```typescript
+// Форматирование телефонных номеров для GREEN-API
+formatPhoneNumber('1234567890') // Возвращает '1234567890@c.us'
+
+// Генерация безопасных случайных токенов
+generateRandomToken(32) // Возвращает 32-символьный случайный токен
+```
+
+## Лицензия
+
+MIT
