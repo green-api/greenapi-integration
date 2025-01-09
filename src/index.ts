@@ -5,3 +5,4 @@ export { MessageTransformer } from "./core/message-transformer";
 export { BaseGreenApiAuthGuard } from "./core/guard";
 export { StorageProvider } from "./core/storage-provider";
 export * from "./utils/helpers";
+export * from "./core/errors";
