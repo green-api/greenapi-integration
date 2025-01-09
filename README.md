@@ -37,15 +37,6 @@ npm install @green-api/greenapi-integration
 ### 1. BaseAdapter
 
 The foundation of your integration. Handles message & instance management, and platform-specific logic.
-The `BaseAdapter` internally uses `GreenApiClient` for all common operations, so in most cases, you don't need to use
-GreenApiClient methods directly.
-
-**When to use `BaseAdapter` vs `GreenApiClient`**:
-
-✅ Use `BaseAdapter` methods for all standard operations (sending messages, handling webhooks, managing instances)
-
-⚠️ Use `GreenApiClient` directly only for specialized operations not covered by BaseAdapter (like setProfilePicture,
-getAuthorizationCode)
 
 ```typescript
 abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage> {
@@ -60,19 +51,76 @@ abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage> {
 }
 ```
 
-**Example of proper usage:**
+#### Methods
+
+When extending BaseAdapter, your implementation has access to several methods:
+
+##### Webhook Handling
+
+These webhook handling methods call your message transformation methods automatically, without the need to use them
+directly in
+your code.
 
 ```typescript
-// ✅ CORRECT: Using BaseAdapter for standard operations
-const adapter = new YourAdapter(transformer, storage);
-await adapter.handlePlatformWebhook(webhook, instanceId);
-await adapter.createInstance(instance, settings, userCred);
-await adapter.sendMessage(transformedWebhook);
+// Handle webhooks from your platform
+await adapter.handlePlatformWebhook(webhookData, instanceId);
 
-// ⚠️ ONLY IF NEEDED: Direct GreenApiClient usage for specialized operations
-const client = new GreenApiClient(instance);
-await client.setProfilePicture(fileBlob);
-await client.getAuthorizationCode(phoneNumber);
+// Handle webhooks from GREEN-API. The second parameter is telling the function to handle only specific webhooks.
+// The second parameter must be specified, otherwise webhooks will not be processed.
+await adapter.handleGreenApiWebhook(webhook, ['incomingMessageReceived']);
+```
+
+##### Instance Management
+
+```typescript
+// Create new instance
+const instance = await adapter.createInstance(instanceData, settings, userEmail);
+
+// Get instance details
+const details = await adapter.getInstance(instanceId);
+
+// Remove instance
+await adapter.removeInstance(instanceId);
+```
+
+##### User Management
+
+```typescript
+// Create new user
+const user = await adapter.createUser(userEmail, userData);
+
+// Update user
+await adapter.updateUser(userEmail, updateData);
+```
+
+#### Webhook Implementation Example
+
+```typescript
+// Platform webhook endpoint
+app.post('/webhook/platform', async (req, res) => {
+	try {
+		await adapter.handlePlatformWebhook(req.body, instanceId);
+		res.status(200).send();
+	} catch (error) {
+		console.error('Failed to handle platform webhook:', error);
+		res.status(500).send();
+	}
+});
+
+// GREEN-API webhook endpoint
+app.post('/webhook/green-api', async (req, res) => {
+	try {
+		// Process specific webhook types
+		await adapter.handleGreenApiWebhook(req.body, [
+			'incomingMessageReceived',
+			'outgoingMessageStatus'
+		]);
+		res.status(200).send();
+	} catch (error) {
+		console.error('Failed to handle GREEN-API webhook:', error);
+		res.status(500).send();
+	}
+});
 ```
 
 ### 2. MessageTransformer
@@ -147,8 +195,7 @@ app.post('/webhook', async (req, res) => {
 
 ### 5. GreenApiClient
 
-Direct interface to GREEN-API endpoints. While most operations should be handled through BaseAdapter, GreenApiClient can
-be used directly for specialized operations.
+Direct interface to GREEN-API methods.
 
 ```typescript
 const client = new GreenApiClient({
@@ -156,13 +203,15 @@ const client = new GreenApiClient({
 	apiTokenInstance: 'your_token'
 });
 
-// Examples of specialized operations:
+// Examples:
 await client.setProfilePicture(fileBlob);
 await client.getAuthorizationCode(phoneNumber);
 await client.getQR();
 ```
 
 ## Developer Guide
+
+This guide will walk you through creating your first integration with GREEN-API's WhatsApp gateway.
 
 ### Project Structure
 
@@ -181,9 +230,37 @@ your-integration/
 └── tsconfig.json
 ```
 
+```mermaid
+graph TB
+    subgraph "WhatsApp to Platform"
+        WA[WhatsApp] -->|Send message| GA1[GREEN-API]
+        GA1 -->|Webhook| INT1[Your Integration]
+        INT1 -->|1 . Validate webhook| GD1[BaseGreenApiAuthGuard]
+        INT1 -->|2 . Transform message| TR1[MessageTransformer]
+        INT1 -->|3 . Send to platform| PL1[Your Platform]
+    end
+
+    subgraph "Platform to WhatsApp"
+        PL2[Your Platform] -->|Webhook| INT2[Your Integration]
+        INT2 -->|1 . Transform message| TR2[MessageTransformer]
+        INT2 -->|2 . Send via API| GA2[GREEN-API]
+        GA2 -->|Send message| WA2[WhatsApp]
+    end
+
+    subgraph "Components"
+        style Components fill: #f9f9f9, stroke: #333, stroke-width: 2px
+        TR[MessageTransformer]
+        ST[StorageProvider]
+        AD[BaseAdapter]
+        GD[WebhookGuard]
+    end
+```
+
 ### Implementation Steps
 
-1. **Define Platform Types**
+#### Step 1: Define Platform Types
+
+First, define the message types for your platform:
 
 ```typescript
 // types/types.ts
@@ -202,7 +279,9 @@ export interface YourPlatformMessage {
 }
 ```
 
-2. **Create Message Transformer**
+#### Step 2: Create Message Transformer
+
+Create a transformer that converts messages between your platform's format and GREEN-API's format:
 
 ```typescript
 // core/transformer.ts
@@ -229,7 +308,9 @@ export class YourTransformer extends MessageTransformer<YourPlatformWebhook, You
 }
 ```
 
-3. **Implement Storage**
+#### Step 3: Implement Storage Provider
+
+Create a storage provider to manage users and instances. You can use any database or ORM:
 
 ```typescript
 // core/storage.ts
@@ -258,7 +339,9 @@ export class YourStorage extends StorageProvider {
 }
 ```
 
-4. **Create Platform Adapter**
+#### Step 4: Create Your Platform Adapter
+
+The adapter handles the actual communication between platforms:
 
 ```typescript
 // core/adapter.ts
@@ -281,7 +364,9 @@ export class YourAdapter extends BaseAdapter<YourPlatformWebhook, YourPlatformMe
 }
 ```
 
-5. **Implement Webhook Controller**
+#### Step 5: Implement Webhook Controller
+
+Define webhook endpoints that your application will listen to:
 
 ```typescript
 // core/webhook.ts
@@ -366,7 +451,9 @@ router.post('/instance', async (req, res) => {
 export default router;
 ```
 
-6. **Create Application Entry Point**
+#### Step 6: Create Application Entry Point
+
+Put it all together in your entrypoint:
 
 ```typescript
 // main.ts
@@ -407,24 +494,6 @@ async function bootstrap() {
 bootstrap();
 ```
 
-Or with NestJS:
-
-```typescript
-// main.ts
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import helmet from 'helmet';
-
-async function bootstrap() {
-	const app = await NestFactory.create(AppModule);
-	app.setGlobalPrefix('api');
-	app.use(helmet());
-	await app.listen(process.env.PORT ?? 3000);
-}
-
-bootstrap();
-```
-
 ### Publishing Your Integration
 
 1. **Prepare package.json**
@@ -441,7 +510,6 @@ bootstrap();
   },
   "dependencies": {
     "@green-api/greenapi-integration": "^1.0.0",
-    "@prisma/client": "^5.0.0",
     "express": "^4.18.2"
     // other dependencies
   }
@@ -741,18 +809,7 @@ PORT=3000
 
 For complete real-world integration examples, check out:
 
-- [Rocket.Chat Integration](link-to-rocket-chat-repo)
-
-## Best Practices
-
-1. **Message Transformation**:
-    - Handle only relevant message types
-
-2. **Security**:
-    - Validate all incoming webhooks
-    - Use secure tokens
-    - Implement rate limiting
-    - Use HTTPS for all endpoints
+- [Rocket.Chat Integration](https://github.com/green-api/greenapi-integration-rocketchat)
 
 ## Utilities
 
@@ -764,6 +821,10 @@ formatPhoneNumber('1234567890') // Returns '1234567890@c.us'
 
 // Generate secure random tokens
 generateRandomToken(32) // Returns a 32-character random token
+
+// Extract phone number from vcard
+const vcard = 'BEGIN:VCARD\nTEL:+1234567890\nEND:VCARD'
+extractPhoneNumberFromVCard(vcard) // Returns '+1234567890'
 ```
 
 ## License

@@ -1,42 +1,46 @@
-# Универсальная интеграционная платформа для GREEN-API
+**GREEN-API Integration Platform**
 
-## Поддержка
+***
+
+# Universal Integration Platform for GREEN-API
+
+## Support links
 
 [![Support](https://img.shields.io/badge/support@green--api.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:support@greenapi.com)
-[![Support](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/greenapi_support_bot)
+[![Support](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/greenapi_support_eng_bot)
 [![Support](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/77273122366)
 
-## Руководства и новости
+## Guides & News
 
-[![Guides](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://www.youtube.com/@green-api)
+[![Guides](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://www.youtube.com/@greenapi-en)
 [![News](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/green_api)
 [![News](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://whatsapp.com/channel/0029VaLj6J4LNSa2B5Jx6s3h)
 
-- [Documentation in English](./README.md)
+- [Документация на русском языке](_media/README.ru.md)
 
-Гибкая интеграционная платформа, разработанная для упрощения процесса подключения WhatsApp шлюза GREEN-API к различным
-сторонним сервисам.
+A flexible integration platform designed to simplify the process of connecting GREEN-API's WhatsApp gateway with various
+third-party services.
 
-## Содержание
+## Table of Contents
 
-- [Установка](#установка)
-- [Основные компоненты](#основные-компоненты)
-- [Руководство разработчика](#руководство-разработчика)
-- [Рабочий пример](#рабочий-пример)
-- [Реальные примеры](#реальные-примеры)
-- [Лучшие практики](#лучшие-практики)
+- [Installation](#installation)
+- [Core Components](#core-components)
+- [Developer Guide](#developer-guide)
+- [Working Example](#working-example)
+- [Real-World Examples](#real-world-examples)
+- [Best Practices](#best-practices)
 
-## Установка
+## Installation
 
 ```bash
 npm install @green-api/greenapi-integration
 ```
 
-## Основные компоненты
+## Core Components
 
 ### 1. BaseAdapter
 
-Основа вашей интеграции. Управляет сообщениями и инстансами, а также логикой взаимодействия с платформой.
+The foundation of your integration. Handles message & instance management, and platform-specific logic.
 
 ```typescript
 abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage> {
@@ -51,72 +55,73 @@ abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage> {
 }
 ```
 
-#### Методы
+#### Methods
 
-При расширении BaseAdapter, ваша реализация получает доступ к следующим методам:
+When extending BaseAdapter, your implementation has access to several methods:
 
-##### Обработка вебхуков
+##### Webhook Handling
 
-Эти методы обработки вебхуков автоматически вызывают ваши методы преобразования (маппинга) сообщений, без необходимости
-использовать их напрямую.
+These webhook handling methods call your message transformation methods automatically, without the need to use them
+directly in
+your code.
 
 ```typescript
-// Обработка вебхуков от вашей платформы
+// Handle webhooks from your platform
 await adapter.handlePlatformWebhook(webhookData, instanceId);
 
-// Обработка вебхуков от GREEN-API. Второй параметр указывает функции, какие конкретные вебхуки обрабатывать.
-// Второй параметр должен быть указан, иначе вебхуки не будут обработаны.
+// Handle webhooks from GREEN-API. The second parameter is telling the function to handle only specific webhooks.
+// The second parameter must be specified, otherwise webhooks will not be processed.
 await adapter.handleGreenApiWebhook(webhook, ['incomingMessageReceived']);
 ```
 
-##### Управление инстансами
+##### Instance Management
 
 ```typescript
-// Создание нового инстанса
+// Create new instance
 const instance = await adapter.createInstance(instanceData, settings, userEmail);
 
-// Получение данных инстанса
+// Get instance details
 const details = await adapter.getInstance(instanceId);
 
-// Удаление инстанса
+// Remove instance
 await adapter.removeInstance(instanceId);
 ```
 
-##### Управление пользователями
+##### User Management
 
 ```typescript
-// Создание нового пользователя
+// Create new user
 const user = await adapter.createUser(userEmail, userData);
 
-// Обновление пользователя
+// Update user
 await adapter.updateUser(userEmail, updateData);
 ```
 
-#### Пример реализации вебхуков
+#### Webhook Implementation Example
 
 ```typescript
-// Конечная точка для вебхуков платформы
+// Platform webhook endpoint
 app.post('/webhook/platform', async (req, res) => {
 	try {
 		await adapter.handlePlatformWebhook(req.body, instanceId);
 		res.status(200).send();
 	} catch (error) {
-		console.error('Не удалось обработать вебхук платформы:', error);
+		console.error('Failed to handle platform webhook:', error);
 		res.status(500).send();
 	}
 });
 
-// Конечная точка для вебхуков GREEN-API
+// GREEN-API webhook endpoint
 app.post('/webhook/green-api', async (req, res) => {
 	try {
-		// Обработка определенных типов вебхуков
+		// Process specific webhook types
 		await adapter.handleGreenApiWebhook(req.body, [
 			'incomingMessageReceived',
 			'outgoingMessageStatus'
 		]);
 		res.status(200).send();
 	} catch (error) {
-		console.error('Не удалось обработать вебхук GREEN-API:', error);
+		console.error('Failed to handle GREEN-API webhook:', error);
 		res.status(500).send();
 	}
 });
@@ -124,7 +129,7 @@ app.post('/webhook/green-api', async (req, res) => {
 
 ### 2. MessageTransformer
 
-Преобразовывает форматы сообщений между GREEN-API и вашей платформой.
+Handles message format conversion between GREEN-API and your platform.
 
 ```typescript
 abstract class MessageTransformer<TPlatformWebhook, TPlatformMessage> {
@@ -136,7 +141,7 @@ abstract class MessageTransformer<TPlatformWebhook, TPlatformMessage> {
 
 ### 3. StorageProvider
 
-Интерфейс для операций с хранением данных.
+Interface for data persistence operations.
 
 ```typescript
 abstract class StorageProvider<TUser extends BaseUser = BaseUser, TInstance extends BaseInstance = Instance> {
@@ -156,18 +161,18 @@ abstract class StorageProvider<TUser extends BaseUser = BaseUser, TInstance exte
 
 ### 4. BaseGreenApiAuthGuard
 
-Аутентифицирует входящие вебхуки от GREEN-API.
+Handles webhook authentication for incoming GREEN-API requests.
 
 ```typescript
 abstract class BaseGreenApiAuthGuard<T extends BaseRequest = BaseRequest> {
 	constructor(protected storage: StorageProvider);
 
-	// Валидация входящих вебхуков
+	// Validates incoming webhook requests
 	async validateRequest(request: T): Promise<boolean>;
 }
 ```
 
-Пример использования `BaseGreenApiAuthGuard`:
+Example implementation of `BaseGreenApiAuthGuard`:
 
 ```typescript
 class YourAuthGuard extends BaseGreenApiAuthGuard<YourRequest> {
@@ -176,12 +181,12 @@ class YourAuthGuard extends BaseGreenApiAuthGuard<YourRequest> {
 	}
 }
 
-// Использование с Express
+// Using with Express
 app.post('/webhook', async (req, res) => {
 	const guard = new YourAuthGuard(storage);
 	try {
 		await guard.validateRequest(req);
-		// Обработка вебхука ...
+		// Process webhook
 	} catch (error) {
 		if (error instanceof AuthenticationError) {
 			res.status(401).json({error: error.message});
@@ -194,8 +199,7 @@ app.post('/webhook', async (req, res) => {
 
 ### 5. GreenApiClient
 
-Прямой интерфейс к эндпоинтам GREEN-API. Хотя большинство операций должны выполняться через BaseAdapter, GreenApiClient
-может использоваться напрямую для операций, непокрытых в `BaseAdapter`.
+Direct interface to GREEN-API methods.
 
 ```typescript
 const client = new GreenApiClient({
@@ -203,52 +207,52 @@ const client = new GreenApiClient({
 	apiTokenInstance: 'your_token'
 });
 
-// Примеры специальных операций:
+// Examples:
 await client.setProfilePicture(fileBlob);
 await client.getAuthorizationCode(phoneNumber);
 await client.getQR();
 ```
 
-## Руководство разработчика
+## Developer Guide
 
-Это руководство проведет вас через процесс создания вашей первой интеграции с WhatsApp шлюзом GREEN-API.
+This guide will walk you through creating your first integration with GREEN-API's WhatsApp gateway.
 
-### Структура проекта
+### Project Structure
 
 ```
 your-integration/
 ├── src/
 │   ├── core/
-│   │   ├── adapter.ts         # Адаптер платформы
-│   │   ├── transformer.ts     # Преобразователь сообщений
-│   │   ├── storage.ts         # Реализация хранилища
-│   │   └── router.ts          # Эндпоинты для вебхуков
+│   │   ├── adapter.ts         # Your platform adapter
+│   │   ├── transformer.ts     # Message transformer
+│   │   ├── storage.ts         # Data storage implementation
+│   │   └── router.ts          # Webhook endpoints
 │   ├── types/
-│   │   └── types.ts           # Типы
-│   └── main.ts                # Точка запуска приложения
+│   │   └── types.ts           # Platform-specific types
+│   └── main.ts               # Main exports
 ├── package.json
 └── tsconfig.json
 ```
 
 ```mermaid
 graph TB
-    subgraph "WhatsApp в Платформу"
-        WA[WhatsApp] -->|Отправка сообщения| GA1[GREEN-API]
-        GA1 -->|Вебхук| INT1[Ваша Интеграция]
-        INT1 -->|1 . Валидация вебхука| GD1[BaseGreenApiAuthGuard]
-        INT1 -->|2 . Преобразование сообщения| TR1[MessageTransformer]
-        INT1 -->|3 . Отправка в платформу| PL1[Ваша Платформа]
+    subgraph "WhatsApp to Platform"
+        WA[WhatsApp] -->|Send message| GA1[GREEN-API]
+        GA1 -->|Webhook| INT1[Your Integration]
+        INT1 -->|1 . Validate webhook| GD1[BaseGreenApiAuthGuard]
+        INT1 -->|2 . Transform message| TR1[MessageTransformer]
+        INT1 -->|3 . Send to platform| PL1[Your Platform]
     end
 
-    subgraph "Платформа в WhatsApp"
-        PL2[Ваша Платформа] -->|Вебхук| INT2[Ваша Интеграция]
-        INT2 -->|1 . Преобразование сообщения| TR2[MessageTransformer]
-        INT2 -->|2 . Отправка через API| GA2[GREEN-API]
-        GA2 -->|Отправка сообщения| WA2[WhatsApp]
+    subgraph "Platform to WhatsApp"
+        PL2[Your Platform] -->|Webhook| INT2[Your Integration]
+        INT2 -->|1 . Transform message| TR2[MessageTransformer]
+        INT2 -->|2 . Send via API| GA2[GREEN-API]
+        GA2 -->|Send message| WA2[WhatsApp]
     end
 
-    subgraph "Компоненты"
-        style Компоненты fill: #f9f9f9, stroke: #333, stroke-width: 2px
+    subgraph "Components"
+        style Components fill: #f9f9f9, stroke: #333, stroke-width: 2px
         TR[MessageTransformer]
         ST[StorageProvider]
         AD[BaseAdapter]
@@ -256,11 +260,11 @@ graph TB
     end
 ```
 
-### Этапы реализации
+### Implementation Steps
 
-#### Этап 1: Определение типов платформы
+#### Step 1: Define Platform Types
 
-Сначала определите типы сообщений для вашей платформы:
+First, define the message types for your platform:
 
 ```typescript
 // types/types.ts
@@ -269,19 +273,19 @@ export interface YourPlatformWebhook {
 	from: string;
 	message: string;
 	timestamp: number;
-	// Добавьте другие поля, специфичные для вашей платформы
+	// Add other platform-specific fields
 }
 
 export interface YourPlatformMessage {
 	recipient: string;
 	content: string;
-	// Добавьте другие поля, специфичные для вашей платформы
+	// Add other platform-specific fields
 }
 ```
 
-#### Этап 2. Создание преобразователя сообщений
+#### Step 2: Create Message Transformer
 
-Создайте преобразователь, который конвертирует сообщения между форматом вашей платформы и форматом GREEN-API:
+Create a transformer that converts messages between your platform's format and GREEN-API's format:
 
 ```typescript
 // core/transformer.ts
@@ -290,7 +294,7 @@ import { YourPlatformWebhook, YourPlatformMessage } from '../types/types';
 
 export class YourTransformer extends MessageTransformer<YourPlatformWebhook, YourPlatformMessage> {
 	toPlatformMessage(webhook: IncomingGreenApiWebhook): YourPlatformMessage {
-		// Преобразование вебхука GREEN-API в формат вашей платформы
+		// Transform GREEN-API webhook to your platform format
 		return {
 			recipient: webhook.senderData.sender,
 			content: webhook.messageData.textMessageData?.textMessage || '',
@@ -298,7 +302,7 @@ export class YourTransformer extends MessageTransformer<YourPlatformWebhook, You
 	}
 
 	toGreenApiMessage(message: YourPlatformWebhook): Message {
-		// Преобразование вебхука вашей платформы в формат GREEN-API
+		// Transform your platform webhook to GREEN-API format
 		return {
 			type: 'text',
 			chatId: message.from,
@@ -308,10 +312,9 @@ export class YourTransformer extends MessageTransformer<YourPlatformWebhook, You
 }
 ```
 
-#### Этап 3: Реализация хранилища
+#### Step 3: Implement Storage Provider
 
-Создайте провайдер хранилища для управления пользователями и инстансами. Вы можете использовать любую базу данных или
-ORM:
+Create a storage provider to manage users and instances. You can use any database or ORM:
 
 ```typescript
 // core/storage.ts
@@ -336,13 +339,13 @@ export class YourStorage extends StorageProvider {
 		});
 	}
 
-	// Остальные методы
+	// Implement other required methods
 }
 ```
 
-#### Этап 4: Создание адаптера платформы
+#### Step 4: Create Your Platform Adapter
 
-Адаптер обрабатывает фактическое взаимодействие между платформами:
+The adapter handles the actual communication between platforms:
 
 ```typescript
 // core/adapter.ts
@@ -365,9 +368,9 @@ export class YourAdapter extends BaseAdapter<YourPlatformWebhook, YourPlatformMe
 }
 ```
 
-#### Этап 5: Реализация контроллера вебхуков
+#### Step 5: Implement Webhook Controller
 
-Определите эндпоинты вебхуков, которые будет слушать ваше приложение:
+Define webhook endpoints that your application will listen to:
 
 ```typescript
 // core/webhook.ts
@@ -389,23 +392,23 @@ class WebhookGuard extends BaseGreenApiAuthGuard {
 
 const guard = new WebhookGuard(storage);
 
-// Эндпоинты для вебхуков
+// Webhook endpoints
 router.post('/green-api', async (req, res) => {
 	try {
-		// Проверка вебхука
+		// Validate webhook first
 		await guard.validateRequest(req);
 
-		// Обработка вебхука после проверки. 
-		// В списке вторым параметром укажите типы вебхуков, которые необходимо обработать
+		// Process webhook if validation passed
+		// As the second parameter, specfify the types of webhooks to be processed (otherwise skipped)
 		await adapter.handleGreenApiWebhook(req.body, ['incomingMessageReceived']);
 		res.status(200).json({status: 'ok'});
 	} catch (error) {
 		if (error instanceof AuthenticationError) {
-			res.status(401).json({error: 'Ошибка аутентификации'});
+			res.status(401).json({error: error.message});
 			return;
 		}
-		console.error('Ошибка обработки вебхука:', error);
-		res.status(500).json({error: 'Внутренняя ошибка сервера'});
+		console.error('Webhook error:', error);
+		res.status(500).json({error: 'Internal server error'});
 	}
 });
 
@@ -415,8 +418,8 @@ router.post('/platform', async (req, res) => {
 		await adapter.handlePlatformWebhook(req.body, instanceId);
 		res.status(200).json({status: 'ok'});
 	} catch (error) {
-		console.error('Ошибка обработки вебхука платформы:', error);
-		res.status(500).json({error: 'Внутренняя ошибка сервера'});
+		console.error('Platform webhook error:', error);
+		res.status(500).json({error: 'Internal server error'});
 	}
 });
 
@@ -425,7 +428,7 @@ router.post('/instance', async (req, res) => {
 		const {idInstance, apiTokenInstance, userEmail} = req.body;
 
 		if (!idInstance || !apiTokenInstance || !userEmail) {
-			throw new BadRequestError('Отсутствуют обязательные поля');
+			throw new BadRequestError('Required fields missing');
 		}
 
 		const instance = await adapter.createInstance({
@@ -433,28 +436,28 @@ router.post('/instance', async (req, res) => {
 			apiTokenInstance
 		}, {
 			webhookUrl: `${process.env.APP_URL}/webhook/green-api`,
-			webhookUrlToken: `token_${Date.now()}`, // В продакшене используйте безопасный генератор токенов
+			webhookUrlToken: `token_${Date.now()}`, // In production, use a secure token generator
 			incomingWebhook: 'yes'
 		}, userEmail);
 
 		res.status(200).json({
 			status: 'ok',
 			data: instance,
-			message: 'Инстанс успешно создан. Подождите 2 минуты для применения настроек.'
+			message: 'Instance created successfully. Please wait 2 minutes for settings to apply.'
 		});
 
 	} catch (error) {
-		console.error('Ошибка создания инстанса:', error);
-		res.status(500).json({error: 'Не удалось создать инстанс'});
+		console.error('Instance creation error:', error);
+		res.status(500).json({error: 'Failed to create instance'});
 	}
 });
 
 export default router;
 ```
 
-#### Этап 6: Создание точки входа приложения
+#### Step 6: Create Application Entry Point
 
-Соберите все компоненты вместе в точке входа:
+Put it all together in your entrypoint:
 
 ```typescript
 // main.ts
@@ -466,56 +469,38 @@ import { YourAdapter } from './core/adapter';
 import { YourTransformer } from './core/transformer';
 import { YourStorage } from './core/storage';
 
-// Загрузка переменных окружения
+// Load environment variables
 dotenv.config();
 
 async function bootstrap() {
-	// Инициализация компонентов
+	// Initialize components
 	const storage = new YourStorage();
 	const transformer = new YourTransformer();
 	const adapter = new YourAdapter(transformer, storage);
 
-	// Создание Express приложения
+	// Create Express application
 	const app = express();
 	app.use(bodyParser.json());
 
-	// Настройка маршрутов для вебхуков
+	// Set up webhook routes
 	app.use('/webhook', webhookRouter);
 
-	// Запуск сервера
+	// Start server
 	const port = process.env.PORT || 3000;
 	app.listen(port, () => {
-		console.log(`Сервер запущен на порту ${port}`);
+		console.log(`Server running on port ${port}`);
 	});
 
-	console.log('Интеграционная платформа готова!');
+	console.log('Integration platform ready!');
 }
 
-// Обработка ошибок
+// Handle errors
 bootstrap();
 ```
 
-Или с NestJS:
+### Publishing Your Integration
 
-```typescript
-// main.ts
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import helmet from 'helmet';
-
-async function bootstrap() {
-	const app = await NestFactory.create(AppModule);
-	app.setGlobalPrefix('api');
-	app.use(helmet());
-	await app.listen(process.env.PORT ?? 3000);
-}
-
-bootstrap();
-```
-
-### Сборка приложения
-
-1. **Подготовка package.json**
+1. **Prepare package.json**
 
 ```json
 {
@@ -529,34 +514,33 @@ bootstrap();
   },
   "dependencies": {
     "@green-api/greenapi-integration": "^1.0.0",
-    "@prisma/client": "^5.0.0",
     "express": "^4.18.2"
-    // другие зависимости
+    // other dependencies
   }
 }
 ```
 
-2. **Сборка**
+2. **Build and Publish**
 
 ```bash
 npm run build
 npm publish
 ```
 
-## Рабочий пример
+## Working Example
 
-В директории `/examples/custom-adapter` вы найдете полный рабочий пример, демонстрирующий:
+Check out the `/examples/custom-adapter` directory for a complete working example showing:
 
-- Двустороннюю передачу сообщений между WhatsApp и пользовательской платформой
-- Обработку вебхуков
-- Настройку и конфигурацию инстанса
-- Преобразование сообщений
-- Обработку ошибок
+- Two-way message flow between WhatsApp and a custom platform
+- Webhook handling
+- Instance setup and configuration
+- Message transformation
+- Error handling
 
-### Запуск примера
+### Running the Example
 
-1. Клонируйте репозиторий
-2. Обновите .env данными ваших инстансов GREEN-API:
+1. Clone the repository
+2. Update .env with your GREEN-API credentials:
 
 ```env
 VISITOR_ID_INSTANCE=your_visitor_instance_id
@@ -568,7 +552,7 @@ WEBHOOK_URL=your_webhook_url
 PORT=3000
 ```
 
-3. Установите зависимости и запустите:
+3. Install dependencies and run:
 
 ```bash
 cd examples/custom-adapter
@@ -576,9 +560,9 @@ npm install
 npm start
 ```
 
-# Полная реализация примера
+## Complete Example Implementation
 
-### Структура проекта
+### Project Structure
 
 ```
 examples/
@@ -590,8 +574,7 @@ examples/
     │   ├── simple-storage.ts
     │   └── types.ts
     ├── .env
-    ├── package.json
-    └── tsconfig.json
+    └── package.json
 ```
 
 ### types.ts
@@ -619,7 +602,7 @@ import { MessageTransformer, Message, IncomingGreenApiWebhook, formatPhoneNumber
 export class SimpleTransformer extends MessageTransformer<SimplePlatformWebhook, SimplePlatformMessage> {
 	toPlatformMessage(webhook: IncomingGreenApiWebhook): SimplePlatformMessage {
 		if (webhook.messageData.typeMessage !== 'extendedTextMessage') {
-			throw new Error('Поддерживаются только текстовые сообщения');
+			throw new Error('Only text messages are supported');
 		}
 
 		return {
@@ -661,7 +644,7 @@ export class SimpleStorage extends StorageProvider {
 
 	async removeInstance(instanceId: number): Promise<BaseInstance> {
 		const instance = this.instances.get(instanceId);
-		if (!instance) throw new Error('Инстанс не найден');
+		if (!instance) throw new Error('Instance not found');
 		this.instances.delete(instanceId);
 		return instance;
 	}
@@ -678,7 +661,7 @@ export class SimpleStorage extends StorageProvider {
 
 	async updateUser(identifier: string, data: any): Promise<BaseUser> {
 		const user = await this.findUser(identifier);
-		if (!user) throw new Error('Пользователь не найден');
+		if (!user) throw new Error('User not found');
 		const updated = {...user, ...data};
 		this.users.set(identifier, updated);
 		return updated;
@@ -704,13 +687,13 @@ export class SimpleAdapter extends BaseAdapter<SimplePlatformWebhook, SimplePlat
 	}
 
 	async sendToPlatform(message: SimplePlatformMessage, instance: BaseInstance): Promise<void> {
-		// В реальной реализации мы бы отправляли сообщение на платформу
-		// Для демонстрации просто логируем и симулируем ответ
-		console.log('Платформа получила сообщение:', message);
+		// In a real implementation, we would send to the platform
+		// For demo, we'll just log and simulate a response
+		console.log('Platform received message:', message);
 
-		// Симулируем обработку и ответ платформы
+		// Simulate platform processing and responding
 		setTimeout(() => {
-			console.log('Обработка платформой завершена, отправляем ответ...');
+			console.log('Platform processing complete, sending response...');
 			this.simulatePlatformResponse(message, instance.idInstance);
 		}, 1000);
 	}
@@ -719,7 +702,7 @@ export class SimpleAdapter extends BaseAdapter<SimplePlatformWebhook, SimplePlat
 		const platformWebhook: SimplePlatformWebhook = {
 			messageId: `resp_${Date.now()}`,
 			from: originalMessage.to.replace('@c.us', ''),
-			text: `Спасибо за ваше сообщение: "${originalMessage.content}". Это автоматический ответ.`,
+			text: `Thanks for your message: "${originalMessage.content}". This is an automated response.`,
 			timestamp: Date.now()
 		};
 
@@ -742,12 +725,12 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 async function main() {
-	// Инициализация компонентов
+	// Initialize components
 	const transformer = new SimpleTransformer();
 	const storage = new SimpleStorage();
 	const adapter = new SimpleAdapter(transformer, storage);
 
-	// Конфигурация обоих инстансов
+	// Configuration for both instances
 	const visitorInstance = {
 		idInstance: Number(process.env.VISITOR_ID_INSTANCE),
 		apiTokenInstance: process.env.VISITOR_API_TOKEN!,
@@ -758,11 +741,11 @@ async function main() {
 		apiTokenInstance: process.env.AGENT_API_TOKEN!,
 	};
 
-	// Создание клиента GREEN-API для посетителя (для отправки начального сообщения)
+	// Create visitor's GREEN-API client (for sending initial message)
 	const visitorClient = new GreenApiClient(visitorInstance);
 
-	// Настройка инстанса агента
-	console.log("Настройка инстанса агента...");
+	// Set up agent instance
+	console.log("Setting up agent instance...");
 	const user = await adapter.createUser("agent@example.com", {
 		email: "agent@example.com",
 		name: "Agent",
@@ -774,41 +757,41 @@ async function main() {
 		incomingWebhook: "yes",
 	}, user.email);
 
-	console.log("Ожидание 2 минуты для применения настроек...");
+	console.log("Waiting 2 minutes for settings to apply...");
 	await new Promise(resolve => setTimeout(resolve, 120000));
-	console.log("Инстанс готов!");
+	console.log("Instance ready!");
 
-	// Настройка веб-сервера
+	// Set up webhook server
 	const app = express();
 	app.use(bodyParser.json());
 
-	// Обработка вебхуков от GREEN-API
+	// Handle GREEN-API webhooks
 	app.post("/webhook/green-api", async (req, res) => {
 		try {
-			console.log("Получен вебхук от GREEN-API:", req.body);
+			console.log("Received webhook from GREEN-API:", req.body);
 			await adapter.handleGreenApiWebhook(req.body, ["incomingMessageReceived"]);
 			res.status(200).json({status: "ok"});
 		} catch (error) {
-			console.error("Ошибка обработки вебхука:", error);
-			res.status(500).json({error: "Внутренняя ошибка сервера"});
+			console.error("Error handling webhook:", error);
+			res.status(500).json({error: "Internal server error"});
 		}
 	});
 
-	// Запуск сервера
+	// Start the server
 	const port = process.env.PORT || 3000;
 	app.listen(port, () => {
-		console.log(`Сервер вебхуков запущен на порту ${port}`);
+		console.log(`Webhook server listening on port ${port}`);
 	});
 
-	// Отправка начального сообщения от посетителя
-	console.log("Отправка начального сообщения от посетителя...");
+	// Send initial message from visitor
+	console.log("Sending initial message from visitor...");
 	await visitorClient.sendMessage({
 		chatId: formatPhoneNumber(process.env.AGENT_PHONE_NUMBER!),
-		message: "Здравствуйте! Это тестовое сообщение от посетителя.",
+		message: "Hello! This is a test message from a visitor.",
 		type: "text",
 	});
 
-	console.log("Начальное сообщение отправлено! Проверьте WhatsApp агента для просмотра ответа.");
+	console.log("Initial message sent! Check the agent WhatsApp app to see the response.");
 }
 
 main().catch(console.error);
@@ -826,28 +809,28 @@ WEBHOOK_URL=your_webhook_url
 PORT=3000
 ```
 
-## Реальные примеры
+## Real-World Examples
 
-Для полных примеров реальных интеграций, смотрите:
+For complete real-world integration examples, check out:
 
-- [Интеграция с Rocket.Chat](https://github.com/green-api/greenapi-integration-rocketchat)
+- [Rocket.Chat Integration](https://github.com/green-api/greenapi-integration-rocketchat)
 
-## Утилиты
+## Utilities
 
-Платформа предоставляет несколько вспомогательных функций:
+The platform provides several utility functions:
 
 ```typescript
-// Форматирование телефонных номеров для GREEN-API
-formatPhoneNumber('1234567890') // Возвращает '1234567890@c.us'
+// Format phone numbers for GREEN-API
+formatPhoneNumber('1234567890') // Returns '1234567890@c.us'
 
-// Генерация безопасных случайных токенов
-generateRandomToken(32) // Возвращает 32-символьный случайный токен
+// Generate secure random tokens
+generateRandomToken(32) // Returns a 32-character random token
 
-// Извлечение номера телефона из vcard
+// Extract phone number from vcard
 const vcard = 'BEGIN:VCARD\nTEL:+1234567890\nEND:VCARD'
-extractPhoneNumberFromVCard(vcard) // Возвращает '+1234567890'
+extractPhoneNumberFromVCard(vcard) // Returns '+1234567890'
 ```
 
-## Лицензия
+## License
 
 MIT

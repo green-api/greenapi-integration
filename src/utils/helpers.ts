@@ -23,6 +23,16 @@ export function formatPhoneNumber(phone: string, chatType: "group" | "private" =
 	return chatType === "private" ? `${cleaned}@c.us` : `${cleaned}@g.us`;
 }
 
+/**
+ * Generates a cryptographically secure random token.
+ *
+ * @param length - Length of the token in bytes (default: 32)
+ * @returns Hexadecimal string of the specified length
+ *
+ * @example
+ * generateRandomToken()     // Returns a 64-character hex string (32 bytes)
+ * generateRandomToken(16)   // Returns a 32-character hex string (16 bytes)
+ */
 export function generateRandomToken(length: number = 32): string {
 	return crypto.randomBytes(length).toString("hex");
 }

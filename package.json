@@ -11,7 +11,9 @@
     "build": "tsc",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "docs": "typedoc",
+    "docs:watch": "typedoc --watch"
   },
   "keywords": [
     "green-api",
@@ -29,6 +31,8 @@
     "rimraf": "^6.0.1",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
+    "typedoc": "^0.27.6",
+    "typedoc-plugin-markdown": "^4.4.1",
     "typescript": "^5.7.2"
   },
   "dependencies": {
