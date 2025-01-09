@@ -1,8 +1,26 @@
 import * as crypto from "crypto";
 
-export function formatPhoneNumber(phone: string): string {
+/**
+ * Utility functions for working with phone numbers, tokens, and vCards.
+ *
+ * @category Utilities
+ */
+
+/**
+ * Formats a phone number into GREEN-API's expected format.
+ * Removes all non-digit characters and adds @c.us or @g.us suffix.
+ *
+ * @param phone - The phone number to format
+ * @param chatType - The type of a chat, can be either "group" or "private"
+ * @returns Formatted phone number with @c.us suffix
+ *
+ * @example
+ * formatPhoneNumber('+1 (234) 567-8900')  // Returns '12345678900@c.us'
+ * formatPhoneNumber('1234567890')          // Returns '1234567890@c.us'
+ */
+export function formatPhoneNumber(phone: string, chatType: "group" | "private" = "private"): string {
 	const cleaned = phone.replace(/\D/g, "");
-	return `${cleaned}@c.us`;
+	return chatType === "private" ? `${cleaned}@c.us` : `${cleaned}@g.us`;
 }
 
 export function generateRandomToken(length: number = 32): string {
