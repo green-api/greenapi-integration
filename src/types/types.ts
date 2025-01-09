@@ -1,88 +1,101 @@
-export interface BaseInstance {
+/**
+ * Base interface for GREEN-API WhatsApp instances.
+ * Contains the essential credentials needed to interact with the API.
+ */
+interface BaseInstance {
 	idInstance: number | bigint;
 	apiTokenInstance: string;
-	settings?: any;
+	settings?: Settings;
 }
 
+/**
+ * Extended instance interface that allows for additional platform-specific properties.
+ * Use this when you need to store extra data with your instance.
+ */
 export interface Instance extends BaseInstance {
 	[key: string]: any;
 }
 
-export type Message = SendMessage | SendFileByUpload | SendFileByUrl | SendPoll | SendLocation | SendContact | ForwardMessages;
-
-export interface BaseMessage {
-	type: SendMessageType;
-	chatId: string;
-	quotedMessageId?: string;
-}
-
-export type SendMessageType = "text" | "upload-file" | "url-file" | "poll" | "location" | "contact" | "forward";
-
-export interface SendMessage extends BaseMessage {
+/**
+ * Union type representing all possible message formats that can be sent through GREEN-API.
+ * Each message type has its own specific structure and required fields.
+ */
+export type Message =
+	| ({
 	type: "text";
 	message: string;
-}
-
-export interface ForwardMessages {
-	type: "forward";
-	chatId: string;
-	chatIdFrom: string;
-	messages: string[];
-}
-
-export interface ForwardMessagesResponse {
-	messages: string[];
-}
-
-export interface Contact {
-	phoneContact: number;
-	firstName?: string;
-	middleName?: string;
-	lastName?: string;
-	company?: string;
-}
-
-export interface SendContact extends BaseMessage {
-	type: "contact";
-	contact: Contact;
-}
-
-export interface SendFileByUpload extends BaseMessage {
+} & BaseMessage)
+	| ({
 	type: "upload-file";
 	caption?: string;
 	file: {
 		data: Blob | File;
 		fileName: string;
 	};
-}
-
-export interface SendFileByUrl extends BaseMessage {
+} & BaseMessage)
+	| ({
 	type: "url-file";
 	caption?: string;
 	file: {
 		url: string;
 		fileName: string;
 	};
-}
-
-export interface SendLocation extends BaseMessage {
+} & BaseMessage)
+	| ({
+	type: "poll";
+	message: string;
+	options: PollOption[];
+	multipleAnswers?: boolean;
+} & BaseMessage)
+	| ({
 	type: "location";
 	nameLocation?: string;
 	address?: string;
 	latitude: number;
 	longitude: number;
+} & BaseMessage)
+	| ({
+	type: "contact";
+	contact: {
+		phoneContact: number;
+		firstName?: string;
+		middleName?: string;
+		lastName?: string;
+		company?: string;
+	};
+} & BaseMessage)
+	| {
+	type: "forward";
+	chatId: string;
+	chatIdFrom: string;
+	messages: string[];
+};
+
+/**
+ * Common properties shared by all message types.
+ */
+export interface BaseMessage {
+	chatId: string;
+	quotedMessageId?: string;
+}
+
+export type SendMessageType = "text" | "upload-file" | "url-file" | "poll" | "location" | "contact" | "forward";
+
+export interface ForwardMessagesResponse {
+	messages: string[];
 }
 
 export interface PollOption {
 	optionName: string;
 }
 
-export interface SendPoll extends BaseMessage {
-	type: "poll";
-	message: string;
-	options: PollOption[];
-	multipleAnswers?: boolean;
-}
+export type SendMessage = Extract<Message, { type: "text" }>;
+export type SendFileByUpload = Extract<Message, { type: "upload-file" }>;
+export type SendFileByUrl = Extract<Message, { type: "url-file" }>;
+export type SendLocation = Extract<Message, { type: "location" }>;
+export type SendContact = Extract<Message, { type: "contact" }>;
+export type SendPoll = Extract<Message, { type: "poll" }>;
+export type ForwardMessages = Extract<Message, { type: "forward" }>;
 
 export type MessageType =
 	"textMessage"
@@ -90,10 +103,157 @@ export type MessageType =
 	| "imageMessage"
 	| "videoMessage"
 	| "documentMessage"
-	| "audioMessage";
+	| "audioMessage"
+	| "contactMessage"
+	| "locationMessage"
+	| "pollMessage";
 
-export interface IncomingGreenApiWebhook {
-	typeWebhook: string;
+export interface ForwardableMessage {
+	forwardingScore: number;
+	isForwarded: boolean;
+}
+
+export interface MediaMessage extends ForwardableMessage {
+	jpegThumbnail: string;
+}
+
+export interface TextMessageData {
+	textMessage: string;
+}
+
+export interface ExtendedTextMessageData extends MediaMessage {
+	text: string;
+	description: string;
+	title: string;
+}
+
+export interface FileMessageData extends MediaMessage {
+	downloadUrl: string;
+	caption: string;
+	mimeType: string;
+	fileName: string;
+}
+
+export interface LocationMessageData extends MediaMessage {
+	nameLocation: string;
+	address: string;
+	latitude: number;
+	longitude: number;
+}
+
+export interface ContactMessageData extends ForwardableMessage {
+	displayName: string;
+	vcard: string;
+}
+
+export interface PollMessageData {
+	name: string;
+	options: PollOption[];
+	multipleAnswers: boolean;
+}
+
+type QuotedMessage = {
+	stanzaId: string;
+	participant: string;
+	typeMessage: MessageType;
+} & (
+	| { typeMessage: "textMessage"; textMessage: string }
+	| {
+	typeMessage: "contactMessage";
+	contact: {
+		displayName: string;
+		vcard: string;
+	};
+}
+	| {
+	typeMessage: "locationMessage";
+	location: {
+		nameLocation: string;
+		address: string;
+		jpegThumbnail: string;
+		latitude: number;
+		longitude: number;
+	};
+}
+	| {
+	typeMessage: "imageMessage" | "videoMessage" | "documentMessage" | "audioMessage";
+	downloadUrl: string;
+	caption: string;
+	jpegThumbnail: string;
+}
+	);
+
+export interface PollVote {
+	optionName: string;
+	optionVoters: string[];
+}
+
+export interface PollUpdateMessageData {
+	stanzaId: string;
+	name: string;
+	votes: PollVote[];
+	multipleAnswers: boolean;
+}
+
+export type OutgoingMessageStatus =
+	| "sent"
+	| "delivered"
+	| "read"
+	| "failed"
+	| "noAccount"
+	| "notInGroup"
+	| "yellowCard";
+
+/**
+ * Webhook payload received when a message status changes.
+ * Used to track delivery and read receipts.
+ */
+export interface OutgoingMessageStatusWebhook {
+	typeWebhook: "outgoingMessageStatus";
+	chatId: string;
+	instanceData: {
+		idInstance: number;
+		wid: string;
+		typeInstance: string;
+	};
+	timestamp: number;
+	idMessage: string;
+	status: OutgoingMessageStatus;
+	description?: string;
+	sendByApi: boolean;
+}
+
+export type WebhookMessageData =
+	| {
+	typeMessage: "textMessage";
+	textMessageData: TextMessageData;
+}
+	| {
+	typeMessage: "extendedTextMessage";
+	extendedTextMessageData: ExtendedTextMessageData;
+}
+	| {
+	typeMessage: "imageMessage" | "videoMessage" | "documentMessage" | "audioMessage";
+	fileMessageData: FileMessageData;
+}
+	| {
+	typeMessage: "locationMessage";
+	locationMessageData: LocationMessageData;
+}
+	| {
+	typeMessage: "contactMessage";
+	contactMessageData: ContactMessageData;
+}
+	| {
+	typeMessage: "pollMessage";
+	pollMessageData: PollMessageData;
+} | {
+	typeMessage: "pollUpdateMessage";
+	pollMessageData: PollUpdateMessageData;
+};
+
+export interface MessageWebhook {
+	typeWebhook: "incomingMessageReceived" | "outgoingMessageReceived" | "outgoingAPIMessageReceived";
 	instanceData: {
 		idInstance: number;
 		wid: string;
@@ -104,35 +264,24 @@ export interface IncomingGreenApiWebhook {
 	senderData: {
 		chatId: string;
 		sender: string;
-		chatName?: string;
-		senderName?: string;
+		chatName: string;
+		senderName: string;
 		senderContactName?: string;
 	};
-	messageData: {
-		typeMessage: MessageType;
-		textMessageData?: {
-			textMessage: string;
-		};
-		extendedTextMessageData?: {
-			text: string;
-			description?: string;
-			title?: string;
-			jpegThumbnail?: string;
-			forwardingScore?: number;
-			isForwarded?: boolean;
-		};
-		fileMessageData?: {
-			downloadUrl: string;
-			caption?: string;
-			jpegThumbnail?: string;
-			mimeType: string;
-			forwardingScore?: number;
-			isForwarded?: boolean;
-			fileName: string;
-		};
+	messageData: WebhookMessageData & {
+		quotedMessage?: QuotedMessage;
 	};
 }
 
+/**
+ * Primary webhook types received from GREEN-API.
+ */
+export type GreenApiWebhook = MessageWebhook | OutgoingMessageStatusWebhook;
+
+/**
+ * Configuration settings for a GREEN-API instance.
+ * Controls webhook behavior, message handling, and other instance features.
+ */
 export interface Settings {
 	wid?: string;
 	webhookUrl?: string;
@@ -158,6 +307,9 @@ export interface Logout {
 	isLogout: boolean;
 }
 
+/**
+ * Represents an instance state in the GREEN-API system.
+ */
 export type InstanceState =
 	| "notAuthorized"
 	| "authorized"
