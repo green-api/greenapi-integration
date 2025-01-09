@@ -1,4 +1,4 @@
-import { StorageProvider, BaseUser, BaseInstance, Settings } from 'greenapi-integration';
+import { StorageProvider, BaseUser, BaseInstance, Settings } from '@green-api/greenapi-integration';
 
 export class SimpleStorage extends StorageProvider {
     private users: Map<string, BaseUser> = new Map();

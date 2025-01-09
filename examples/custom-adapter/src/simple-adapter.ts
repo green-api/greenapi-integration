@@ -1,4 +1,4 @@
-import { BaseAdapter, BaseInstance } from "greenapi-integration";
+import { BaseAdapter, BaseInstance } from "@green-api/greenapi-integration";
 import { SimplePlatformMessage, SimplePlatformWebhook } from "./types";
 import axios from 'axios';
 

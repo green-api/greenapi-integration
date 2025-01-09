@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { formatPhoneNumber, GreenApiClient } from "greenapi-integration";
+import { formatPhoneNumber, GreenApiClient } from "@green-api/greenapi-integration";
 import { SimpleTransformer } from "./simple-transformer";
 import { SimpleStorage } from "./simple-storage";
 import { SimpleAdapter } from "./simple-adapter";

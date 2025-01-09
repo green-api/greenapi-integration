@@ -1,4 +1,4 @@
-import { MessageTransformer, Message, IncomingGreenApiWebhook, formatPhoneNumber } from "greenapi-integration";
+import { MessageTransformer, Message, IncomingGreenApiWebhook, formatPhoneNumber } from "@green-api/greenapi-integration";
 import { SimplePlatformMessage, SimplePlatformWebhook } from "./types";
 
 export class SimpleTransformer extends MessageTransformer<SimplePlatformWebhook, SimplePlatformMessage> {
