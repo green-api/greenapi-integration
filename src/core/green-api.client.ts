@@ -72,7 +72,7 @@ export class GreenApiClient {
 				: this.client.post(this.buildEndpoint(endpoint), data, config));
 			return response.data;
 		} catch (error: any) {
-			throw new Error(`Failed to ${endpoint.replace(/([A-Z])/g, " $1").toLowerCase()}: ${error.message}`);
+			throw new Error(`Failed to ${endpoint.replace(/([A-Z])/g, " $1").toLowerCase()}: ${error.message}. ${JSON.stringify(error.response?.data)}`);
 		}
 	}
 
