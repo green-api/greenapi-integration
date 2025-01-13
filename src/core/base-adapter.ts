@@ -1,6 +1,14 @@
 import { GreenApiClient } from "./green-api.client";
 import { MessageTransformer } from "./message-transformer";
-import { BaseUser, ForwardMessagesResponse, GreenApiWebhook, Instance, SendResponse, Settings } from "../types/types";
+import {
+	BaseUser,
+	ForwardMessagesResponse,
+	GreenApiWebhook,
+	Instance,
+	SendResponse,
+	StateInstanceWebhook,
+	WebhookType,
+} from "../types/types";
 import { BadRequestError, IntegrationError, NotFoundError } from "./errors";
 import { StorageProvider } from "./storage-provider";
 
@@ -80,6 +88,18 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 	 * ```
 	 */
 	public abstract createPlatformClient(params: any): Promise<any>;
+
+	/**
+	 * Handles instance state change webhooks from GREEN-API.
+	 * Adapters MUST override this method if they need to handle instance state changes
+	 *
+	 * @param webhook - The state change webhook from GREEN-API
+	 * @returns Promise resolving when the webhook is handled
+	 */
+	public async handleStateInstanceWebhook(webhook: StateInstanceWebhook): Promise<void> {
+		// Default empty implementation
+		return;
+	}
 
 	/**
 	 * Creates a GREEN-API client instance.
@@ -164,18 +184,21 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 	 * @throws {NotFoundError} If instance is not found
 	 * @throws {IntegrationError} If webhook handling fails
 	 */
-	public async handleGreenApiWebhook(webhook: GreenApiWebhook, allowedTypes: string[]): Promise<void> {
+	public async handleGreenApiWebhook(webhook: GreenApiWebhook, allowedTypes: WebhookType[]): Promise<void> {
 		if (!allowedTypes.includes(webhook.typeWebhook)) {
 			return;
 		}
 		try {
-			const transformedMessage = await this.transformer.toPlatformMessage(webhook);
-			const instance = await this.storage.getInstance(webhook.instanceData.idInstance);
-			if (!instance) {
-				throw new NotFoundError("Instance not found");
+			if (webhook.typeWebhook === "stateInstanceChanged") {
+				await this.handleStateInstanceWebhook(webhook);
+			} else {
+				const transformedMessage = await this.transformer.toPlatformMessage(webhook);
+				const instance = await this.storage.getInstance(webhook.instanceData.idInstance);
+				if (!instance) {
+					throw new NotFoundError("Instance not found");
+				}
+				await this.sendToPlatform(transformedMessage, instance);
 			}
-
-			await this.sendToPlatform(transformedMessage, instance);
 		} catch (error) {
 			this.handleError("Failed to handle GREEN-API webhook", error);
 		}
@@ -185,7 +208,6 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 	 * Creates a new instance with specified settings.
 	 *
 	 * @param instance - The instance configuration
-	 * @param settings - GREEN-API settings for the instance
 	 * @param userCred - User credentials
 	 * @returns Promise resolving to the created instance
 	 * @throws {NotFoundError} If user is not found

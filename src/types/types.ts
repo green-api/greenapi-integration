@@ -5,7 +5,8 @@
 interface BaseInstance {
 	idInstance: number | bigint;
 	apiTokenInstance: string;
-	settings?: Settings;
+	stateInstance?: InstanceState;
+	settings?: Settings | Record<string, any>;
 }
 
 /**
@@ -204,6 +205,13 @@ export type OutgoingMessageStatus =
 	| "notInGroup"
 	| "yellowCard";
 
+export type WebhookType =
+	"stateInstanceChanged"
+	| "outgoingMessageStatus"
+	| "outgoingAPIMessageReceived"
+	| "outgoingMessageReceived"
+	| "incomingMessageReceived"
+
 /**
  * Webhook payload received when a message status changes.
  * Used to track delivery and read receipts.
@@ -221,6 +229,17 @@ export interface OutgoingMessageStatusWebhook {
 	status: OutgoingMessageStatus;
 	description?: string;
 	sendByApi: boolean;
+}
+
+export interface StateInstanceWebhook {
+	typeWebhook: "stateInstanceChanged";
+	instanceData: {
+		idInstance: number;
+		wid: string;  // Empty string when not authorized
+		typeInstance: string;
+	};
+	timestamp: number;
+	stateInstance: InstanceState;
 }
 
 export type WebhookMessageData =
@@ -276,7 +295,7 @@ export interface MessageWebhook {
 /**
  * Primary webhook types received from GREEN-API.
  */
-export type GreenApiWebhook = MessageWebhook | OutgoingMessageStatusWebhook;
+export type GreenApiWebhook = MessageWebhook | OutgoingMessageStatusWebhook | StateInstanceWebhook;
 
 /**
  * Configuration settings for a GREEN-API instance.
