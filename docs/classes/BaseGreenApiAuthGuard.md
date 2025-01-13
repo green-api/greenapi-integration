@@ -6,7 +6,7 @@
 
 # Class: `abstract` BaseGreenApiAuthGuard\<T\>
 
-Defined in: [src/core/guard.ts:34](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/guard.ts#L34)
+Defined in: [src/core/guard.ts:34](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/guard.ts#L34)
 
 Base authentication guard for validating incoming GREEN-API webhooks.
 Ensures that webhooks are authenticated and come from valid instances.
@@ -46,7 +46,7 @@ Request type extending BaseRequest, contains headers and body
 
 > **new BaseGreenApiAuthGuard**\<`T`\>(`storage`): [`BaseGreenApiAuthGuard`](BaseGreenApiAuthGuard.md)\<`T`\>
 
-Defined in: [src/core/guard.ts:40](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/guard.ts#L40)
+Defined in: [src/core/guard.ts:40](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/guard.ts#L40)
 
 Creates an instance of BaseGreenApiAuthGuard.
 
@@ -68,7 +68,7 @@ Storage provider for accessing instance data
 
 > `protected` **storage**: [`StorageProvider`](StorageProvider.md)
 
-Defined in: [src/core/guard.ts:40](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/guard.ts#L40)
+Defined in: [src/core/guard.ts:40](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/guard.ts#L40)
 
 Storage provider for accessing instance data
 
@@ -78,7 +78,7 @@ Storage provider for accessing instance data
 
 > **validateRequest**(`request`): `Promise`\<`boolean`\>
 
-Defined in: [src/core/guard.ts:53](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/guard.ts#L53)
+Defined in: [src/core/guard.ts:53](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/guard.ts#L53)
 
 Validates an incoming webhook request.
 Checks for presence of authorization token and validates it against instance settings.

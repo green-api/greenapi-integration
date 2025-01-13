@@ -6,7 +6,7 @@
 
 # Interface: PollVote
 
-Defined in: [src/types/types.ts:186](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L186)
+Defined in: [src/types/types.ts:187](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L187)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:186](https://github.com/green-api/greenapi-integ
 
 > **optionName**: `string`
 
-Defined in: [src/types/types.ts:187](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L187)
+Defined in: [src/types/types.ts:188](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L188)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:187](https://github.com/green-api/greenapi-integ
 
 > **optionVoters**: `string`[]
 
-Defined in: [src/types/types.ts:188](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L188)
+Defined in: [src/types/types.ts:189](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L189)

@@ -6,7 +6,7 @@
 
 # Interface: Logout
 
-Defined in: [src/types/types.ts:306](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L306)
+Defined in: [src/types/types.ts:325](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L325)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:306](https://github.com/green-api/greenapi-integ
 
 > **isLogout**: `boolean`
 
-Defined in: [src/types/types.ts:307](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L307)
+Defined in: [src/types/types.ts:326](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L326)

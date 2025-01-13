@@ -8,4 +8,4 @@
 
 > **OutgoingMessageStatus**: `"sent"` \| `"delivered"` \| `"read"` \| `"failed"` \| `"noAccount"` \| `"notInGroup"` \| `"yellowCard"`
 
-Defined in: [src/types/types.ts:198](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L198)
+Defined in: [src/types/types.ts:199](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L199)

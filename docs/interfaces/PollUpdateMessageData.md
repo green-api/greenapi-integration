@@ -6,7 +6,7 @@
 
 # Interface: PollUpdateMessageData
 
-Defined in: [src/types/types.ts:191](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L191)
+Defined in: [src/types/types.ts:192](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L192)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:191](https://github.com/green-api/greenapi-integ
 
 > **multipleAnswers**: `boolean`
 
-Defined in: [src/types/types.ts:195](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L195)
+Defined in: [src/types/types.ts:196](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L196)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:195](https://github.com/green-api/greenapi-integ
 
 > **name**: `string`
 
-Defined in: [src/types/types.ts:193](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L193)
+Defined in: [src/types/types.ts:194](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L194)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:193](https://github.com/green-api/greenapi-integ
 
 > **stanzaId**: `string`
 
-Defined in: [src/types/types.ts:192](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L192)
+Defined in: [src/types/types.ts:193](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L193)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [src/types/types.ts:192](https://github.com/green-api/greenapi-integ
 
 > **votes**: [`PollVote`](PollVote.md)[]
 
-Defined in: [src/types/types.ts:194](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L194)
+Defined in: [src/types/types.ts:195](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L195)

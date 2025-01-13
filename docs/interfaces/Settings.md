@@ -6,7 +6,7 @@
 
 # Interface: Settings
 
-Defined in: [src/types/types.ts:285](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L285)
+Defined in: [src/types/types.ts:304](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L304)
 
 Configuration settings for a GREEN-API instance.
 Controls webhook behavior, message handling, and other instance features.
@@ -17,7 +17,7 @@ Controls webhook behavior, message handling, and other instance features.
 
 > `optional` **delaySendMessagesMilliseconds**: `number`
 
-Defined in: [src/types/types.ts:289](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L289)
+Defined in: [src/types/types.ts:308](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L308)
 
 ***
 
@@ -25,7 +25,7 @@ Defined in: [src/types/types.ts:289](https://github.com/green-api/greenapi-integ
 
 > `optional` **incomingCallWebhook**: `"yes"` \| `"no"`
 
-Defined in: [src/types/types.ts:299](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L299)
+Defined in: [src/types/types.ts:318](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L318)
 
 ***
 
@@ -33,7 +33,7 @@ Defined in: [src/types/types.ts:299](https://github.com/green-api/greenapi-integ
 
 > `optional` **incomingWebhook**: `"yes"` \| `"no"`
 
-Defined in: [src/types/types.ts:296](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L296)
+Defined in: [src/types/types.ts:315](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L315)
 
 ***
 
@@ -41,7 +41,7 @@ Defined in: [src/types/types.ts:296](https://github.com/green-api/greenapi-integ
 
 > `optional` **keepOnlineStatus**: `"yes"` \| `"no"`
 
-Defined in: [src/types/types.ts:297](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L297)
+Defined in: [src/types/types.ts:316](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L316)
 
 ***
 
@@ -49,7 +49,7 @@ Defined in: [src/types/types.ts:297](https://github.com/green-api/greenapi-integ
 
 > `optional` **markIncomingMessagesReaded**: `"yes"` \| `"no"`
 
-Defined in: [src/types/types.ts:290](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L290)
+Defined in: [src/types/types.ts:309](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L309)
 
 ***
 
@@ -57,7 +57,7 @@ Defined in: [src/types/types.ts:290](https://github.com/green-api/greenapi-integ
 
 > `optional` **markIncomingMessagesReadedOnReply**: `"yes"` \| `"no"`
 
-Defined in: [src/types/types.ts:291](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L291)
+Defined in: [src/types/types.ts:310](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L310)
 
 ***
 
@@ -65,7 +65,7 @@ Defined in: [src/types/types.ts:291](https://github.com/green-api/greenapi-integ
 
 > `optional` **outgoingAPIMessageWebhook**: `"yes"` \| `"no"`
 
-Defined in: [src/types/types.ts:294](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L294)
+Defined in: [src/types/types.ts:313](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L313)
 
 ***
 
@@ -73,7 +73,7 @@ Defined in: [src/types/types.ts:294](https://github.com/green-api/greenapi-integ
 
 > `optional` **outgoingMessageWebhook**: `"yes"` \| `"no"`
 
-Defined in: [src/types/types.ts:293](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L293)
+Defined in: [src/types/types.ts:312](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L312)
 
 ***
 
@@ -81,7 +81,7 @@ Defined in: [src/types/types.ts:293](https://github.com/green-api/greenapi-integ
 
 > `optional` **outgoingWebhook**: `"yes"` \| `"no"`
 
-Defined in: [src/types/types.ts:292](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L292)
+Defined in: [src/types/types.ts:311](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L311)
 
 ***
 
@@ -89,7 +89,7 @@ Defined in: [src/types/types.ts:292](https://github.com/green-api/greenapi-integ
 
 > `optional` **pollMessageWebhook**: `"yes"` \| `"no"`
 
-Defined in: [src/types/types.ts:298](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L298)
+Defined in: [src/types/types.ts:317](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L317)
 
 ***
 
@@ -97,7 +97,7 @@ Defined in: [src/types/types.ts:298](https://github.com/green-api/greenapi-integ
 
 > `optional` **stateWebhook**: `"yes"` \| `"no"`
 
-Defined in: [src/types/types.ts:295](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L295)
+Defined in: [src/types/types.ts:314](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L314)
 
 ***
 
@@ -105,7 +105,7 @@ Defined in: [src/types/types.ts:295](https://github.com/green-api/greenapi-integ
 
 > `optional` **webhookUrl**: `string`
 
-Defined in: [src/types/types.ts:287](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L287)
+Defined in: [src/types/types.ts:306](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L306)
 
 ***
 
@@ -113,7 +113,7 @@ Defined in: [src/types/types.ts:287](https://github.com/green-api/greenapi-integ
 
 > `optional` **webhookUrlToken**: `string`
 
-Defined in: [src/types/types.ts:288](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L288)
+Defined in: [src/types/types.ts:307](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L307)
 
 ***
 
@@ -121,4 +121,4 @@ Defined in: [src/types/types.ts:288](https://github.com/green-api/greenapi-integ
 
 > `optional` **wid**: `string`
 
-Defined in: [src/types/types.ts:286](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L286)
+Defined in: [src/types/types.ts:305](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L305)

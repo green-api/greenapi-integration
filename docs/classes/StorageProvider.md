@@ -6,7 +6,7 @@
 
 # Class: `abstract` StorageProvider\<TUser, TInstance, TUserCreate, TUserUpdate\>
 
-Defined in: [src/core/storage-provider.ts:24](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/storage-provider.ts#L24)
+Defined in: [src/core/storage-provider.ts:24](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/storage-provider.ts#L24)
 
 Abstract class for managing instance and user data storage.
 Implement this class to define how your integration stores and retrieves data.
@@ -55,9 +55,9 @@ Shape of data allowed for user updates
 
 ### createInstance()
 
-> `abstract` **createInstance**(`instance`, `userId`, `settings`?): `Promise`\<`TInstance`\>
+> `abstract` **createInstance**(`instance`, `userId`): `Promise`\<`TInstance`\>
 
-Defined in: [src/core/storage-provider.ts:38](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/storage-provider.ts#L38)
+Defined in: [src/core/storage-provider.ts:37](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/storage-provider.ts#L37)
 
 Creates a new instance in storage.
 
@@ -75,12 +75,6 @@ ID of the user who owns this instance
 
 `number` | `bigint`
 
-##### settings?
-
-[`Settings`](../interfaces/Settings.md)
-
-Optional GREEN-API settings for the instance
-
 #### Returns
 
 `Promise`\<`TInstance`\>
@@ -93,7 +87,7 @@ Promise resolving to the created instance
 
 > `abstract` **createUser**(`data`): `Promise`\<`TUser`\>
 
-Defined in: [src/core/storage-provider.ts:62](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/storage-provider.ts#L62)
+Defined in: [src/core/storage-provider.ts:61](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/storage-provider.ts#L61)
 
 Creates a new user in storage.
 
@@ -117,7 +111,7 @@ Promise resolving to the created user
 
 > `abstract` **findUser**(`identifier`): `Promise`\<`null` \| `TUser`\>
 
-Defined in: [src/core/storage-provider.ts:70](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/storage-provider.ts#L70)
+Defined in: [src/core/storage-provider.ts:69](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/storage-provider.ts#L69)
 
 Finds a user by identifier (usually email or username).
 
@@ -141,7 +135,7 @@ Promise resolving to the user or null if not found
 
 > `abstract` **getInstance**(`idInstance`): `Promise`\<`null` \| `TInstance`\>
 
-Defined in: [src/core/storage-provider.ts:46](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/storage-provider.ts#L46)
+Defined in: [src/core/storage-provider.ts:45](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/storage-provider.ts#L45)
 
 Retrieves an instance by its ID.
 
@@ -165,7 +159,7 @@ Promise resolving to the instance or null if not found
 
 > `abstract` **removeInstance**(`instanceId`): `Promise`\<`TInstance`\>
 
-Defined in: [src/core/storage-provider.ts:54](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/storage-provider.ts#L54)
+Defined in: [src/core/storage-provider.ts:53](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/storage-provider.ts#L53)
 
 Removes an instance from storage.
 
@@ -189,7 +183,7 @@ Promise resolving to the removed instance
 
 > `abstract` **updateUser**(`identifier`, `data`): `Promise`\<`TUser`\>
 
-Defined in: [src/core/storage-provider.ts:79](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/storage-provider.ts#L79)
+Defined in: [src/core/storage-provider.ts:78](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/storage-provider.ts#L78)
 
 Updates an existing user's data.
 

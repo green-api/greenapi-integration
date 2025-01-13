@@ -6,7 +6,7 @@
 
 # Class: `abstract` MessageTransformer\<TPlatformWebhook, TPlatformMessage\>
 
-Defined in: [src/core/message-transformer.ts:31](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/message-transformer.ts#L31)
+Defined in: [src/core/message-transformer.ts:31](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/message-transformer.ts#L31)
 
 Abstract class for transforming messages between your platform's format and GREEN-API's format.
 Implement this class to define how messages are converted between the two systems.
@@ -58,7 +58,7 @@ Your platform's outgoing message type
 
 > `abstract` **toGreenApiMessage**(`message`): [`Message`](../type-aliases/Message.md)
 
-Defined in: [src/core/message-transformer.ts:50](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/message-transformer.ts#L50)
+Defined in: [src/core/message-transformer.ts:50](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/message-transformer.ts#L50)
 
 Transforms your platform's message format into GREEN-API's message format.
 Implement this method to convert your platform's messages to WhatsApp format.
@@ -87,7 +87,7 @@ If the message format is invalid or unsupported
 
 > `abstract` **toPlatformMessage**(`webhook`): `TPlatformMessage`
 
-Defined in: [src/core/message-transformer.ts:40](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/message-transformer.ts#L40)
+Defined in: [src/core/message-transformer.ts:40](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/message-transformer.ts#L40)
 
 Transforms a GREEN-API webhook into your platform's message format.
 Implement this method to convert incoming WhatsApp messages to your platform's format.

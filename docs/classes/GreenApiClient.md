@@ -6,7 +6,7 @@
 
 # Class: GreenApiClient
 
-Defined in: [src/core/green-api.client.ts:40](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L40)
+Defined in: [src/core/green-api.client.ts:40](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L40)
 
 Client for direct interaction with GREEN-API's WhatsApp gateway.
 Provides methods for sending messages, managing instances, and handling files.
@@ -31,7 +31,7 @@ await client.sendMessage({
 
 > **new GreenApiClient**(`instance`): [`GreenApiClient`](GreenApiClient.md)
 
-Defined in: [src/core/green-api.client.ts:49](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L49)
+Defined in: [src/core/green-api.client.ts:49](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L49)
 
 Creates a GREEN-API client instance.
 
@@ -53,7 +53,7 @@ Configuration containing idInstance and apiTokenInstance
 
 > **forwardMessages**(`request`): `Promise`\<[`ForwardMessagesResponse`](../interfaces/ForwardMessagesResponse.md)\>
 
-Defined in: [src/core/green-api.client.ts:207](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L207)
+Defined in: [src/core/green-api.client.ts:207](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L207)
 
 Forwards messages from one chat to another.
 
@@ -91,7 +91,7 @@ Promise resolving to forward response
 
 > **getAuthorizationCode**(`phoneNumber`): `Promise`\<[`GetAuthorizationCode`](../interfaces/GetAuthorizationCode.md)\>
 
-Defined in: [src/core/green-api.client.ts:379](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L379)
+Defined in: [src/core/green-api.client.ts:379](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L379)
 
 Gets authorization code for a phone number.
 
@@ -119,7 +119,7 @@ If phone number is not an integer
 
 > **getQR**(): `Promise`\<[`QR`](../interfaces/QR.md)\>
 
-Defined in: [src/core/green-api.client.ts:301](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L301)
+Defined in: [src/core/green-api.client.ts:301](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L301)
 
 Gets the QR code for GREEN-API instance authentication.
 
@@ -135,7 +135,7 @@ Promise resolving to QR code data
 
 > **getSettings**(): `Promise`\<[`Settings`](../interfaces/Settings.md)\>
 
-Defined in: [src/core/green-api.client.ts:310](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L310)
+Defined in: [src/core/green-api.client.ts:310](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L310)
 
 Gets current instance settings.
 
@@ -151,7 +151,7 @@ Promise resolving to settings object
 
 > **getStateInstance**(): `Promise`\<[`StateInstance`](../interfaces/StateInstance.md)\>
 
-Defined in: [src/core/green-api.client.ts:292](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L292)
+Defined in: [src/core/green-api.client.ts:292](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L292)
 
 Gets the current state of the GREEN-API instance.
 
@@ -167,7 +167,7 @@ Promise resolving to instance state
 
 > **getWaSettings**(): `Promise`\<[`WaSettings`](../interfaces/WaSettings.md)\>
 
-Defined in: [src/core/green-api.client.ts:329](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L329)
+Defined in: [src/core/green-api.client.ts:329](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L329)
 
 Gets WhatsApp-specific settings.
 
@@ -183,7 +183,7 @@ Promise resolving to WhatsApp settings
 
 > **logout**(): `Promise`\<[`Logout`](../interfaces/Logout.md)\>
 
-Defined in: [src/core/green-api.client.ts:283](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L283)
+Defined in: [src/core/green-api.client.ts:283](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L283)
 
 Logs out from the GREEN-API instance.
 
@@ -199,7 +199,7 @@ Promise resolving to logout status
 
 > **reboot**(): `Promise`\<[`Reboot`](../interfaces/Reboot.md)\>
 
-Defined in: [src/core/green-api.client.ts:274](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L274)
+Defined in: [src/core/green-api.client.ts:274](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L274)
 
 Reboots the GREEN-API instance.
 
@@ -215,7 +215,7 @@ Promise resolving to reboot status
 
 > **sendContact**(`message`): `Promise`\<[`SendResponse`](../interfaces/SendResponse.md)\>
 
-Defined in: [src/core/green-api.client.ts:261](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L261)
+Defined in: [src/core/green-api.client.ts:261](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L261)
 
 Sends a contact card to a WhatsApp chat.
 
@@ -252,7 +252,7 @@ await client.sendContact({
 
 > **sendFileByUpload**(`message`): `Promise`\<[`SendFileByUploadResponse`](../interfaces/SendFileByUploadResponse.md)\>
 
-Defined in: [src/core/green-api.client.ts:164](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L164)
+Defined in: [src/core/green-api.client.ts:164](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L164)
 
 Sends a file from local data to a WhatsApp chat.
 
@@ -289,7 +289,7 @@ await client.sendFileByUpload({
 
 > **sendFileByUrl**(`message`): `Promise`\<[`SendResponse`](../interfaces/SendResponse.md)\>
 
-Defined in: [src/core/green-api.client.ts:136](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L136)
+Defined in: [src/core/green-api.client.ts:136](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L136)
 
 Sends a file from a URL to a WhatsApp chat.
 
@@ -326,7 +326,7 @@ await client.sendFileByUrl({
 
 > **sendLocation**(`message`): `Promise`\<[`SendResponse`](../interfaces/SendResponse.md)\>
 
-Defined in: [src/core/green-api.client.ts:232](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L232)
+Defined in: [src/core/green-api.client.ts:232](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L232)
 
 Sends a location to a WhatsApp chat.
 
@@ -362,7 +362,7 @@ await client.sendLocation({
 
 > **sendMessage**(`message`): `Promise`\<[`SendResponse`](../interfaces/SendResponse.md)\>
 
-Defined in: [src/core/green-api.client.ts:110](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L110)
+Defined in: [src/core/green-api.client.ts:110](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L110)
 
 Sends a text message to a WhatsApp chat.
 
@@ -396,7 +396,7 @@ await client.sendMessage({
 
 > **sendPoll**(`message`): `Promise`\<[`SendResponse`](../interfaces/SendResponse.md)\>
 
-Defined in: [src/core/green-api.client.ts:191](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L191)
+Defined in: [src/core/green-api.client.ts:191](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L191)
 
 Creates a poll in a WhatsApp chat.
 
@@ -431,7 +431,7 @@ await client.sendPoll({
 
 > **setProfilePicture**(`file`): `Promise`\<[`SetProfilePicture`](../interfaces/SetProfilePicture.md)\>
 
-Defined in: [src/core/green-api.client.ts:339](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L339)
+Defined in: [src/core/green-api.client.ts:339](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L339)
 
 Sets the profile picture for the WhatsApp account.
 
@@ -455,7 +455,7 @@ Promise resolving to profile picture update response
 
 > **setSettings**(`settings`): `Promise`\<[`SetSettingsResponse`](../interfaces/SetSettingsResponse.md)\>
 
-Defined in: [src/core/green-api.client.ts:320](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L320)
+Defined in: [src/core/green-api.client.ts:320](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L320)
 
 Updates instance settings.
 
@@ -479,7 +479,7 @@ Promise resolving to settings update response
 
 > **uploadFile**(`file`, `customFileName`?): `Promise`\<[`UploadFile`](../interfaces/UploadFile.md)\>
 
-Defined in: [src/core/green-api.client.ts:352](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/core/green-api.client.ts#L352)
+Defined in: [src/core/green-api.client.ts:352](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/core/green-api.client.ts#L352)
 
 Uploads a file to GREEN-API servers.
 

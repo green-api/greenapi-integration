@@ -6,7 +6,7 @@
 
 # Interface: SetProfilePicture
 
-Defined in: [src/types/types.ts:358](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L358)
+Defined in: [src/types/types.ts:377](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L377)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:358](https://github.com/green-api/greenapi-integ
 
 > **reason**: `null` \| `string`
 
-Defined in: [src/types/types.ts:359](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L359)
+Defined in: [src/types/types.ts:378](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L378)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:359](https://github.com/green-api/greenapi-integ
 
 > **setProfilePicture**: `boolean`
 
-Defined in: [src/types/types.ts:361](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L361)
+Defined in: [src/types/types.ts:380](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L380)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [src/types/types.ts:361](https://github.com/green-api/greenapi-integ
 
 > **urlAvatar**: `string`
 
-Defined in: [src/types/types.ts:360](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/types/types.ts#L360)
+Defined in: [src/types/types.ts:379](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L379)

@@ -62,6 +62,7 @@
 - [SetSettingsResponse](interfaces/SetSettingsResponse.md)
 - [Settings](interfaces/Settings.md)
 - [StateInstance](interfaces/StateInstance.md)
+- [StateInstanceWebhook](interfaces/StateInstanceWebhook.md)
 - [TextMessageData](interfaces/TextMessageData.md)
 - [UploadFile](interfaces/UploadFile.md)
 - [WaSettings](interfaces/WaSettings.md)
@@ -82,9 +83,12 @@
 - [SendMessageType](type-aliases/SendMessageType.md)
 - [SendPoll](type-aliases/SendPoll.md)
 - [WebhookMessageData](type-aliases/WebhookMessageData.md)
+- [WebhookType](type-aliases/WebhookType.md)
 
 ## Functions
 
 - [extractPhoneNumberFromVCard](functions/extractPhoneNumberFromVCard.md)
 - [formatPhoneNumber](functions/formatPhoneNumber.md)
 - [generateRandomToken](functions/generateRandomToken.md)
+- [isValidSettingValue](functions/isValidSettingValue.md)
+- [validateAndCleanSettings](functions/validateAndCleanSettings.md)

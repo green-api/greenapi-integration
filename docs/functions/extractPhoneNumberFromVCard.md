@@ -8,7 +8,7 @@
 
 > **extractPhoneNumberFromVCard**(`vcard`): `string` \| `null`
 
-Defined in: [src/utils/helpers.ts:51](https://github.com/green-api/greenapi-integration/blob/26b7312501b16e05fb46a2946b8bfa77b8bc003e/src/utils/helpers.ts#L51)
+Defined in: [src/utils/helpers.ts:52](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/utils/helpers.ts#L52)
 
 Extracts a phone number from a vCard string format.
 Supports various vCard formats and phone number notations.
