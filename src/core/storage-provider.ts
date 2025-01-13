@@ -32,10 +32,9 @@ export abstract class StorageProvider<
 	 *
 	 * @param instance - The instance data to store
 	 * @param userId - ID of the user who owns this instance
-	 * @param settings - Optional GREEN-API settings for the instance
 	 * @returns Promise resolving to the created instance
 	 */
-	abstract createInstance(instance: Instance, userId: bigint | number, settings?: Settings): Promise<TInstance>;
+	abstract createInstance(instance: Instance, userId: bigint | number): Promise<TInstance>;
 
 	/**
 	 * Retrieves an instance by its ID.

@@ -213,7 +213,7 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 	 * @throws {NotFoundError} If user is not found
 	 * @throws {IntegrationError} If instance creation fails
 	 */
-	public async createInstance(instance: Instance, settings: Settings, userCred: any): Promise<TInstance> {
+	public async createInstance(instance: Instance, userCred: any): Promise<TInstance> {
 		try {
 			const user = await this.storage.findUser(userCred);
 			if (!user) {
@@ -226,9 +226,11 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 			} catch (error: any) {
 				throw new IntegrationError(`Failed to get settings for instance ${instance.idInstance}: ${error.message}`, "INTEGRATION_ERROR");
 			}
-			const createdInstance = await this.storage.createInstance(instance, user.id, settings);
+			const createdInstance = await this.storage.createInstance(instance, user.id);
 
-			await client.setSettings(settings);
+			if (instance.settings) {
+				await client.setSettings(instance.settings);
+			}
 			return createdInstance;
 		} catch (error) {
 			this.handleError("Failed to add instance", error);
