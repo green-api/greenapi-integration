@@ -25,6 +25,7 @@ export type Message =
 	| ({
 	type: "text";
 	message: string;
+	linkPreview?: boolean;
 } & BaseMessage)
 	| ({
 	type: "upload-file";
@@ -98,6 +99,33 @@ export type SendContact = Extract<Message, { type: "contact" }>;
 export type SendPoll = Extract<Message, { type: "poll" }>;
 export type ForwardMessages = Extract<Message, { type: "forward" }>;
 
+export type QueueMessageType =
+	| "sendMessage"
+	| "sendPoll"
+	| "sendFileByUrl"
+	| "sendLocation"
+	| "sendContact"
+	| "ForwardMessages";
+
+export type QueueMessageBody =
+	| SendMessage
+	| SendPoll
+	| SendFileByUrl
+	| SendLocation
+	| SendContact
+	| ForwardMessages;
+
+export interface QueueMessage {
+	messageID?: string;
+	messagesIDs?: string[];
+	type: QueueMessageType;
+	body: QueueMessageBody;
+}
+
+export interface ClearMessagesQueue {
+	isCleared: boolean;
+}
+
 export type MessageType =
 	"textMessage"
 	| "extendedTextMessage"
@@ -107,7 +135,59 @@ export type MessageType =
 	| "audioMessage"
 	| "contactMessage"
 	| "locationMessage"
-	| "pollMessage";
+	| "pollMessage"
+	| "reactionMessage"
+	| "pollUpdateMessage"
+	| "quotedMessage"
+	| "stickerMessage";
+
+export interface GetMessage {
+	chatId: string;
+	idMessage: string;
+}
+
+export interface GetChatHistory {
+	chatId: string;
+	count?: number;
+}
+
+export interface BaseJournalMessage {
+    idMessage: string;
+    timestamp: number;
+    typeMessage: MessageType;
+    chatId: string;
+    isForwarded: boolean;
+    forwardingScore: number;
+}
+
+export interface IncomingJournalFields {
+    type: "incoming";
+    senderId: string;
+    senderName: string;
+    senderContactName: string;
+}
+
+export interface OutgoingJournalFields {
+    type: "outgoing";
+    statusMessage: OutgoingMessageStatus;
+    sendByApi: boolean;
+}
+
+export type BaseIncomingJournalMessage = BaseJournalMessage & IncomingJournalFields;
+export type BaseOutgoingJournalMessage = BaseJournalMessage & OutgoingJournalFields;
+export type BaseJournalResponse = BaseIncomingJournalMessage | BaseOutgoingJournalMessage;
+
+export type OutgoingJournalResponse = BaseOutgoingJournalMessage & WebhookMessageData & {
+    quotedMessage?: QuotedMessage;
+};
+
+export type IncomingJournalResponse = BaseIncomingJournalMessage & WebhookMessageData & {
+    quotedMessage?: QuotedMessage;
+};
+
+export type JournalResponse = BaseJournalResponse & WebhookMessageData & {
+    quotedMessage?: QuotedMessage;
+};
 
 export interface ForwardableMessage {
 	forwardingScore: number;
@@ -326,6 +406,100 @@ export interface Logout {
 	isLogout: boolean;
 }
 
+export interface ReadChat {
+	chatId: string;
+	idMessage?: string;
+}
+
+export interface ReadChatResponse {
+	setRead: boolean;
+}
+
+export interface CheckWhatsapp {
+	phoneNumber: number;
+}
+
+export interface CheckWhatsappResponse {
+	existsWhatsapp: boolean;
+}
+
+export interface GetAvatar {
+	chatId: string;
+}
+
+export interface GetAvatarResponse {
+	urlAvatar: string;
+	available: boolean;
+}
+
+export type ContactType = "user" | "group";
+
+export interface Contact {
+	id: string;
+	name: string;
+	contactName: string;
+	type: ContactType;
+}
+
+export interface ProductImageUrls {
+	requested: string;
+	original: string;
+}
+
+export interface ProductReviewStatus {
+	whatsapp: string;
+}
+
+export interface Product {
+	id: string;
+	imageUrls: ProductImageUrls;
+	reviewStatus: ProductReviewStatus;
+	availability: string;
+	name: string;
+	description?: string;
+	price: string | null;
+	isHidden: boolean;
+}
+
+export interface ContactInfo {
+	avatar: string;
+	name: string;
+	contactName: string;
+	email: string;
+	category: string;
+	description: string;
+	products: Product[];
+	chatId: string;
+	lastSeen: string | null;
+	isArchive: boolean;
+	isDisappearing: boolean;
+	isMute: boolean;
+	messageExpiration: number;
+	muteExpiration: number | null;
+	isBusiness: boolean;
+}
+
+export interface ArchiveChat {
+	chatId: string;
+}
+
+export interface UnarchiveChat {
+	chatId: string;
+}
+
+export type EphemeralExpiration = 0 | 86400 | 604800 | 7776000;
+
+export interface SetDisappearingChat {
+	chatId: string;
+	ephemeralExpiration: EphemeralExpiration;
+}
+
+export interface SetDisappearingChatResponse {
+	chatId: string;
+	disappearingMessagesInChat: boolean;
+	ephemeralExpiration: EphemeralExpiration;
+}
+
 /**
  * Represents an instance state in the GREEN-API system.
  */
@@ -378,6 +552,103 @@ export interface SetProfilePicture {
 	reason: string | null;
 	urlAvatar: string;
 	setProfilePicture: boolean;
+}
+
+export interface CreateGroup {
+	groupName: string;
+	chatIds: string[];
+}
+
+export interface CreateGroupResponse {
+	created: boolean;
+	chatId: string;
+	groupInviteLink: string;
+}
+
+export interface UpdateGroupName {
+	groupId: string;
+	groupName: string;
+}
+
+export interface UpdateGroupNameResponse {
+	updateGroupName: boolean;
+}
+
+export interface GroupParticipant {
+	id: string;
+	isAdmin: boolean;
+	isSuperAdmin: boolean;
+}
+
+export interface GroupData {
+	groupId: string;
+	owner: string;
+	subject: string;
+	creation: number;
+	participants: GroupParticipant[];
+	subjectTime: number;
+	subjectOwner: string;
+	groupInviteLink: string;
+}
+
+export interface GetGroupData {
+	groupId: string;
+}
+
+export interface AddGroupParticipant {
+	groupId: string;
+	participantChatId: string;
+}
+
+export interface AddGroupParticipantResponse {
+	addParticipant: boolean;
+}
+
+export interface RemoveGroupParticipant {
+	groupId: string;
+	participantChatId: string;
+}
+
+export interface RemoveGroupParticipantResponse {
+	removeParticipant: boolean;
+}
+
+export interface SetGroupAdmin {
+	groupId: string;
+	participantChatId: string;
+}
+
+export interface SetGroupAdminResponse {
+	setGroupAdmin: boolean;
+}
+
+export interface RemoveAdmin {
+	groupId: string;
+	participantChatId: string;
+}
+
+export interface RemoveAdminResponse {
+	removeAdmin: boolean;
+}
+
+export interface SetGroupPicture {
+	groupId: string;
+	file: Blob | File;
+}
+
+export interface SetGroupPictureResponse {
+	setGroupPicture: boolean;
+	urlAvatar: string | null;
+	reason: string;
+}
+
+export interface LeaveGroup {
+	groupId: string;
+}
+
+export interface LeaveGroupResponse {
+	leaveGroup?: boolean;
+	removeAdmin?: boolean;
 }
 
 export interface BaseRequest {
