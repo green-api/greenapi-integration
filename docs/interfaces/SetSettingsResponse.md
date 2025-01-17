@@ -6,7 +6,7 @@
 
 # Interface: SetSettingsResponse
 
-Defined in: [src/types/types.ts:352](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L352)
+Defined in: [src/types/types.ts:526](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L526)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:352](https://github.com/green-api/greenapi-integ
 
 > **saveSettings**: `boolean`
 
-Defined in: [src/types/types.ts:353](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L353)
+Defined in: [src/types/types.ts:527](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L527)

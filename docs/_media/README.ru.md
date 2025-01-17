@@ -128,7 +128,7 @@ app.post('/webhook/green-api', async (req, res) => {
 
 ```typescript
 abstract class MessageTransformer<TPlatformWebhook, TPlatformMessage> {
-	abstract toPlatformMessage(webhook: IncomingGreenApiWebhook): TPlatformMessage;
+	abstract toPlatformMessage(webhook: GreenApiWebhook): TPlatformMessage;
 
 	abstract toGreenApiMessage(message: TPlatformWebhook): Message;
 }
@@ -140,7 +140,7 @@ abstract class MessageTransformer<TPlatformWebhook, TPlatformMessage> {
 
 ```typescript
 abstract class StorageProvider<TUser extends BaseUser = BaseUser, TInstance extends BaseInstance = Instance> {
-	abstract createInstance(instance: BaseInstance, userId: bigint | number, settings?: Settings): Promise<TInstance>;
+	abstract createInstance(instance: BaseInstance, userId: bigint | number): Promise<TInstance>;
 
 	abstract getInstance(idInstance: number | bigint): Promise<TInstance | null>;
 
@@ -285,11 +285,11 @@ export interface YourPlatformMessage {
 
 ```typescript
 // core/transformer.ts
-import { MessageTransformer, Message, IncomingGreenApiWebhook } from '@green-api/greenapi-integration';
+import { MessageTransformer, Message, GreenApiWebhook } from '@green-api/greenapi-integration';
 import { YourPlatformWebhook, YourPlatformMessage } from '../types/types';
 
 export class YourTransformer extends MessageTransformer<YourPlatformWebhook, YourPlatformMessage> {
-	toPlatformMessage(webhook: IncomingGreenApiWebhook): YourPlatformMessage {
+	toPlatformMessage(webhook: GreenApiWebhook): YourPlatformMessage {
 		// Преобразование вебхука GREEN-API в формат вашей платформы
 		return {
 			recipient: webhook.senderData.sender,
@@ -315,7 +315,7 @@ ORM:
 
 ```typescript
 // core/storage.ts
-import { StorageProvider, BaseUser, BaseInstance, Settings } from '@green-api/greenapi-integration';
+import { StorageProvider, BaseUser, Instance, Settings } from '@green-api/greenapi-integration';
 import { PrismaClient } from '@prisma/client'; // Or your database client
 
 export class YourStorage extends StorageProvider {
@@ -325,13 +325,13 @@ export class YourStorage extends StorageProvider {
 		this.db = new PrismaClient();
 	}
 
-	async createInstance(instance: BaseInstance, userId: bigint, settings?: Settings) {
+	async createInstance(instance: Instance, userId: bigint) {
 		return this.db.instance.create({
 			data: {
 				idInstance: instance.idInstance,
 				apiTokenInstance: instance.apiTokenInstance,
 				userId,
-				settings: settings || {},
+				settings: instance.settings || {},
 			},
 		});
 	}
@@ -346,7 +346,7 @@ export class YourStorage extends StorageProvider {
 
 ```typescript
 // core/adapter.ts
-import { BaseAdapter, BaseInstance } from '@green-api/greenapi-integration';
+import { BaseAdapter, Instance } from '@green-api/greenapi-integration';
 import { YourPlatformClient } from 'your-platform-sdk';
 import { YourPlatformWebhook, YourPlatformMessage } from '../types/types';
 
@@ -358,7 +358,7 @@ export class YourAdapter extends BaseAdapter<YourPlatformWebhook, YourPlatformMe
 		});
 	}
 
-	async sendToPlatform(message: YourPlatformMessage, instance: BaseInstance) {
+	async sendToPlatform(message: YourPlatformMessage, instance: Instance) {
 		const client = await this.createPlatformClient(instance.config);
 		await client.sendMessage(message);
 	}
@@ -430,11 +430,12 @@ router.post('/instance', async (req, res) => {
 
 		const instance = await adapter.createInstance({
 			idInstance: Number(idInstance),
-			apiTokenInstance
-		}, {
-			webhookUrl: `${process.env.APP_URL}/webhook/green-api`,
-			webhookUrlToken: `token_${Date.now()}`, // В продакшене используйте безопасный генератор токенов
-			incomingWebhook: 'yes'
+			apiTokenInstance,
+			settings: {
+				webhookUrl: `${process.env.APP_URL}/webhook/green-api`,
+				webhookUrlToken: `token_${Date.now()}`,
+				incomingWebhook: 'yes'
+			}
 		}, userEmail);
 
 		res.status(200).json({
@@ -528,7 +529,7 @@ bootstrap();
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@green-api/greenapi-integration": "^1.0.0",
+    "@green-api/greenapi-integration": "^0.4.0",
     "@prisma/client": "^5.0.0",
     "express": "^4.18.2"
     // другие зависимости
@@ -614,18 +615,21 @@ interface SimplePlatformMessage {
 ### simple-transformer.ts
 
 ```typescript
-import { MessageTransformer, Message, IncomingGreenApiWebhook, formatPhoneNumber } from 'greenapi-integration';
+import { MessageTransformer, Message, GreenApiWebhook, formatPhoneNumber, IntegrationError } from '@green-api/greenapi-integration';
 
 export class SimpleTransformer extends MessageTransformer<SimplePlatformWebhook, SimplePlatformMessage> {
-	toPlatformMessage(webhook: IncomingGreenApiWebhook): SimplePlatformMessage {
-		if (webhook.messageData.typeMessage !== 'extendedTextMessage') {
-			throw new Error('Поддерживаются только текстовые сообщения');
-		}
+	toPlatformMessage(webhook: GreenApiWebhook): SimplePlatformMessage {
+		if (webhook.typeWebhook === "incomingMessageReceived") {
+			if (webhook.messageData.typeMessage !== "extendedTextMessage") {
+				throw new IntegrationError("Поддерживаются только текстовые сообщения", "BAD_REQUEST_ERROR", 400);
+			}
 
-		return {
-			to: webhook.senderData.sender,
-			content: webhook.messageData.extendedTextMessageData?.text || '',
-		};
+			return {
+				to: webhook.senderData.sender,
+				content: webhook.messageData.extendedTextMessageData?.text || "",
+			};
+		}
+		throw new IntegrationError("Поддерживаются только вебхуки вида incomingMessageReceived", "INTEGRATION_ERROR", 500);
 	}
 
 	toGreenApiMessage(message: SimplePlatformWebhook): Message {
@@ -641,25 +645,24 @@ export class SimpleTransformer extends MessageTransformer<SimplePlatformWebhook,
 ### simple-storage.ts
 
 ```typescript
-import { StorageProvider, BaseUser, BaseInstance, Settings } from 'greenapi-integration';
+import { StorageProvider, BaseUser, Instance, Settings } from '@green-api/greenapi-integration';
 
 export class SimpleStorage extends StorageProvider {
 	private users: Map<string, BaseUser> = new Map();
-	private instances: Map<number, BaseInstance> = new Map();
+	private instances: Map<number, Instance> = new Map();
 
-	async createInstance(instance: BaseInstance, userId: bigint, settings?: Settings): Promise<BaseInstance> {
+	async createInstance(instance: Instance, userId: bigint): Promise<Instance> {
 		this.instances.set(Number(instance.idInstance), {
 			...instance,
-			settings: settings || {}
 		});
 		return instance;
 	}
 
-	async getInstance(idInstance: number): Promise<BaseInstance | null> {
+	async getInstance(idInstance: number): Promise<Instance | null> {
 		return this.instances.get(idInstance) || null;
 	}
 
-	async removeInstance(instanceId: number): Promise<BaseInstance> {
+	async removeInstance(instanceId: number): Promise<Instance> {
 		const instance = this.instances.get(instanceId);
 		if (!instance) throw new Error('Инстанс не найден');
 		this.instances.delete(instanceId);
@@ -689,7 +692,7 @@ export class SimpleStorage extends StorageProvider {
 ### simple-adapter.ts
 
 ```typescript
-import { BaseAdapter, BaseInstance } from "greenapi-integration";
+import { BaseAdapter, Instance } from "@green-api/greenapi-integration";
 import axios from 'axios';
 
 export class SimpleAdapter extends BaseAdapter<SimplePlatformWebhook, SimplePlatformMessage> {
@@ -703,7 +706,7 @@ export class SimpleAdapter extends BaseAdapter<SimplePlatformWebhook, SimplePlat
 		});
 	}
 
-	async sendToPlatform(message: SimplePlatformMessage, instance: BaseInstance): Promise<void> {
+	async sendToPlatform(message: SimplePlatformMessage, instance: Instance): Promise<void> {
 		// В реальной реализации мы бы отправляли сообщение на платформу
 		// Для демонстрации просто логируем и симулируем ответ
 		console.log('Платформа получила сообщение:', message);
@@ -733,7 +736,7 @@ export class SimpleAdapter extends BaseAdapter<SimplePlatformWebhook, SimplePlat
 ```typescript
 import express from "express";
 import bodyParser from "body-parser";
-import { formatPhoneNumber, GreenApiClient } from "greenapi-integration";
+import { formatPhoneNumber, GreenApiClient } from "@green-api/greenapi-integration";
 import { SimpleTransformer } from "./simple-transformer";
 import { SimpleStorage } from "./simple-storage";
 import { SimpleAdapter } from "./simple-adapter";
@@ -768,10 +771,12 @@ async function main() {
 		name: "Agent",
 	});
 
-	const instance = await adapter.createInstance(agentInstance, {
-		webhookUrl: process.env.WEBHOOK_URL + "/webhook/green-api",
-		webhookUrlToken: "your-secure-token",
-		incomingWebhook: "yes",
+	const instance = await adapter.createInstance({
+		idInstance: agentInstance.idInstance, apiTokenInstance: agentInstance.apiTokenInstance, settings: {
+			webhookUrl: process.env.WEBHOOK_URL + "/webhook/green-api",
+			webhookUrlToken: "your-secure-token",
+			incomingWebhook: "yes",
+		},
 	}, user.email);
 
 	console.log("Ожидание 2 минуты для применения настроек...");
@@ -795,7 +800,7 @@ async function main() {
 	});
 
 	// Запуск сервера
-	const port = process.env.PORT || 3000;
+	const port = Number(process.env.PORT) || 3000;
 	app.listen(port, () => {
 		console.log(`Сервер вебхуков запущен на порту ${port}`);
 	});
@@ -838,7 +843,7 @@ PORT=3000
 
 ```typescript
 // Форматирование телефонных номеров для GREEN-API
-formatPhoneNumber('1234567890') // Возвращает '1234567890@c.us'
+formatPhoneNumber('+1234567890') // Возвращает '1234567890@c.us'
 
 // Генерация безопасных случайных токенов
 generateRandomToken(32) // Возвращает 32-символьный случайный токен
@@ -846,6 +851,18 @@ generateRandomToken(32) // Возвращает 32-символьный случ
 // Извлечение номера телефона из vcard
 const vcard = 'BEGIN:VCARD\nTEL:+1234567890\nEND:VCARD'
 extractPhoneNumberFromVCard(vcard) // Возвращает '+1234567890'
+
+// Проверка значений настроек
+isValidSettingValue('webhookUrl', 'https://example.com') // Возвращает true
+
+// Очистка настроек
+const input = {
+	webhookUrl: 'https://example.com',
+	outgoingWebhook: 'yes',
+	invalidKey: 'value',
+	delaySendMessagesMilliseconds: 'invalid'
+}
+validateAndCleanSettings(input) // Возвращает { webhookUrl: 'https://example.com', outgoingWebhook: 'yes' }
 ```
 
 ## Лицензия

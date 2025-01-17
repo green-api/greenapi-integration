@@ -1,0 +1,41 @@
+[**GREEN-API Integration Platform**](../README.md)
+
+***
+
+[GREEN-API Integration Platform](../globals.md) / IncomingJournalFields
+
+# Interface: IncomingJournalFields
+
+Defined in: [src/types/types.ts:163](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L163)
+
+## Properties
+
+### senderContactName
+
+> **senderContactName**: `string`
+
+Defined in: [src/types/types.ts:167](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L167)
+
+***
+
+### senderId
+
+> **senderId**: `string`
+
+Defined in: [src/types/types.ts:165](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L165)
+
+***
+
+### senderName
+
+> **senderName**: `string`
+
+Defined in: [src/types/types.ts:166](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L166)
+
+***
+
+### type
+
+> **type**: `"incoming"`
+
+Defined in: [src/types/types.ts:164](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L164)

@@ -6,7 +6,7 @@
 
 # Interface: SendFileByUploadResponse
 
-Defined in: [src/types/types.ts:347](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L347)
+Defined in: [src/types/types.ts:521](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L521)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:347](https://github.com/green-api/greenapi-integ
 
 > **idMessage**: `string`
 
-Defined in: [src/types/types.ts:348](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L348)
+Defined in: [src/types/types.ts:522](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L522)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:348](https://github.com/green-api/greenapi-integ
 
 > **urlFile**: `string`
 
-Defined in: [src/types/types.ts:349](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L349)
+Defined in: [src/types/types.ts:523](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L523)

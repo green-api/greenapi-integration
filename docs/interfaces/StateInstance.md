@@ -6,7 +6,7 @@
 
 # Interface: StateInstance
 
-Defined in: [src/types/types.ts:339](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L339)
+Defined in: [src/types/types.ts:513](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L513)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:339](https://github.com/green-api/greenapi-integ
 
 > **stateInstance**: [`InstanceState`](../type-aliases/InstanceState.md)
 
-Defined in: [src/types/types.ts:340](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L340)
+Defined in: [src/types/types.ts:514](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L514)

@@ -6,7 +6,7 @@
 
 # Interface: SendResponse
 
-Defined in: [src/types/types.ts:343](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L343)
+Defined in: [src/types/types.ts:517](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L517)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:343](https://github.com/green-api/greenapi-integ
 
 > **idMessage**: `string`
 
-Defined in: [src/types/types.ts:344](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L344)
+Defined in: [src/types/types.ts:518](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L518)

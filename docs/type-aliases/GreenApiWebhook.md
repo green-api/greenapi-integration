@@ -8,6 +8,6 @@
 
 > **GreenApiWebhook**: [`MessageWebhook`](../interfaces/MessageWebhook.md) \| [`OutgoingMessageStatusWebhook`](../interfaces/OutgoingMessageStatusWebhook.md) \| [`StateInstanceWebhook`](../interfaces/StateInstanceWebhook.md)
 
-Defined in: [src/types/types.ts:298](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L298)
+Defined in: [src/types/types.ts:378](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L378)
 
 Primary webhook types received from GREEN-API.

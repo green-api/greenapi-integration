@@ -6,7 +6,7 @@
 
 # Interface: TextMessageData
 
-Defined in: [src/types/types.ts:121](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L121)
+Defined in: [src/types/types.ts:201](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L201)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:121](https://github.com/green-api/greenapi-integ
 
 > **textMessage**: `string`
 
-Defined in: [src/types/types.ts:122](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L122)
+Defined in: [src/types/types.ts:202](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L202)

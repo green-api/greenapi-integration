@@ -6,7 +6,7 @@
 
 # Interface: ForwardMessagesResponse
 
-Defined in: [src/types/types.ts:85](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L85)
+Defined in: [src/types/types.ts:86](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L86)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:85](https://github.com/green-api/greenapi-integr
 
 > **messages**: `string`[]
 
-Defined in: [src/types/types.ts:86](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L86)
+Defined in: [src/types/types.ts:87](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L87)

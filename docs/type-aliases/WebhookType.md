@@ -8,4 +8,4 @@
 
 > **WebhookType**: `"stateInstanceChanged"` \| `"outgoingMessageStatus"` \| `"outgoingAPIMessageReceived"` \| `"outgoingMessageReceived"` \| `"incomingMessageReceived"`
 
-Defined in: [src/types/types.ts:208](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/types/types.ts#L208)
+Defined in: [src/types/types.ts:288](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L288)

@@ -8,7 +8,7 @@
 
 > **formatPhoneNumber**(`phone`, `chatType`): `string`
 
-Defined in: [src/utils/helpers.ts:22](https://github.com/green-api/greenapi-integration/blob/65d246f492cf703d5fb1135013cb3aaba77514dc/src/utils/helpers.ts#L22)
+Defined in: [src/utils/helpers.ts:22](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/utils/helpers.ts#L22)
 
 Formats a phone number into GREEN-API's expected format.
 Removes all non-digit characters and adds @c.us or @g.us suffix.
