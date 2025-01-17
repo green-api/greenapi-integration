@@ -36,10 +36,12 @@ async function main() {
 		name: "Agent",
 	});
 
-	const instance = await adapter.createInstance(agentInstance, {
-		webhookUrl: process.env.WEBHOOK_URL + "/webhook/green-api",
-		webhookUrlToken: "your-secure-token",
-		incomingWebhook: "yes",
+	const instance = await adapter.createInstance({
+		idInstance: agentInstance.idInstance, apiTokenInstance: agentInstance.apiTokenInstance, settings: {
+			webhookUrl: process.env.WEBHOOK_URL + "/webhook/green-api",
+			webhookUrlToken: "your-secure-token",
+			incomingWebhook: "yes",
+		},
 	}, user.email);
 
 	console.log("Waiting 2 minutes for settings to apply...");

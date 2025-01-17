@@ -1,22 +1,21 @@
-import { StorageProvider, BaseUser, BaseInstance, Settings } from '@green-api/greenapi-integration';
+import { StorageProvider, BaseUser, Instance } from '@green-api/greenapi-integration';
 
 export class SimpleStorage extends StorageProvider {
     private users: Map<string, BaseUser> = new Map();
-    private instances: Map<number, BaseInstance> = new Map();
+    private instances: Map<number, Instance> = new Map();
 
-    async createInstance(instance: BaseInstance, userId: bigint, settings?: Settings): Promise<BaseInstance> {
+    async createInstance(instance: Instance, userId: bigint): Promise<Instance> {
         this.instances.set(Number(instance.idInstance), {
             ...instance,
-            settings: settings || {}
         });
         return instance;
     }
 
-    async getInstance(idInstance: number): Promise<BaseInstance | null> {
+    async getInstance(idInstance: number): Promise<Instance | null> {
         return this.instances.get(idInstance) || null;
     }
 
-    async removeInstance(instanceId: number): Promise<BaseInstance> {
+    async removeInstance(instanceId: number): Promise<Instance> {
         const instance = this.instances.get(instanceId);
         if (!instance) throw new Error('Instance not found');
         this.instances.delete(instanceId);

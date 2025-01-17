@@ -1,4 +1,4 @@
-import { BaseAdapter, BaseInstance } from "@green-api/greenapi-integration";
+import { BaseAdapter, Instance } from "@green-api/greenapi-integration";
 import { SimplePlatformMessage, SimplePlatformWebhook } from "./types";
 import axios from 'axios';
 
@@ -13,7 +13,7 @@ export class SimpleAdapter extends BaseAdapter<SimplePlatformWebhook, SimplePlat
         });
     }
 
-	async sendToPlatform(message: SimplePlatformMessage, instance: BaseInstance): Promise<void> {
+	async sendToPlatform(message: SimplePlatformMessage, instance: Instance): Promise<void> {
         // In a real implementation, we would send to the platform
         // For demo, we'll just log and simulate a response
         console.log('Platform received message:', message);

@@ -2,7 +2,7 @@
  * Base interface for GREEN-API WhatsApp instances.
  * Contains the essential credentials needed to interact with the API.
  */
-interface BaseInstance {
+export interface BaseInstance {
 	idInstance: number | bigint;
 	apiTokenInstance: string;
 	stateInstance?: InstanceState;
