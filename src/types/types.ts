@@ -152,25 +152,25 @@ export interface GetChatHistory {
 }
 
 export interface BaseJournalMessage {
-    idMessage: string;
-    timestamp: number;
-    typeMessage: MessageType;
-    chatId: string;
-    isForwarded: boolean;
-    forwardingScore: number;
+	idMessage: string;
+	timestamp: number;
+	typeMessage: MessageType;
+	chatId: string;
+	isForwarded: boolean;
+	forwardingScore: number;
 }
 
 export interface IncomingJournalFields {
-    type: "incoming";
-    senderId: string;
-    senderName: string;
-    senderContactName: string;
+	type: "incoming";
+	senderId: string;
+	senderName: string;
+	senderContactName: string;
 }
 
 export interface OutgoingJournalFields {
-    type: "outgoing";
-    statusMessage: OutgoingMessageStatus;
-    sendByApi: boolean;
+	type: "outgoing";
+	statusMessage: OutgoingMessageStatus;
+	sendByApi: boolean;
 }
 
 export type BaseIncomingJournalMessage = BaseJournalMessage & IncomingJournalFields;
@@ -178,15 +178,15 @@ export type BaseOutgoingJournalMessage = BaseJournalMessage & OutgoingJournalFie
 export type BaseJournalResponse = BaseIncomingJournalMessage | BaseOutgoingJournalMessage;
 
 export type OutgoingJournalResponse = BaseOutgoingJournalMessage & WebhookMessageData & {
-    quotedMessage?: QuotedMessage;
+	quotedMessage?: QuotedMessage;
 };
 
 export type IncomingJournalResponse = BaseIncomingJournalMessage & WebhookMessageData & {
-    quotedMessage?: QuotedMessage;
+	quotedMessage?: QuotedMessage;
 };
 
 export type JournalResponse = BaseJournalResponse & WebhookMessageData & {
-    quotedMessage?: QuotedMessage;
+	quotedMessage?: QuotedMessage;
 };
 
 export interface ForwardableMessage {
@@ -227,6 +227,13 @@ export interface ContactMessageData extends ForwardableMessage {
 	vcard: string;
 }
 
+export interface ContactsArrayMessageData extends ForwardableMessage {
+	contacts: Array<{
+		displayName: string;
+		vcard: string;
+	}>;
+}
+
 export interface PollMessageData {
 	name: string;
 	options: PollOption[];
@@ -245,6 +252,12 @@ type QuotedMessage = {
 		displayName: string;
 		vcard: string;
 	};
+} | {
+	typeMessage: "contactsArrayMessage";
+	contacts: Array<{
+		displayName: string;
+		vcard: string;
+	}>;
 }
 	| {
 	typeMessage: "locationMessage";
@@ -349,6 +362,9 @@ export type WebhookMessageData =
 } | {
 	typeMessage: "pollUpdateMessage";
 	pollMessageData: PollUpdateMessageData;
+} | {
+	typeMessage: "contactsArrayMessage";
+	messageData: ContactsArrayMessageData;
 };
 
 export interface MessageWebhook {
