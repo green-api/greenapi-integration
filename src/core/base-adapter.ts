@@ -208,17 +208,12 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 	 * Creates a new instance with specified settings.
 	 *
 	 * @param instance - The instance configuration
-	 * @param userCred - User credentials
 	 * @returns Promise resolving to the created instance
 	 * @throws {NotFoundError} If user is not found
 	 * @throws {IntegrationError} If instance creation fails
 	 */
-	public async createInstance(instance: Instance, userCred: any): Promise<TInstance> {
+	public async createInstance(instance: Instance): Promise<TInstance> {
 		try {
-			const user = await this.storage.findUser(userCred);
-			if (!user) {
-				throw new NotFoundError("No user with such credentials");
-			}
 			const client = this.createGreenApiClient(instance);
 
 			try {
@@ -226,7 +221,7 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 			} catch (error: any) {
 				throw new IntegrationError(`Failed to get settings for instance ${instance.idInstance}: ${error.message}`, "INTEGRATION_ERROR");
 			}
-			const createdInstance = await this.storage.createInstance(instance, user.id);
+			const createdInstance = await this.storage.createInstance(instance);
 
 			if (instance.settings) {
 				await client.setSettings(instance.settings);
@@ -246,10 +241,6 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 	 */
 	public async removeInstance(idInstance: number | bigint): Promise<TInstance> {
 		try {
-			const instance = await this.storage.getInstance(idInstance);
-			if (!instance) {
-				throw new NotFoundError("No instance with such ID");
-			}
 			return this.storage.removeInstance(idInstance);
 		} catch (error) {
 			this.handleError("Failed to remove instance", error);
@@ -293,14 +284,8 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 	 *
 	 * @param userCred - User credentials
 	 * @param data - User data
-	 * @throws {BadRequestError} If user already exists
-	 * @throws {IntegrationError} If creation fails
 	 */
 	public async createUser(userCred: any, data: any) {
-		const existingUser = await this.storage.findUser(userCred);
-		if (existingUser) {
-			throw new BadRequestError("User already created");
-		}
 		try {
 			return this.storage.createUser(data);
 		} catch (error) {

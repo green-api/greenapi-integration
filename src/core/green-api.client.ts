@@ -58,6 +58,7 @@ import {
 	GetChatHistory,
 	IncomingJournalResponse, OutgoingJournalResponse,
 } from "../types/types";
+import { IntegrationError } from "./errors";
 
 /**
  * Client for direct interaction with GREEN-API's WhatsApp gateway.
@@ -119,7 +120,7 @@ export class GreenApiClient {
 				: this.client.post(url, data, config));
 			return response.data;
 		} catch (error: any) {
-			throw new Error(`Failed to ${endpoint.replace(/([A-Z])/g, " $1").toLowerCase()}: ${error.message}. ${JSON.stringify(error.response?.data)}`);
+			throw new IntegrationError(`Failed to ${endpoint.replace(/([A-Z])/g, " $1").toLowerCase()}: ${error.message}. ${JSON.stringify(error.response?.data)}`, "INTEGRATION_ERROR");
 		}
 	}
 

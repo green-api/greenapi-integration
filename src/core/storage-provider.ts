@@ -1,4 +1,4 @@
-import { BaseUser, Instance, Settings } from "../types/types";
+import { BaseUser, Instance } from "../types/types";
 
 /**
  * Abstract class for managing instance and user data storage.
@@ -31,10 +31,9 @@ export abstract class StorageProvider<
 	 * Creates a new instance in storage.
 	 *
 	 * @param instance - The instance data to store
-	 * @param userId - ID of the user who owns this instance
 	 * @returns Promise resolving to the created instance
 	 */
-	abstract createInstance(instance: Instance, userId: bigint | number): Promise<TInstance>;
+	abstract createInstance(instance: Instance): Promise<TInstance>;
 
 	/**
 	 * Retrieves an instance by its ID.
