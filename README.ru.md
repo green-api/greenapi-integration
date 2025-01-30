@@ -192,10 +192,202 @@ app.post('/webhook', async (req, res) => {
 });
 ```
 
-### 5. GreenApiClient
+### 5. GreenApiLogger
 
-Прямой интерфейс к эндпоинтам GREEN-API. Хотя большинство операций должны выполняться через BaseAdapter, GreenApiClient
-может использоваться напрямую для операций, непокрытых в `BaseAdapter`.
+Структурированный JSON-логгер с цветным выводом. Обеспечивает единый формат логирования в вашем приложении с корректной
+обработкой ошибок и сериализацией.
+
+```typescript
+const logger = GreenApiLogger.getInstance("YourComponent");
+
+// Базовое логирование
+logger.debug("Debug message", {someContext: "value"});
+logger.info("Info message", {userId: 123});
+logger.warn("Warning message", {alert: true});
+logger.error("Error occurred", {errorCode: 500});
+logger.fatal("Fatal error", {critical: true});
+
+// Логирование ошибок с контекстом
+try {
+	await someOperation();
+} catch (error) {
+	logger.logErrorResponse(error, "Operation failed", {
+		operationId: "123",
+		additionalInfo: "some context"
+	});
+}
+```
+
+#### Возможности
+
+- Структурированное JSON-логирование в едином формате
+- Цветной вывод в зависимости от уровня лога (debug=голубой, info=зеленый, warn=желтый, error=красный, fatal=пурпурный)
+- Встроенная обработка ошибок с форматированием стека вызовов
+- Автоматическая сериализация
+- Независимость от фреймворка - работает с любым Node.js приложением
+- Специальная обработка ошибок Axios с подробной информацией о запросе/ответе
+
+#### Уровни логирования
+
+- `debug` - Подробная информация для отладки
+- `info` - Общая информация о работе системы
+- `warn` - Предупреждения о потенциально опасных ситуациях
+- `error` - Сообщения об ошибках
+- `fatal` - Критические ошибки, требующие немедленного внимания
+- `log` - Альтернатива info (для совместимости)
+
+#### Формат вывода
+
+```json
+{
+  "timestamp": "30/01/2025, 04:34:49",
+  "level": "error",
+  "context": "CoreService",
+  "message": "Operation failed",
+  "error": "Failed to process request",
+  "stack": [
+    "Error: Failed to process request",
+    "    at CoreService.process (/app/service.js:123:45)",
+    "    at async Router.handle (/app/router.js:67:89)"
+  ],
+  "additionalContext": {
+    "requestId": "abc-123",
+    "userId": "user_456"
+  }
+}
+```
+
+#### Обработка ошибок
+
+```typescript
+// Обработка ошибок Axios
+try {
+	await apiRequest();
+} catch (error) {
+	logger.logErrorResponse(error, "API Request failed", {
+		endpoint: "/users",
+		method: "POST"
+	});
+}
+```
+
+// Получим подробную информацию об ошибке API:
+
+```json
+{
+  "timestamp": "30/01/2025, 04:34:49",
+  "level": "error",
+  "context": "ApiService",
+  "message": "API Request failed - API Error:",
+  "status": 400,
+  "statusText": "Bad Request",
+  "data": {
+    "error": "Invalid input"
+  },
+  "url": "https://api.example.com/users",
+  "method": "POST",
+  "endpoint": "/users"
+}
+```
+
+#### Использование с фреймворками
+
+Логгер независим от фреймворков, но легко интегрируется с любым из них:
+
+```typescript
+// Пример с NestJS
+const app = await NestFactory.create(AppModule, {
+	logger: GreenApiLogger.getInstance("NestJS")
+});
+
+// Пример с Express
+app.use((err, req, res, next) => {
+	const logger = GreenApiLogger.getInstance("Express");
+	logger.error("Request failed", {
+		path: req.path,
+		method: req.method,
+		error: err.message
+	});
+	next(err);
+});
+```
+
+#### Методы
+
+##### Основные методы логирования
+
+- `debug(message: string, context?: Record<string, any>)`: Логирование отладочной информации
+- `info(message: string, context?: Record<string, any>)`: Логирование информационных сообщений
+- `warn(message: string, context?: Record<string, any>)`: Логирование предупреждений
+- `error(message: string, context?: Record<string, any>)`: Логирование ошибок
+- `fatal(message: string, context?: Record<string, any>)`: Логирование критических ошибок
+- `log(message: string, context?: string)`: Альтернатива методу info
+
+##### Специальные методы
+
+- `logErrorResponse(error: any, context: string, additionalContext?: Record<string, any>)`:
+  Расширенное логирование ошибок со специальной обработкой ошибок Axios и стека вызовов
+
+##### Вспомогательные методы
+
+- `getInstance(context: string = "Global"): GreenApiLogger`: Получение или создание экземпляра логгера для указанного
+  контекста
+
+#### Лучшие практики
+
+1. **Используйте последовательные имена контекста**
+
+```typescript
+// В вашем компоненте/сервисе
+private readonly
+logger = GreenApiLogger.getInstance(YourService.name);
+```
+
+2. **Включайте релевантный контекст**
+
+```typescript
+logger.info("User action completed", {
+	userId: user.id,
+	action: "profile_update",
+	duration: timeTaken
+});
+```
+
+3. **Правильная обработка ошибок**
+
+```typescript
+try {
+	await complexOperation();
+} catch (error) {
+	logger.logErrorResponse(error, "Complex operation failed", {
+		operationId: id,
+		parameters: params
+	});
+}
+```
+
+4. **Используйте соответствующие уровни логирования**
+
+```typescript
+// Debug для детальной информации
+logger.debug("Processing chunk", {chunkId: 123, size: 1024});
+
+// Info для общей информации о работе
+logger.info("User logged in", {userId: 456});
+
+// Warn для потенциальных проблем
+logger.warn("High memory usage", {memoryUsage: "85%"});
+
+// Error для реальных проблем
+logger.error("Database connection failed", {dbHost: "primary"});
+
+// Fatal для критических проблем
+logger.fatal("System shutdown required", {reason: "data corruption"});
+```
+
+### 6. GreenApiClient
+
+Прямой интерфейс к методам GREEN-API.
 
 ```typescript
 const client = new GreenApiClient({
@@ -209,7 +401,7 @@ await client.getAuthorizationCode(phoneNumber);
 await client.getQR();
 ```
 
-## Руководство разработчика
+## Руководство для разработчика
 
 Это руководство проведет вас через процесс создания вашей первой интеграции с WhatsApp шлюзом GREEN-API.
 
@@ -615,7 +807,13 @@ interface SimplePlatformMessage {
 ### simple-transformer.ts
 
 ```typescript
-import { MessageTransformer, Message, GreenApiWebhook, formatPhoneNumber, IntegrationError } from '@green-api/greenapi-integration';
+import {
+	MessageTransformer,
+	Message,
+	GreenApiWebhook,
+	formatPhoneNumber,
+	IntegrationError
+} from '@green-api/greenapi-integration';
 
 export class SimpleTransformer extends MessageTransformer<SimplePlatformWebhook, SimplePlatformMessage> {
 	toPlatformMessage(webhook: GreenApiWebhook): SimplePlatformMessage {

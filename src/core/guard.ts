@@ -1,6 +1,7 @@
 import { BaseRequest } from "../types/types";
 import { StorageProvider } from "./storage-provider";
 import { AuthenticationError } from "./errors";
+import { GreenApiLogger } from "./logger";
 
 /**
  * Base authentication guard for validating incoming GREEN-API webhooks.
@@ -32,12 +33,14 @@ import { AuthenticationError } from "./errors";
  * ```
  */
 export abstract class BaseGreenApiAuthGuard<T extends BaseRequest = BaseRequest> {
+	private readonly gaLogger = GreenApiLogger.getInstance(this.constructor.name);
+
 	/**
 	 * Creates an instance of BaseGreenApiAuthGuard.
 	 *
 	 * @param storage - Storage provider for accessing instance data
 	 */
-	constructor(protected storage: StorageProvider) {}
+	protected constructor(protected storage: StorageProvider) {}
 
 	/**
 	 * Validates an incoming webhook request.
@@ -55,7 +58,7 @@ export abstract class BaseGreenApiAuthGuard<T extends BaseRequest = BaseRequest>
 		if (!token) {
 			throw new AuthenticationError("Authentication header is missing");
 		}
-
+		this.gaLogger.info("Request from GREEN-API", {body: request.body});
 		const idInstance = request.body?.instanceData?.idInstance;
 		if (!idInstance) {
 			throw new AuthenticationError("Invalid webhook format");
@@ -63,7 +66,7 @@ export abstract class BaseGreenApiAuthGuard<T extends BaseRequest = BaseRequest>
 
 		const instance = await this.storage.getInstance(idInstance);
 		if (!instance) {
-			throw new AuthenticationError("No instance with such ID");
+			throw new AuthenticationError(`No instance with such ID ${idInstance}`);
 		}
 
 		if (instance.settings?.webhookUrlToken !== token.split(" ")[1]) {

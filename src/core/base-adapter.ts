@@ -9,8 +9,9 @@ import {
 	StateInstanceWebhook,
 	WebhookType,
 } from "../types/types";
-import { BadRequestError, IntegrationError, NotFoundError } from "./errors";
+import { IntegrationError, NotFoundError } from "./errors";
 import { StorageProvider } from "./storage-provider";
+import { GreenApiLogger } from "./logger";
 
 
 /**
@@ -38,13 +39,15 @@ import { StorageProvider } from "./storage-provider";
  * ```
  */
 export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser extends BaseUser = BaseUser, TInstance extends Instance = Instance> {
+	protected readonly gaLogger = GreenApiLogger.getInstance(this.constructor.name);
+
 	/**
 	 * Creates an instance of BaseAdapter.
 	 *
 	 * @param transformer - Message transformer for converting between platform and GREEN-API formats
 	 * @param storage - Storage provider for user and instance data
 	 */
-	public constructor(
+	protected constructor(
 		protected transformer: MessageTransformer<TPlatformWebhook, TPlatformMessage>,
 		protected storage: StorageProvider<TUser, TInstance>,
 	) {}
@@ -146,6 +149,7 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 	 */
 	public async handlePlatformWebhook(message: TPlatformWebhook, idInstance: number | bigint): Promise<SendResponse | ForwardMessagesResponse> {
 		try {
+			this.gaLogger.info("Handling platform webhook", {platformWebhook: message, idInstance});
 			const instance = await this.storage.getInstance(idInstance);
 			if (!instance) {
 				throw new IntegrationError("Instance not found", "INSTANCE_NOT_FOUND", 404);
@@ -185,10 +189,15 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 	 * @throws {IntegrationError} If webhook handling fails
 	 */
 	public async handleGreenApiWebhook(webhook: GreenApiWebhook, allowedTypes: WebhookType[]): Promise<void> {
-		if (!allowedTypes.includes(webhook.typeWebhook)) {
-			return;
-		}
 		try {
+			this.gaLogger.info("Handling GREEN-API webhook", {webhook, allowedTypes});
+			if (!allowedTypes.includes(webhook.typeWebhook)) {
+				this.gaLogger.warn(`Skipping GREEN-API webhook because the ${webhook.typeWebhook} is not allowed`, {
+					webhook,
+					allowedTypes,
+				});
+				return;
+			}
 			if (webhook.typeWebhook === "stateInstanceChanged") {
 				await this.handleStateInstanceWebhook(webhook);
 			} else {

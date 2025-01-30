@@ -59,6 +59,7 @@ import {
 	IncomingJournalResponse, OutgoingJournalResponse,
 } from "../types/types";
 import { IntegrationError } from "./errors";
+import { GreenApiLogger } from "./logger";
 
 /**
  * Client for direct interaction with GREEN-API's WhatsApp gateway.
@@ -83,6 +84,7 @@ import { IntegrationError } from "./errors";
 export class GreenApiClient {
 	private client: AxiosInstance;
 	private readonly baseUrl = "https://api.green-api.com";
+	private readonly gaLogger = GreenApiLogger.getInstance(GreenApiClient.name);
 
 	/**
 	 * Creates a GREEN-API client instance.
@@ -111,6 +113,14 @@ export class GreenApiClient {
 		config?: any,
 	): Promise<T> {
 		try {
+			this.gaLogger.info("Making a request", {
+				idInstance: this.instance.idInstance,
+				endpoint,
+				method,
+				data,
+				queryParams,
+				config,
+			});
 			const url = this.buildEndpoint(endpoint) + (queryParams ? "?" + new URLSearchParams(
 				Object.entries(queryParams).map(([key, value]) => [key, value.toString()]),
 			).toString() : "");
