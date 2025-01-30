@@ -9,6 +9,7 @@
 ### Core
 
 - [BaseAdapter](classes/BaseAdapter.md)
+- [GreenApiLogger](classes/GreenApiLogger.md)
 
 ### Client
 
@@ -49,6 +50,7 @@
 - [Contact](interfaces/Contact.md)
 - [ContactInfo](interfaces/ContactInfo.md)
 - [ContactMessageData](interfaces/ContactMessageData.md)
+- [ContactsArrayMessageData](interfaces/ContactsArrayMessageData.md)
 - [CreateGroup](interfaces/CreateGroup.md)
 - [CreateGroupResponse](interfaces/CreateGroupResponse.md)
 - [ExtendedTextMessageData](interfaces/ExtendedTextMessageData.md)
@@ -127,6 +129,7 @@
 - [OutgoingMessageStatus](type-aliases/OutgoingMessageStatus.md)
 - [QueueMessageBody](type-aliases/QueueMessageBody.md)
 - [QueueMessageType](type-aliases/QueueMessageType.md)
+- [QuotedMessage](type-aliases/QuotedMessage.md)
 - [SendContact](type-aliases/SendContact.md)
 - [SendFileByUpload](type-aliases/SendFileByUpload.md)
 - [SendFileByUrl](type-aliases/SendFileByUrl.md)

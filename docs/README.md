@@ -43,10 +43,12 @@ npm install @green-api/greenapi-integration
 The foundation of your integration. Handles message & instance management, and platform-specific logic.
 
 ```typescript
-abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage> {
+abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser extends BaseUser = BaseUser, TInstance extends Instance = Instance> {
+	private readonly gaLogger = GreenApiLogger.getInstance(this.constructor.name);
+
 	public constructor(
 		transformer: MessageTransformer<TPlatformWebhook, TPlatformMessage>,
-		storage: StorageProvider
+		storage: StorageProvider<TUser, TInstance>,
 	);
 
 	public abstract createPlatformClient(params: any): Promise<any>;
@@ -62,8 +64,7 @@ When extending BaseAdapter, your implementation has access to several methods:
 ##### Webhook Handling
 
 These webhook handling methods call your message transformation methods automatically, without the need to use them
-directly in
-your code.
+directly in your code.
 
 ```typescript
 // Handle webhooks from your platform
@@ -144,18 +145,23 @@ abstract class MessageTransformer<TPlatformWebhook, TPlatformMessage> {
 Interface for data persistence operations.
 
 ```typescript
-abstract class StorageProvider<TUser extends BaseUser = BaseUser, TInstance extends BaseInstance = Instance> {
-	abstract createInstance(instance: BaseInstance, userId: bigint | number): Promise<TInstance>;
+abstract class StorageProvider<
+	TUser extends BaseUser = BaseUser,
+	TInstance extends Instance = Instance,
+	TUserCreate extends Record<string, any> = any,
+	TUserUpdate extends Record<string, any> = any
+> {
+	abstract createInstance(instance: Instance): Promise<TInstance>;
 
 	abstract getInstance(idInstance: number | bigint): Promise<TInstance | null>;
 
 	abstract removeInstance(instanceId: number | bigint): Promise<TInstance>;
 
-	abstract createUser(data: any): Promise<TUser>;
+	abstract createUser(data: TUserCreate): Promise<TUser>;
 
 	abstract findUser(identifier: string): Promise<TUser | null>;
 
-	abstract updateUser(identifier: string, data: any): Promise<TUser>;
+	abstract updateUser(identifier: string, data: Partial<TUserUpdate>): Promise<TUser>;
 }
 ```
 
@@ -165,6 +171,8 @@ Handles webhook authentication for incoming GREEN-API requests.
 
 ```typescript
 abstract class BaseGreenApiAuthGuard<T extends BaseRequest = BaseRequest> {
+	private readonly gaLogger = GreenApiLogger.getInstance(this.constructor.name);
+
 	constructor(protected storage: StorageProvider);
 
 	// Validates incoming webhook requests
@@ -197,7 +205,196 @@ app.post('/webhook', async (req, res) => {
 });
 ```
 
-### 5. GreenApiClient
+### 5. GreenApiLogger
+
+A structured JSON logger with colored output. Provides consistent logging format across your application with
+proper error handling and serialization support.
+
+```typescript
+const logger = GreenApiLogger.getInstance("YourComponent");
+
+// Basic logging
+logger.debug("Debug message", {someContext: "value"});
+logger.info("Info message", {userId: 123});
+logger.warn("Warning message", {alert: true});
+logger.error("Error occurred", {errorCode: 500});
+logger.fatal("Fatal error", {critical: true});
+
+// Error logging with full context
+try {
+	await someOperation();
+} catch (error) {
+	logger.logErrorResponse(error, "Operation failed", {
+		operationId: "123",
+		additionalInfo: "some context"
+	});
+}
+```
+
+#### Features
+
+- Structured JSON logging with consistent format
+- Colored output based on log level (debug=cyan, info=green, warn=yellow, error=red, fatal=magenta)
+- Built-in error handling with stack trace formatting
+- Automatic serialization
+- Framework agnostic - works with any Node.js application
+- Special handling for Axios errors with detailed request/response info
+
+#### Log Levels
+
+- `debug` - Detailed information for debugging
+- `info` - General information about system operation
+- `warn` - Warning messages for potentially harmful situations
+- `error` - Error messages for serious problems
+- `fatal` - Critical errors that require immediate attention
+- `log` - Alternative to info (for compatibility)
+
+#### Output Format
+
+```json
+{
+  "timestamp": "30/01/2025, 04:34:49",
+  "level": "error",
+  "context": "CoreService",
+  "message": "Operation failed",
+  "error": "Failed to process request",
+  "stack": [
+    "Error: Failed to process request",
+    "    at CoreService.process (/app/service.js:123:45)",
+    "    at async Router.handle (/app/router.js:67:89)"
+  ],
+  "additionalContext": {
+    "requestId": "abc-123",
+    "userId": "user_456"
+  }
+}
+```
+
+#### Error Handling
+
+```typescript
+// Axios error handling
+try {
+	await apiRequest();
+} catch (error) {
+	logger.logErrorResponse(error, "API Request failed", {
+		endpoint: "/users",
+		method: "POST"
+	});
+}
+```
+
+// Will output detailed API error info:
+
+```
+{
+    "timestamp": "30/01/2025, 04:34:49",
+    "level": "error",
+    "context": "ApiService",
+    "message": "API Request failed - API Error:",
+    "status": 400,
+    "statusText": "Bad Request",
+    "data": { "error": "Invalid input" },
+    "url": "https://api.example.com/users",
+    "method": "POST",
+    "endpoint": "/users"
+}
+```
+
+#### Using with Frameworks
+
+The logger is framework-agnostic but can be easily integrated with any framework:
+
+```typescript
+// NestJS example
+const app = await NestFactory.create(AppModule, {
+	logger: GreenApiLogger.getInstance("NestJS")
+});
+
+// Express example
+app.use((err, req, res, next) => {
+	const logger = GreenApiLogger.getInstance("Express");
+	logger.error("Request failed", {
+		path: req.path,
+		method: req.method,
+		error: err.message
+	});
+	next(err);
+});
+```
+
+#### Methods
+
+##### Basic Logging Methods
+
+- `debug(message: string, context?: Record<string, any>)`: Log debug level message
+- `info(message: string, context?: Record<string, any>)`: Log info level message
+- `warn(message: string, context?: Record<string, any>)`: Log warning level message
+- `error(message: string, context?: Record<string, any>)`: Log error level message
+- `fatal(message: string, context?: Record<string, any>)`: Log fatal level message
+- `log(message: string, context?: string)`: Alternative to info method
+
+##### Special Methods
+
+- `logErrorResponse(error: any, context: string, additionalContext?: Record<string, any>)`:
+  Enhanced error logging with special handling for Axios errors and stack traces
+
+##### Utility Methods
+
+- `getInstance(context: string = "Global"): GreenApiLogger`: Get or create logger instance for specified context
+
+#### Best Practices
+
+1. **Use Consistent Context Names**
+
+```typescript
+// In your component/service
+private readonly logger = GreenApiLogger.getInstance(YourService.name);
+```
+
+2. **Include Relevant Context**
+
+```typescript
+logger.info("User action completed", {
+	userId: user.id,
+	action: "profile_update",
+	duration: timeTaken
+});
+```
+
+3. **Proper Error Handling**
+
+```typescript
+try {
+	await complexOperation();
+} catch (error) {
+	logger.logErrorResponse(error, "Complex operation failed", {
+		operationId: id,
+		parameters: params
+	});
+}
+```
+
+4. **Use Appropriate Log Levels**
+
+```typescript
+// Debug for detailed information
+logger.debug("Processing chunk", {chunkId: 123, size: 1024});
+
+// Info for general operation
+logger.info("User logged in", {userId: 456});
+
+// Warn for potential issues
+logger.warn("High memory usage", {memoryUsage: "85%"});
+
+// Error for actual problems
+logger.error("Database connection failed", {dbHost: "primary"});
+
+// Fatal for critical issues
+logger.fatal("System shutdown required", {reason: "data corruption"});
+```
+
+### 6. GreenApiClient
 
 Direct interface to GREEN-API methods.
 
@@ -328,12 +525,16 @@ export class YourStorage extends StorageProvider {
 		this.db = new PrismaClient();
 	}
 
-	async createInstance(instance: Instance, userId: bigint) {
+	async findUserByEmail(email: string) {
+		return this.db.user.findUnique({where: {email}});
+	}
+
+	async createInstance(instance: Instance) {
 		return this.db.instance.create({
 			data: {
 				idInstance: instance.idInstance,
 				apiTokenInstance: instance.apiTokenInstance,
-				userId,
+				userId: instance.userId,
 				settings: instance.settings || {},
 			},
 		});
@@ -431,6 +632,7 @@ router.post('/instance', async (req, res) => {
 			throw new BadRequestError('Required fields missing');
 		}
 
+		const user = await storage.findUserByEmail(userEmail);
 		const instance = await adapter.createInstance({
 			idInstance: Number(idInstance),
 			apiTokenInstance,
@@ -438,8 +640,9 @@ router.post('/instance', async (req, res) => {
 				webhookUrl: `${process.env.APP_URL}/webhook/green-api`,
 				webhookUrlToken: `token_${Date.now()}`,
 				incomingWebhook: 'yes'
-			}
-		}, userEmail);
+			},
+			userId: user.id
+		});
 
 		res.status(200).json({
 			status: 'ok',
@@ -849,10 +1052,10 @@ isValidSettingValue('webhookUrl', 'https://example.com') // Returns true
 
 // Clean settings
 const input = {
- webhookUrl: 'https://example.com',
- outgoingWebhook: 'yes', 
- invalidKey: 'value',
- delaySendMessagesMilliseconds: 'invalid'
+	webhookUrl: 'https://example.com',
+	outgoingWebhook: 'yes',
+	invalidKey: 'value',
+	delaySendMessagesMilliseconds: 'invalid'
 }
 validateAndCleanSettings(input) // Returns { webhookUrl: 'https://example.com', outgoingWebhook: 'yes' }
 ```

@@ -6,7 +6,7 @@
 
 # Interface: CheckWhatsappResponse
 
-Defined in: [src/types/types.ts:422](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L422)
+Defined in: [src/types/types.ts:438](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L438)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:422](https://github.com/green-api/greenapi-integ
 
 > **existsWhatsapp**: `boolean`
 
-Defined in: [src/types/types.ts:423](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L423)
+Defined in: [src/types/types.ts:439](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L439)

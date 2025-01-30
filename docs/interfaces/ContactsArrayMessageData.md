@@ -2,23 +2,33 @@
 
 ***
 
-[GREEN-API Integration Platform](../globals.md) / MediaMessage
+[GREEN-API Integration Platform](../globals.md) / ContactsArrayMessageData
 
-# Interface: MediaMessage
+# Interface: ContactsArrayMessageData
 
-Defined in: [src/types/types.ts:197](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L197)
+Defined in: [src/types/types.ts:230](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L230)
 
 ## Extends
 
 - [`ForwardableMessage`](ForwardableMessage.md)
 
-## Extended by
-
-- [`ExtendedTextMessageData`](ExtendedTextMessageData.md)
-- [`FileMessageData`](FileMessageData.md)
-- [`LocationMessageData`](LocationMessageData.md)
-
 ## Properties
+
+### contacts
+
+> **contacts**: `object`[]
+
+Defined in: [src/types/types.ts:231](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L231)
+
+#### displayName
+
+> **displayName**: `string`
+
+#### vcard
+
+> **vcard**: `string`
+
+***
 
 ### forwardingScore
 
@@ -41,11 +51,3 @@ Defined in: [src/types/types.ts:194](https://github.com/green-api/greenapi-integ
 #### Inherited from
 
 [`ForwardableMessage`](ForwardableMessage.md).[`isForwarded`](ForwardableMessage.md#isforwarded)
-
-***
-
-### jpegThumbnail
-
-> **jpegThumbnail**: `string`
-
-Defined in: [src/types/types.ts:198](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L198)

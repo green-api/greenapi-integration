@@ -240,7 +240,7 @@ export interface PollMessageData {
 	multipleAnswers: boolean;
 }
 
-type QuotedMessage = {
+export type QuotedMessage = {
 	stanzaId: string;
 	participant: string;
 	typeMessage: MessageType;

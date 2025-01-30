@@ -8,4 +8,4 @@
 
 > **SendPoll**: `Extract`\<[`Message`](Message.md), \{ `type`: `"poll"`; \}\>
 
-Defined in: [src/types/types.ts:99](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L99)
+Defined in: [src/types/types.ts:99](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L99)

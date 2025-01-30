@@ -6,7 +6,7 @@
 
 # Interface: SetGroupAdminResponse
 
-Defined in: [src/types/types.ts:621](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L621)
+Defined in: [src/types/types.ts:637](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L637)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:621](https://github.com/green-api/greenapi-integ
 
 > **setGroupAdmin**: `boolean`
 
-Defined in: [src/types/types.ts:622](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L622)
+Defined in: [src/types/types.ts:638](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L638)

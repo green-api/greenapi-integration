@@ -6,7 +6,7 @@
 
 # Interface: GroupParticipant
 
-Defined in: [src/types/types.ts:577](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L577)
+Defined in: [src/types/types.ts:593](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L593)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:577](https://github.com/green-api/greenapi-integ
 
 > **id**: `string`
 
-Defined in: [src/types/types.ts:578](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L578)
+Defined in: [src/types/types.ts:594](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L594)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:578](https://github.com/green-api/greenapi-integ
 
 > **isAdmin**: `boolean`
 
-Defined in: [src/types/types.ts:579](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L579)
+Defined in: [src/types/types.ts:595](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L595)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [src/types/types.ts:579](https://github.com/green-api/greenapi-integ
 
 > **isSuperAdmin**: `boolean`
 
-Defined in: [src/types/types.ts:580](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L580)
+Defined in: [src/types/types.ts:596](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L596)

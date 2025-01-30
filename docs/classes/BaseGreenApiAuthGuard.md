@@ -6,7 +6,7 @@
 
 # Class: `abstract` BaseGreenApiAuthGuard\<T\>
 
-Defined in: [src/core/guard.ts:34](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/core/guard.ts#L34)
+Defined in: [src/core/guard.ts:35](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/core/guard.ts#L35)
 
 Base authentication guard for validating incoming GREEN-API webhooks.
 Ensures that webhooks are authenticated and come from valid instances.
@@ -44,9 +44,9 @@ Request type extending BaseRequest, contains headers and body
 
 ### new BaseGreenApiAuthGuard()
 
-> **new BaseGreenApiAuthGuard**\<`T`\>(`storage`): [`BaseGreenApiAuthGuard`](BaseGreenApiAuthGuard.md)\<`T`\>
+> `protected` **new BaseGreenApiAuthGuard**\<`T`\>(`storage`): [`BaseGreenApiAuthGuard`](BaseGreenApiAuthGuard.md)\<`T`\>
 
-Defined in: [src/core/guard.ts:40](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/core/guard.ts#L40)
+Defined in: [src/core/guard.ts:43](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/core/guard.ts#L43)
 
 Creates an instance of BaseGreenApiAuthGuard.
 
@@ -68,7 +68,7 @@ Storage provider for accessing instance data
 
 > `protected` **storage**: [`StorageProvider`](StorageProvider.md)
 
-Defined in: [src/core/guard.ts:40](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/core/guard.ts#L40)
+Defined in: [src/core/guard.ts:43](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/core/guard.ts#L43)
 
 Storage provider for accessing instance data
 
@@ -78,7 +78,7 @@ Storage provider for accessing instance data
 
 > **validateRequest**(`request`): `Promise`\<`boolean`\>
 
-Defined in: [src/core/guard.ts:53](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/core/guard.ts#L53)
+Defined in: [src/core/guard.ts:56](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/core/guard.ts#L56)
 
 Validates an incoming webhook request.
 Checks for presence of authorization token and validates it against instance settings.

@@ -6,7 +6,7 @@
 
 # Interface: Contact
 
-Defined in: [src/types/types.ts:437](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L437)
+Defined in: [src/types/types.ts:453](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L453)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:437](https://github.com/green-api/greenapi-integ
 
 > **contactName**: `string`
 
-Defined in: [src/types/types.ts:440](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L440)
+Defined in: [src/types/types.ts:456](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L456)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:440](https://github.com/green-api/greenapi-integ
 
 > **id**: `string`
 
-Defined in: [src/types/types.ts:438](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L438)
+Defined in: [src/types/types.ts:454](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L454)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:438](https://github.com/green-api/greenapi-integ
 
 > **name**: `string`
 
-Defined in: [src/types/types.ts:439](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L439)
+Defined in: [src/types/types.ts:455](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L455)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [src/types/types.ts:439](https://github.com/green-api/greenapi-integ
 
 > **type**: [`ContactType`](../type-aliases/ContactType.md)
 
-Defined in: [src/types/types.ts:441](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L441)
+Defined in: [src/types/types.ts:457](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L457)

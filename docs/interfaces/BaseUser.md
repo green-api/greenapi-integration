@@ -6,7 +6,7 @@
 
 # Interface: BaseUser
 
-Defined in: [src/types/types.ts:659](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L659)
+Defined in: [src/types/types.ts:675](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L675)
 
 ## Indexable
 
@@ -18,4 +18,4 @@ Defined in: [src/types/types.ts:659](https://github.com/green-api/greenapi-integ
 
 > **id**: `number` \| `bigint`
 
-Defined in: [src/types/types.ts:660](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L660)
+Defined in: [src/types/types.ts:676](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L676)

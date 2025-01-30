@@ -6,7 +6,7 @@
 
 # Interface: ContactMessageData
 
-Defined in: [src/types/types.ts:225](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L225)
+Defined in: [src/types/types.ts:225](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L225)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/types/types.ts:225](https://github.com/green-api/greenapi-integ
 
 > **displayName**: `string`
 
-Defined in: [src/types/types.ts:226](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L226)
+Defined in: [src/types/types.ts:226](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L226)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/types/types.ts:226](https://github.com/green-api/greenapi-integ
 
 > **forwardingScore**: `number`
 
-Defined in: [src/types/types.ts:193](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L193)
+Defined in: [src/types/types.ts:193](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L193)
 
 #### Inherited from
 
@@ -38,7 +38,7 @@ Defined in: [src/types/types.ts:193](https://github.com/green-api/greenapi-integ
 
 > **isForwarded**: `boolean`
 
-Defined in: [src/types/types.ts:194](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L194)
+Defined in: [src/types/types.ts:194](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L194)
 
 #### Inherited from
 
@@ -50,4 +50,4 @@ Defined in: [src/types/types.ts:194](https://github.com/green-api/greenapi-integ
 
 > **vcard**: `string`
 
-Defined in: [src/types/types.ts:227](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L227)
+Defined in: [src/types/types.ts:227](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L227)

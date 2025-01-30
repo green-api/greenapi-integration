@@ -8,4 +8,4 @@
 
 > **EphemeralExpiration**: `0` \| `86400` \| `604800` \| `7776000`
 
-Defined in: [src/types/types.ts:490](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L490)
+Defined in: [src/types/types.ts:506](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L506)

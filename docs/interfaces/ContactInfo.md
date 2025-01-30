@@ -6,7 +6,7 @@
 
 # Interface: ContactInfo
 
-Defined in: [src/types/types.ts:464](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L464)
+Defined in: [src/types/types.ts:480](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L480)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:464](https://github.com/green-api/greenapi-integ
 
 > **avatar**: `string`
 
-Defined in: [src/types/types.ts:465](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L465)
+Defined in: [src/types/types.ts:481](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L481)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:465](https://github.com/green-api/greenapi-integ
 
 > **category**: `string`
 
-Defined in: [src/types/types.ts:469](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L469)
+Defined in: [src/types/types.ts:485](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L485)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:469](https://github.com/green-api/greenapi-integ
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:472](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L472)
+Defined in: [src/types/types.ts:488](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L488)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [src/types/types.ts:472](https://github.com/green-api/greenapi-integ
 
 > **contactName**: `string`
 
-Defined in: [src/types/types.ts:467](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L467)
+Defined in: [src/types/types.ts:483](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L483)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [src/types/types.ts:467](https://github.com/green-api/greenapi-integ
 
 > **description**: `string`
 
-Defined in: [src/types/types.ts:470](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L470)
+Defined in: [src/types/types.ts:486](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L486)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [src/types/types.ts:470](https://github.com/green-api/greenapi-integ
 
 > **email**: `string`
 
-Defined in: [src/types/types.ts:468](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L468)
+Defined in: [src/types/types.ts:484](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L484)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [src/types/types.ts:468](https://github.com/green-api/greenapi-integ
 
 > **isArchive**: `boolean`
 
-Defined in: [src/types/types.ts:474](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L474)
+Defined in: [src/types/types.ts:490](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L490)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [src/types/types.ts:474](https://github.com/green-api/greenapi-integ
 
 > **isBusiness**: `boolean`
 
-Defined in: [src/types/types.ts:479](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L479)
+Defined in: [src/types/types.ts:495](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L495)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [src/types/types.ts:479](https://github.com/green-api/greenapi-integ
 
 > **isDisappearing**: `boolean`
 
-Defined in: [src/types/types.ts:475](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L475)
+Defined in: [src/types/types.ts:491](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L491)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [src/types/types.ts:475](https://github.com/green-api/greenapi-integ
 
 > **isMute**: `boolean`
 
-Defined in: [src/types/types.ts:476](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L476)
+Defined in: [src/types/types.ts:492](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L492)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [src/types/types.ts:476](https://github.com/green-api/greenapi-integ
 
 > **lastSeen**: `null` \| `string`
 
-Defined in: [src/types/types.ts:473](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L473)
+Defined in: [src/types/types.ts:489](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L489)
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: [src/types/types.ts:473](https://github.com/green-api/greenapi-integ
 
 > **messageExpiration**: `number`
 
-Defined in: [src/types/types.ts:477](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L477)
+Defined in: [src/types/types.ts:493](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L493)
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: [src/types/types.ts:477](https://github.com/green-api/greenapi-integ
 
 > **muteExpiration**: `null` \| `number`
 
-Defined in: [src/types/types.ts:478](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L478)
+Defined in: [src/types/types.ts:494](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L494)
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: [src/types/types.ts:478](https://github.com/green-api/greenapi-integ
 
 > **name**: `string`
 
-Defined in: [src/types/types.ts:466](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L466)
+Defined in: [src/types/types.ts:482](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L482)
 
 ***
 
@@ -126,4 +126,4 @@ Defined in: [src/types/types.ts:466](https://github.com/green-api/greenapi-integ
 
 > **products**: [`Product`](Product.md)[]
 
-Defined in: [src/types/types.ts:471](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L471)
+Defined in: [src/types/types.ts:487](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L487)

@@ -6,7 +6,7 @@
 
 # Interface: AddGroupParticipantResponse
 
-Defined in: [src/types/types.ts:603](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L603)
+Defined in: [src/types/types.ts:619](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L619)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:603](https://github.com/green-api/greenapi-integ
 
 > **addParticipant**: `boolean`
 
-Defined in: [src/types/types.ts:604](https://github.com/green-api/greenapi-integration/blob/20ab1c18eae4ff2cd48cede03d005dd7127abc0b/src/types/types.ts#L604)
+Defined in: [src/types/types.ts:620](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L620)
