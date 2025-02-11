@@ -6,7 +6,7 @@
 
 # Class: AuthenticationError
 
-Defined in: [src/core/errors.ts:72](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/core/errors.ts#L72)
+Defined in: [src/core/errors.ts:72](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/core/errors.ts#L72)
 
 Error thrown when authentication fails or credentials are invalid.
 
@@ -28,7 +28,7 @@ if (!token) {
 
 > **new AuthenticationError**(`message`): [`AuthenticationError`](AuthenticationError.md)
 
-Defined in: [src/core/errors.ts:78](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/core/errors.ts#L78)
+Defined in: [src/core/errors.ts:78](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/core/errors.ts#L78)
 
 Creates an authentication error.
 
@@ -54,7 +54,7 @@ Human-readable error message
 
 > `readonly` **code**: `string`
 
-Defined in: [src/core/errors.ts:27](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/core/errors.ts#L27)
+Defined in: [src/core/errors.ts:27](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/core/errors.ts#L27)
 
 Error code for programmatic handling
 
@@ -68,7 +68,7 @@ Error code for programmatic handling
 
 > `readonly` `optional` **details**: `unknown`
 
-Defined in: [src/core/errors.ts:29](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/core/errors.ts#L29)
+Defined in: [src/core/errors.ts:29](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/core/errors.ts#L29)
 
 Additional error details or context
 
@@ -118,7 +118,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1078
 
 > `readonly` **statusCode**: `number` = `500`
 
-Defined in: [src/core/errors.ts:28](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/core/errors.ts#L28)
+Defined in: [src/core/errors.ts:28](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/core/errors.ts#L28)
 
 HTTP status code (default: 500)
 

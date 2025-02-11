@@ -6,7 +6,7 @@
 
 # Interface: StateInstanceWebhook
 
-Defined in: [src/types/types.ts:327](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L327)
+Defined in: [src/types/types.ts:333](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L333)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:327](https://github.com/green-api/greenapi-integ
 
 > **instanceData**: `object`
 
-Defined in: [src/types/types.ts:329](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L329)
+Defined in: [src/types/types.ts:335](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L335)
 
 #### idInstance
 
@@ -34,7 +34,7 @@ Defined in: [src/types/types.ts:329](https://github.com/green-api/greenapi-integ
 
 > **stateInstance**: [`InstanceState`](../type-aliases/InstanceState.md)
 
-Defined in: [src/types/types.ts:335](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L335)
+Defined in: [src/types/types.ts:341](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L341)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/types/types.ts:335](https://github.com/green-api/greenapi-integ
 
 > **timestamp**: `number`
 
-Defined in: [src/types/types.ts:334](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L334)
+Defined in: [src/types/types.ts:340](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L340)
 
 ***
 
@@ -50,4 +50,4 @@ Defined in: [src/types/types.ts:334](https://github.com/green-api/greenapi-integ
 
 > **typeWebhook**: `"stateInstanceChanged"`
 
-Defined in: [src/types/types.ts:328](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L328)
+Defined in: [src/types/types.ts:334](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L334)

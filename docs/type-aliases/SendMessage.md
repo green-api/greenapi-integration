@@ -8,4 +8,4 @@
 
 > **SendMessage**: `Extract`\<[`Message`](Message.md), \{ `type`: `"text"`; \}\>
 
-Defined in: [src/types/types.ts:94](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L94)
+Defined in: [src/types/types.ts:94](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L94)

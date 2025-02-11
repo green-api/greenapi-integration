@@ -6,7 +6,7 @@
 
 # Interface: UpdateGroupName
 
-Defined in: [src/types/types.ts:584](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L584)
+Defined in: [src/types/types.ts:588](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L588)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:584](https://github.com/green-api/greenapi-integ
 
 > **groupId**: `string`
 
-Defined in: [src/types/types.ts:585](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L585)
+Defined in: [src/types/types.ts:589](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L589)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:585](https://github.com/green-api/greenapi-integ
 
 > **groupName**: `string`
 
-Defined in: [src/types/types.ts:586](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L586)
+Defined in: [src/types/types.ts:590](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L590)

@@ -6,7 +6,7 @@
 
 # Interface: BaseInstance
 
-Defined in: [src/types/types.ts:5](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L5)
+Defined in: [src/types/types.ts:5](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L5)
 
 Base interface for GREEN-API WhatsApp instances.
 Contains the essential credentials needed to interact with the API.
@@ -21,7 +21,7 @@ Contains the essential credentials needed to interact with the API.
 
 > **apiTokenInstance**: `string`
 
-Defined in: [src/types/types.ts:7](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L7)
+Defined in: [src/types/types.ts:7](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L7)
 
 ***
 
@@ -29,7 +29,7 @@ Defined in: [src/types/types.ts:7](https://github.com/green-api/greenapi-integra
 
 > **idInstance**: `number` \| `bigint`
 
-Defined in: [src/types/types.ts:6](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L6)
+Defined in: [src/types/types.ts:6](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L6)
 
 ***
 
@@ -37,7 +37,7 @@ Defined in: [src/types/types.ts:6](https://github.com/green-api/greenapi-integra
 
 > `optional` **settings**: [`Settings`](Settings.md) \| `Record`\<`string`, `any`\>
 
-Defined in: [src/types/types.ts:9](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L9)
+Defined in: [src/types/types.ts:9](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L9)
 
 ***
 
@@ -45,4 +45,4 @@ Defined in: [src/types/types.ts:9](https://github.com/green-api/greenapi-integra
 
 > `optional` **stateInstance**: [`InstanceState`](../type-aliases/InstanceState.md)
 
-Defined in: [src/types/types.ts:8](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L8)
+Defined in: [src/types/types.ts:8](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L8)

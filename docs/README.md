@@ -16,6 +16,9 @@
 [![News](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/green_api)
 [![News](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://whatsapp.com/channel/0029VaLj6J4LNSa2B5Jx6s3h)
 
+[![NPM Version](https://img.shields.io/npm/v/@green-api/greenapi-integration)](https://www.npmjs.com/package/@green-api/whatsapp-chatbot-js-v2)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 - [Документация на русском языке](_media/README.ru.md)
 
 A flexible integration platform designed to simplify the process of connecting GREEN-API's WhatsApp gateway with various
@@ -306,11 +309,6 @@ try {
 The logger is framework-agnostic but can be easily integrated with any framework:
 
 ```typescript
-// NestJS example
-const app = await NestFactory.create(AppModule, {
-	logger: GreenApiLogger.getInstance("NestJS")
-});
-
 // Express example
 app.use((err, req, res, next) => {
 	const logger = GreenApiLogger.getInstance("Express");
@@ -321,6 +319,26 @@ app.use((err, req, res, next) => {
 	});
 	next(err);
 });
+```
+
+#### Important Note on Logger Usage
+
+While you can use this logger alongside other logging solutions, it's recommended to disable your
+framework's built-in logger to avoid duplicate or malformed logs.
+
+For example, when using NestJS, you can disable its built-in logger like this:
+
+```typescript
+// main.ts
+const app = await NestFactory.create(AppModule, {
+	logger: false  // Disable NestJS logger
+});
+```
+
+And then use it in your class like this:
+
+```typescript
+gaLogger = GreenApiLogger.getInstance(YourClass.name);
 ```
 
 #### Methods
@@ -349,7 +367,8 @@ app.use((err, req, res, next) => {
 
 ```typescript
 // In your component/service
-private readonly logger = GreenApiLogger.getInstance(YourService.name);
+private readonly
+logger = GreenApiLogger.getInstance(YourService.name);
 ```
 
 2. **Include Relevant Context**

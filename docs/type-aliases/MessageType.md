@@ -6,6 +6,6 @@
 
 # Type Alias: MessageType
 
-> **MessageType**: `"textMessage"` \| `"extendedTextMessage"` \| `"imageMessage"` \| `"videoMessage"` \| `"documentMessage"` \| `"audioMessage"` \| `"contactMessage"` \| `"locationMessage"` \| `"pollMessage"` \| `"reactionMessage"` \| `"pollUpdateMessage"` \| `"quotedMessage"` \| `"stickerMessage"`
+> **MessageType**: `"textMessage"` \| `"extendedTextMessage"` \| `"imageMessage"` \| `"videoMessage"` \| `"documentMessage"` \| `"audioMessage"` \| `"contactMessage"` \| `"locationMessage"` \| `"contactsArrayMessage"` \| `"pollMessage"` \| `"reactionMessage"` \| `"pollUpdateMessage"` \| `"quotedMessage"` \| `"stickerMessage"`
 
-Defined in: [src/types/types.ts:129](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L129)
+Defined in: [src/types/types.ts:129](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L129)

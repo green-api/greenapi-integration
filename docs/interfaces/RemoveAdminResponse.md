@@ -6,7 +6,7 @@
 
 # Interface: RemoveAdminResponse
 
-Defined in: [src/types/types.ts:646](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L646)
+Defined in: [src/types/types.ts:650](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L650)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:646](https://github.com/green-api/greenapi-integ
 
 > **removeAdmin**: `boolean`
 
-Defined in: [src/types/types.ts:647](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L647)
+Defined in: [src/types/types.ts:651](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L651)

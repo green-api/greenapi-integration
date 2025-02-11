@@ -6,7 +6,7 @@
 
 # Interface: MessageWebhook
 
-Defined in: [src/types/types.ts:370](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L370)
+Defined in: [src/types/types.ts:374](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L374)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:370](https://github.com/green-api/greenapi-integ
 
 > **idMessage**: `string`
 
-Defined in: [src/types/types.ts:378](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L378)
+Defined in: [src/types/types.ts:382](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L382)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:378](https://github.com/green-api/greenapi-integ
 
 > **instanceData**: `object`
 
-Defined in: [src/types/types.ts:372](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L372)
+Defined in: [src/types/types.ts:376](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L376)
 
 #### idInstance
 
@@ -42,13 +42,13 @@ Defined in: [src/types/types.ts:372](https://github.com/green-api/greenapi-integ
 
 > **messageData**: [`WebhookMessageData`](../type-aliases/WebhookMessageData.md) & `object`
 
-Defined in: [src/types/types.ts:386](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L386)
+Defined in: [src/types/types.ts:390](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L390)
 
 #### Type declaration
 
 ##### quotedMessage?
 
-> `optional` **quotedMessage**: ((\{ stanzaId: string; participant: string; typeMessage: MessageType; \} & \{ typeMessage: "textMessage"; textMessage: string; \}) \| (\{ stanzaId: string; participant: string; typeMessage: MessageType; \} & \{ ...; \}) \| (\{ ...; \} & \{ ...; \}) \| (\{ ...; \} & \{ ...; \})) \| undefined
+> `optional` **quotedMessage**: QuotedMessage \| undefined
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [src/types/types.ts:386](https://github.com/green-api/greenapi-integ
 
 > **senderData**: `object`
 
-Defined in: [src/types/types.ts:379](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L379)
+Defined in: [src/types/types.ts:383](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L383)
 
 #### chatId
 
@@ -84,7 +84,7 @@ Defined in: [src/types/types.ts:379](https://github.com/green-api/greenapi-integ
 
 > **timestamp**: `number`
 
-Defined in: [src/types/types.ts:377](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L377)
+Defined in: [src/types/types.ts:381](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L381)
 
 ***
 
@@ -92,4 +92,4 @@ Defined in: [src/types/types.ts:377](https://github.com/green-api/greenapi-integ
 
 > **typeWebhook**: `"outgoingAPIMessageReceived"` \| `"outgoingMessageReceived"` \| `"incomingMessageReceived"`
 
-Defined in: [src/types/types.ts:371](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L371)
+Defined in: [src/types/types.ts:375](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L375)

@@ -1,4 +1,4 @@
-# Универсальная интеграционная платформа для GREEN-API
+[# Универсальная интеграционная платформа для GREEN-API
 
 ## Поддержка
 
@@ -11,6 +11,9 @@
 [![Guides](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://www.youtube.com/@green-api)
 [![News](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/green_api)
 [![News](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://whatsapp.com/channel/0029VaLj6J4LNSa2B5Jx6s3h)
+
+[![NPM Version](https://img.shields.io/npm/v/@green-api/greenapi-integration)](https://www.npmjs.com/package/@green-api/whatsapp-chatbot-js-v2)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 - [Documentation in English](./README.md)
 
@@ -310,6 +313,26 @@ app.use((err, req, res, next) => {
 	});
 	next(err);
 });
+```
+
+#### Важное примечание об использовании логгера
+
+Хотя вы можете использовать этот логгер вместе с другими решениями для логирования, рекомендуется отключить встроенный
+логер вашего фреймворка во избежание дублирования или некорректного форматирования логов.
+
+Например, при использовании NestJS, вы можете отключить его встроенный логер следующим образом:
+
+```typescript
+// main.ts
+const app = await NestFactory.create(AppModule, {
+	logger: false  // Отключение логера NestJS
+});
+```
+
+А затем использовать его в вашем классе так:
+
+```typescript
+gaLogger = GreenApiLogger.getInstance(YourClass.name);
 ```
 
 #### Методы
@@ -1066,3 +1089,4 @@ validateAndCleanSettings(input) // Возвращает { webhookUrl: 'https://e
 ## Лицензия
 
 MIT
+]()

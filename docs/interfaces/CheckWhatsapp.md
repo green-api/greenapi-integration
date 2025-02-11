@@ -6,7 +6,7 @@
 
 # Interface: CheckWhatsapp
 
-Defined in: [src/types/types.ts:434](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L434)
+Defined in: [src/types/types.ts:438](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L438)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:434](https://github.com/green-api/greenapi-integ
 
 > **phoneNumber**: `number`
 
-Defined in: [src/types/types.ts:435](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L435)
+Defined in: [src/types/types.ts:439](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L439)

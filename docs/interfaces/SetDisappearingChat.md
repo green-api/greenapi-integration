@@ -6,7 +6,7 @@
 
 # Interface: SetDisappearingChat
 
-Defined in: [src/types/types.ts:508](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L508)
+Defined in: [src/types/types.ts:512](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L512)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:508](https://github.com/green-api/greenapi-integ
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:509](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L509)
+Defined in: [src/types/types.ts:513](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L513)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:509](https://github.com/green-api/greenapi-integ
 
 > **ephemeralExpiration**: [`EphemeralExpiration`](../type-aliases/EphemeralExpiration.md)
 
-Defined in: [src/types/types.ts:510](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L510)
+Defined in: [src/types/types.ts:514](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L514)

@@ -6,7 +6,7 @@
 
 # Interface: UpdateGroupNameResponse
 
-Defined in: [src/types/types.ts:589](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L589)
+Defined in: [src/types/types.ts:593](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L593)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:589](https://github.com/green-api/greenapi-integ
 
 > **updateGroupName**: `boolean`
 
-Defined in: [src/types/types.ts:590](https://github.com/green-api/greenapi-integration/blob/0c6468d26acd573ad1def9f01a1af819fb76eb31/src/types/types.ts#L590)
+Defined in: [src/types/types.ts:594](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L594)
