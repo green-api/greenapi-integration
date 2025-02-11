@@ -135,6 +135,7 @@ export type MessageType =
 	| "audioMessage"
 	| "contactMessage"
 	| "locationMessage"
+	| "contactsArrayMessage"
 	| "pollMessage"
 	| "reactionMessage"
 	| "pollUpdateMessage"
@@ -244,22 +245,29 @@ export type QuotedMessage = {
 	stanzaId: string;
 	participant: string;
 	typeMessage: MessageType;
-} & (
-	| { typeMessage: "textMessage"; textMessage: string }
-	| {
-	typeMessage: "contactMessage";
-	contact: {
+} & ({
+	typeMessage: "textMessage"; textMessage: string
+} | {
+	typeMessage: "extendedTextMessage";
+	textMessage: string;
+	extendedTextMessage: {
+		description?: string;
+		title?: string;
+		previewType?: string;
+		jpegThumbnail?: string | null;
+	}
+} | {
+	typeMessage: "contactMessage"; contact: {
 		displayName: string;
 		vcard: string;
-	};
+	}
 } | {
 	typeMessage: "contactsArrayMessage";
 	contacts: Array<{
 		displayName: string;
 		vcard: string;
 	}>;
-}
-	| {
+} | {
 	typeMessage: "locationMessage";
 	location: {
 		nameLocation: string;
@@ -268,14 +276,12 @@ export type QuotedMessage = {
 		latitude: number;
 		longitude: number;
 	};
-}
-	| {
+} | {
 	typeMessage: "imageMessage" | "videoMessage" | "documentMessage" | "audioMessage";
 	downloadUrl: string;
 	caption: string;
 	jpegThumbnail: string;
-}
-	);
+});
 
 export interface PollVote {
 	optionName: string;
@@ -335,28 +341,26 @@ export interface StateInstanceWebhook {
 	stateInstance: InstanceState;
 }
 
-export type WebhookMessageData =
-	| {
+export type WebhookMessageData = {
 	typeMessage: "textMessage";
 	textMessageData: TextMessageData;
-}
-	| {
+} | {
 	typeMessage: "extendedTextMessage";
 	extendedTextMessageData: ExtendedTextMessageData;
-}
-	| {
+} | {
 	typeMessage: "imageMessage" | "videoMessage" | "documentMessage" | "audioMessage";
 	fileMessageData: FileMessageData;
-}
-	| {
+} | {
+	typeMessage: "quotedMessage";
+	extendedTextMessageData: ExtendedTextMessageData;
+	quotedMessage: QuotedMessage;
+} | {
 	typeMessage: "locationMessage";
 	locationMessageData: LocationMessageData;
-}
-	| {
+} | {
 	typeMessage: "contactMessage";
 	contactMessageData: ContactMessageData;
-}
-	| {
+} | {
 	typeMessage: "pollMessage";
 	pollMessageData: PollMessageData;
 } | {
