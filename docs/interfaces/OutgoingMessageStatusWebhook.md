@@ -6,7 +6,7 @@
 
 # Interface: OutgoingMessageStatusWebhook
 
-Defined in: [src/types/types.ts:318](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L318)
+Defined in: [src/types/types.ts:443](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L443)
 
 Webhook payload received when a message status changes.
 Used to track delivery and read receipts.
@@ -17,7 +17,7 @@ Used to track delivery and read receipts.
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:320](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L320)
+Defined in: [src/types/types.ts:445](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L445)
 
 ***
 
@@ -25,7 +25,7 @@ Defined in: [src/types/types.ts:320](https://github.com/green-api/greenapi-integ
 
 > `optional` **description**: `string`
 
-Defined in: [src/types/types.ts:329](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L329)
+Defined in: [src/types/types.ts:454](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L454)
 
 ***
 
@@ -33,7 +33,7 @@ Defined in: [src/types/types.ts:329](https://github.com/green-api/greenapi-integ
 
 > **idMessage**: `string`
 
-Defined in: [src/types/types.ts:327](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L327)
+Defined in: [src/types/types.ts:452](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L452)
 
 ***
 
@@ -41,7 +41,7 @@ Defined in: [src/types/types.ts:327](https://github.com/green-api/greenapi-integ
 
 > **instanceData**: `object`
 
-Defined in: [src/types/types.ts:321](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L321)
+Defined in: [src/types/types.ts:446](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L446)
 
 #### idInstance
 
@@ -61,7 +61,7 @@ Defined in: [src/types/types.ts:321](https://github.com/green-api/greenapi-integ
 
 > **sendByApi**: `boolean`
 
-Defined in: [src/types/types.ts:330](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L330)
+Defined in: [src/types/types.ts:455](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L455)
 
 ***
 
@@ -69,7 +69,7 @@ Defined in: [src/types/types.ts:330](https://github.com/green-api/greenapi-integ
 
 > **status**: [`OutgoingMessageStatus`](../type-aliases/OutgoingMessageStatus.md)
 
-Defined in: [src/types/types.ts:328](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L328)
+Defined in: [src/types/types.ts:453](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L453)
 
 ***
 
@@ -77,7 +77,7 @@ Defined in: [src/types/types.ts:328](https://github.com/green-api/greenapi-integ
 
 > **timestamp**: `number`
 
-Defined in: [src/types/types.ts:326](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L326)
+Defined in: [src/types/types.ts:451](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L451)
 
 ***
 
@@ -85,4 +85,4 @@ Defined in: [src/types/types.ts:326](https://github.com/green-api/greenapi-integ
 
 > **typeWebhook**: `"outgoingMessageStatus"`
 
-Defined in: [src/types/types.ts:319](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L319)
+Defined in: [src/types/types.ts:444](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L444)

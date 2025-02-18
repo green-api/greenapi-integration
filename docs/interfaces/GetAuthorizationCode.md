@@ -6,7 +6,7 @@
 
 # Interface: GetAuthorizationCode
 
-Defined in: [src/types/types.ts:555](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L555)
+Defined in: [src/types/types.ts:727](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L727)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:555](https://github.com/green-api/greenapi-integ
 
 > **code**: `string`
 
-Defined in: [src/types/types.ts:557](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L557)
+Defined in: [src/types/types.ts:729](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L729)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:557](https://github.com/green-api/greenapi-integ
 
 > **status**: `boolean`
 
-Defined in: [src/types/types.ts:556](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L556)
+Defined in: [src/types/types.ts:728](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L728)

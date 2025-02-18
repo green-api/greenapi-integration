@@ -184,7 +184,7 @@ export type BaseIncomingJournalMessage = BaseJournalMessage & IncomingJournalFie
 export type BaseOutgoingJournalMessage = BaseJournalMessage & OutgoingJournalFields;
 export type BaseJournalResponse = BaseIncomingJournalMessage | BaseOutgoingJournalMessage;
 
-type JournalMessageData<T> = T extends {
+export type JournalMessageData<T> = T extends {
 		typeMessage: "imageMessage" | "videoMessage" | "documentMessage" | "audioMessage" | "stickerMessage";
 		fileMessageData: FileMessageData;
 	}

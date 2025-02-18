@@ -6,7 +6,7 @@
 
 # Interface: GetAvatarResponse
 
-Defined in: [src/types/types.ts:450](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L450)
+Defined in: [src/types/types.ts:622](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L622)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:450](https://github.com/green-api/greenapi-integ
 
 > **available**: `boolean`
 
-Defined in: [src/types/types.ts:452](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L452)
+Defined in: [src/types/types.ts:624](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L624)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:452](https://github.com/green-api/greenapi-integ
 
 > **urlAvatar**: `string`
 
-Defined in: [src/types/types.ts:451](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L451)
+Defined in: [src/types/types.ts:623](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L623)

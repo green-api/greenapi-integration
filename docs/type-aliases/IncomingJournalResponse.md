@@ -6,9 +6,9 @@
 
 # Type Alias: IncomingJournalResponse
 
-> **IncomingJournalResponse**: [`BaseIncomingJournalMessage`](BaseIncomingJournalMessage.md) & [`WebhookMessageData`](WebhookMessageData.md) & `object`
+> **IncomingJournalResponse**: [`BaseIncomingJournalMessage`](BaseIncomingJournalMessage.md) & [`JournalMessageData`](JournalMessageData.md)\<[`WebhookMessageData`](WebhookMessageData.md)\> & `object`
 
-Defined in: [src/types/types.ts:185](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L185)
+Defined in: [src/types/types.ts:198](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L198)
 
 ## Type declaration
 

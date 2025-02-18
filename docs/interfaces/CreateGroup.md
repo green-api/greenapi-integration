@@ -6,7 +6,7 @@
 
 # Interface: CreateGroup
 
-Defined in: [src/types/types.ts:577](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L577)
+Defined in: [src/types/types.ts:749](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L749)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:577](https://github.com/green-api/greenapi-integ
 
 > **chatIds**: `string`[]
 
-Defined in: [src/types/types.ts:579](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L579)
+Defined in: [src/types/types.ts:751](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L751)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:579](https://github.com/green-api/greenapi-integ
 
 > **groupName**: `string`
 
-Defined in: [src/types/types.ts:578](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L578)
+Defined in: [src/types/types.ts:750](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L750)

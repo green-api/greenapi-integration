@@ -6,7 +6,7 @@
 
 # Interface: ProductImageUrls
 
-Defined in: [src/types/types.ts:464](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L464)
+Defined in: [src/types/types.ts:636](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L636)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:464](https://github.com/green-api/greenapi-integ
 
 > **original**: `string`
 
-Defined in: [src/types/types.ts:466](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L466)
+Defined in: [src/types/types.ts:638](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L638)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:466](https://github.com/green-api/greenapi-integ
 
 > **requested**: `string`
 
-Defined in: [src/types/types.ts:465](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/types/types.ts#L465)
+Defined in: [src/types/types.ts:637](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L637)

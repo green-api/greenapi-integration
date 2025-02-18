@@ -8,7 +8,7 @@
 
 > **isValidSettingValue**(`key`, `value`): `boolean`
 
-Defined in: [src/utils/helpers.ts:70](https://github.com/green-api/greenapi-integration/blob/62a96bf9bfbccb88022bc7b0859de19e8c48289f/src/utils/helpers.ts#L70)
+Defined in: [src/utils/helpers.ts:70](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/utils/helpers.ts#L70)
 
 Validates if a value is appropriate for a specific Settings interface key.
 Checks type compatibility for numbers, strings, and yes/no enums.
