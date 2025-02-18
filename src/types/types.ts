@@ -140,7 +140,13 @@ export type MessageType =
 	| "reactionMessage"
 	| "pollUpdateMessage"
 	| "quotedMessage"
-	| "stickerMessage";
+	| "stickerMessage"
+	| "editedMessage"
+	| "deletedMessage"
+	| "buttonsMessage"
+	| "listMessage"
+	| "templateMessage"
+	| "groupInviteMessage";
 
 export interface GetMessage {
 	chatId: string;
@@ -178,15 +184,22 @@ export type BaseIncomingJournalMessage = BaseJournalMessage & IncomingJournalFie
 export type BaseOutgoingJournalMessage = BaseJournalMessage & OutgoingJournalFields;
 export type BaseJournalResponse = BaseIncomingJournalMessage | BaseOutgoingJournalMessage;
 
-export type OutgoingJournalResponse = BaseOutgoingJournalMessage & WebhookMessageData & {
+type JournalMessageData<T> = T extends {
+		typeMessage: "imageMessage" | "videoMessage" | "documentMessage" | "audioMessage" | "stickerMessage";
+		fileMessageData: FileMessageData;
+	}
+	? Omit<T, "fileMessageData"> & FileMessageData
+	: T;
+
+export type OutgoingJournalResponse = BaseOutgoingJournalMessage & JournalMessageData<WebhookMessageData> & {
 	quotedMessage?: QuotedMessage;
 };
 
-export type IncomingJournalResponse = BaseIncomingJournalMessage & WebhookMessageData & {
+export type IncomingJournalResponse = BaseIncomingJournalMessage & JournalMessageData<WebhookMessageData> & {
 	quotedMessage?: QuotedMessage;
 };
 
-export type JournalResponse = BaseJournalResponse & WebhookMessageData & {
+export type JournalResponse = BaseJournalResponse & JournalMessageData<WebhookMessageData> & {
 	quotedMessage?: QuotedMessage;
 };
 
@@ -203,6 +216,90 @@ export interface TextMessageData {
 	textMessage: string;
 }
 
+export interface EditedMessageData {
+	textMessage?: string;
+	caption?: string;
+	stanzaId: string;
+}
+
+export interface DeletedMessageData {
+	stanzaId: string;
+}
+
+export interface ReactionMessageData {
+	text: string;
+}
+
+export interface ButtonData {
+	buttonId: string;
+	buttonText: string;
+}
+
+export interface ButtonsMessageData extends ForwardableMessage {
+	contentText: string;
+	footer: string;
+	buttons: ButtonData[];
+}
+
+export interface ListRowData {
+	title: string;
+	rowId: string;
+	description?: string;
+}
+
+export interface ListSectionData {
+	title: string;
+	rows: ListRowData[];
+}
+
+export interface ListMessageData extends ForwardableMessage {
+	contentText: string;
+	title?: string;
+	footer?: string;
+	buttonText?: string;
+	sections: ListSectionData[];
+}
+
+export interface UrlButtonData {
+	displayText: string;
+	url: string;
+}
+
+export interface CallButtonData {
+	displayText: string;
+	phoneNumber: string;
+}
+
+export interface QuickReplyButtonData {
+	displayText: string;
+	id: string;
+}
+
+export interface TemplateButtonData {
+	index: number;
+	urlButton?: UrlButtonData;
+	callButton?: CallButtonData;
+	quickReplyButton?: QuickReplyButtonData;
+}
+
+export interface TemplateMessageData extends ForwardableMessage {
+	namespace?: string;
+	elementName?: string;
+	contentText: string;
+	footer?: string;
+	buttons: TemplateButtonData[];
+}
+
+export interface GroupInviteMessageData {
+	groupJid: string;
+	inviteCode: string;
+	inviteExpiration: string;
+	groupName: string;
+	caption: string;
+	name: string;
+	jpegThumbnail: string;
+}
+
 export interface ExtendedTextMessageData extends MediaMessage {
 	text: string;
 	description: string;
@@ -214,6 +311,7 @@ export interface FileMessageData extends MediaMessage {
 	caption: string;
 	mimeType: string;
 	fileName: string;
+	isAnimated?: boolean;
 }
 
 export interface LocationMessageData extends MediaMessage {
@@ -281,6 +379,32 @@ export type QuotedMessage = {
 	downloadUrl: string;
 	caption: string;
 	jpegThumbnail: string;
+} | {
+	typeMessage: "stickerMessage";
+	downloadUrl: string;
+	caption: string;
+	jpegThumbnail: string;
+	isAnimated: boolean;
+} | {
+	typeMessage: "buttonsMessage";
+	contentText: string;
+	footer?: string;
+	buttons: ButtonData[];
+} | {
+	typeMessage: "listMessage";
+	contentText: string;
+	title?: string;
+	footer?: string;
+	buttonText?: string;
+	sections: ListSectionData[];
+} | {
+	typeMessage: "templateMessage";
+	contentText: string;
+	footer?: string;
+	buttons: TemplateButtonData[];
+} | {
+	typeMessage: "groupInviteMessage";
+	groupInviteMessageData: GroupInviteMessageData;
 });
 
 export interface PollVote {
@@ -310,6 +434,7 @@ export type WebhookType =
 	| "outgoingAPIMessageReceived"
 	| "outgoingMessageReceived"
 	| "incomingMessageReceived"
+	| "incomingCall";
 
 /**
  * Webhook payload received when a message status changes.
@@ -369,6 +494,31 @@ export type WebhookMessageData = {
 } | {
 	typeMessage: "contactsArrayMessage";
 	messageData: ContactsArrayMessageData;
+} | {
+	typeMessage: "editedMessage";
+	editedMessageData: EditedMessageData;
+} | {
+	typeMessage: "deletedMessage";
+	deletedMessageData: DeletedMessageData;
+} | {
+	typeMessage: "reactionMessage";
+	extendedTextMessageData: ReactionMessageData;
+	quotedMessage: QuotedMessage;
+} | {
+	typeMessage: "buttonsMessage";
+	buttonsMessage: ButtonsMessageData;
+} | {
+	typeMessage: "listMessage";
+	listMessage: ListMessageData;
+} | {
+	typeMessage: "templateMessage";
+	templateMessage: TemplateMessageData;
+} | {
+	typeMessage: "stickerMessage";
+	fileMessageData: FileMessageData;
+} | {
+	typeMessage: "groupInviteMessage";
+	groupInviteMessageData: GroupInviteMessageData;
 };
 
 export interface MessageWebhook {
@@ -392,10 +542,29 @@ export interface MessageWebhook {
 	};
 }
 
+export type CallStatus = "offer" | "pickUp" | "hangUp" | "missed" | "declined";
+
+export interface IncomingCallWebhook {
+	from: string;
+	typeWebhook: "incomingCall";
+	instanceData: {
+		idInstance: number;
+		wid: string;
+		typeInstance: string;
+	};
+	status: CallStatus;
+	timestamp: number;
+	idMessage: string;
+}
+
 /**
  * Primary webhook types received from GREEN-API.
  */
-export type GreenApiWebhook = MessageWebhook | OutgoingMessageStatusWebhook | StateInstanceWebhook;
+export type GreenApiWebhook =
+	MessageWebhook
+	| OutgoingMessageStatusWebhook
+	| StateInstanceWebhook
+	| IncomingCallWebhook;
 
 /**
  * Configuration settings for a GREEN-API instance.
@@ -416,6 +585,9 @@ export interface Settings {
 	keepOnlineStatus?: "yes" | "no";
 	pollMessageWebhook?: "yes" | "no";
 	incomingCallWebhook?: "yes" | "no";
+	incomingBlockWebhook?: "yes" | "no";
+	editedMessageWebhook?: "yes" | "no";
+	deletedMessageWebhook?: "yes" | "no";
 }
 
 export interface Reboot {
