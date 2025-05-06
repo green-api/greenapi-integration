@@ -56,20 +56,24 @@ export abstract class BaseGreenApiAuthGuard<T extends BaseRequest = BaseRequest>
 	async validateRequest(request: T): Promise<boolean> {
 		const token = request.headers["authorization"];
 		if (!token) {
+			this.gaLogger.warn("Authentication header is missing", {body: request.body, headers: request.headers});
 			throw new AuthenticationError("Authentication header is missing");
 		}
 		this.gaLogger.info("Request from GREEN-API", {body: request.body});
 		const idInstance = request.body?.instanceData?.idInstance;
 		if (!idInstance) {
+			this.gaLogger.warn("Invalid webhook format", {body: request.body, headers: request.headers});
 			throw new AuthenticationError("Invalid webhook format");
 		}
 
 		const instance = await this.storage.getInstance(idInstance);
 		if (!instance) {
+			this.gaLogger.warn(`No instance with such ID ${idInstance}`, {body: request.body, headers: request.headers});
 			throw new AuthenticationError(`No instance with such ID ${idInstance}`);
 		}
 
 		if (instance.settings?.webhookUrlToken !== token.split(" ")[1]) {
+			this.gaLogger.warn("Invalid token", {body: request.body, headers: request.headers});
 			throw new AuthenticationError("Invalid token");
 		}
 
