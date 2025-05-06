@@ -27,7 +27,6 @@ third-party services.
 - [Developer Guide](#developer-guide)
 - [Working Example](#working-example)
 - [Real-World Examples](#real-world-examples)
-- [Best Practices](#best-practices)
 
 ## Installation
 
@@ -43,16 +42,16 @@ The foundation of your integration. Handles message & instance management, and p
 
 ```typescript
 abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser extends BaseUser = BaseUser, TInstance extends Instance = Instance> {
-	private readonly gaLogger = GreenApiLogger.getInstance(this.constructor.name);
+    private readonly gaLogger = GreenApiLogger.getInstance(this.constructor.name);
 
-	public constructor(
-		transformer: MessageTransformer<TPlatformWebhook, TPlatformMessage>,
-		storage: StorageProvider<TUser, TInstance>,
-	);
+    public constructor(
+            transformer: MessageTransformer<TPlatformWebhook, TPlatformMessage>,
+            storage: StorageProvider<TUser, TInstance>,
+    );
 
-	public abstract createPlatformClient(params: any): Promise<any>;
+    public abstract createPlatformClient(params: any): Promise<any>;
 
-	public abstract sendToPlatform(message: TPlatformMessage, instance: TInstance): Promise<void>;
+    public abstract sendToPlatform(message: TPlatformMessage, instance: TInstance): Promise<void>;
 }
 ```
 
@@ -102,28 +101,28 @@ await adapter.updateUser(userEmail, updateData);
 ```typescript
 // Platform webhook endpoint
 app.post('/webhook/platform', async (req, res) => {
-	try {
-		await adapter.handlePlatformWebhook(req.body, instanceId);
-		res.status(200).send();
-	} catch (error) {
-		console.error('Failed to handle platform webhook:', error);
-		res.status(500).send();
-	}
+    try {
+        await adapter.handlePlatformWebhook(req.body, instanceId);
+        res.status(200).send();
+    } catch (error) {
+        console.error('Failed to handle platform webhook:', error);
+        res.status(500).send();
+    }
 });
 
 // GREEN-API webhook endpoint
 app.post('/webhook/green-api', async (req, res) => {
-	try {
-		// Process specific webhook types
-		await adapter.handleGreenApiWebhook(req.body, [
-			'incomingMessageReceived',
-			'outgoingMessageStatus'
-		]);
-		res.status(200).send();
-	} catch (error) {
-		console.error('Failed to handle GREEN-API webhook:', error);
-		res.status(500).send();
-	}
+    try {
+        // Process specific webhook types
+        await adapter.handleGreenApiWebhook(req.body, [
+            'incomingMessageReceived',
+            'outgoingMessageStatus'
+        ]);
+        res.status(200).send();
+    } catch (error) {
+        console.error('Failed to handle GREEN-API webhook:', error);
+        res.status(500).send();
+    }
 });
 ```
 
@@ -133,9 +132,9 @@ Handles message format conversion between GREEN-API and your platform.
 
 ```typescript
 abstract class MessageTransformer<TPlatformWebhook, TPlatformMessage> {
-	abstract toPlatformMessage(webhook: GreenApiWebhook): TPlatformMessage;
+    abstract toPlatformMessage(webhook: GreenApiWebhook): TPlatformMessage;
 
-	abstract toGreenApiMessage(message: TPlatformWebhook): Message;
+    abstract toGreenApiMessage(message: TPlatformWebhook): Message;
 }
 ```
 
@@ -145,22 +144,22 @@ Interface for data persistence operations.
 
 ```typescript
 abstract class StorageProvider<
-	TUser extends BaseUser = BaseUser,
-	TInstance extends Instance = Instance,
-	TUserCreate extends Record<string, any> = any,
-	TUserUpdate extends Record<string, any> = any
+        TUser extends BaseUser = BaseUser,
+        TInstance extends Instance = Instance,
+        TUserCreate extends Record<string, any> = any,
+        TUserUpdate extends Record<string, any> = any
 > {
-	abstract createInstance(instance: Instance): Promise<TInstance>;
+    abstract createInstance(instance: Instance): Promise<TInstance>;
 
-	abstract getInstance(idInstance: number | bigint): Promise<TInstance | null>;
+    abstract getInstance(idInstance: number | bigint): Promise<TInstance | null>;
 
-	abstract removeInstance(instanceId: number | bigint): Promise<TInstance>;
+    abstract removeInstance(instanceId: number | bigint): Promise<TInstance>;
 
-	abstract createUser(data: TUserCreate): Promise<TUser>;
+    abstract createUser(data: TUserCreate): Promise<TUser>;
 
-	abstract findUser(identifier: string): Promise<TUser | null>;
+    abstract findUser(identifier: string): Promise<TUser | null>;
 
-	abstract updateUser(identifier: string, data: Partial<TUserUpdate>): Promise<TUser>;
+    abstract updateUser(identifier: string, data: Partial<TUserUpdate>): Promise<TUser>;
 }
 ```
 
@@ -170,12 +169,12 @@ Handles webhook authentication for incoming GREEN-API requests.
 
 ```typescript
 abstract class BaseGreenApiAuthGuard<T extends BaseRequest = BaseRequest> {
-	private readonly gaLogger = GreenApiLogger.getInstance(this.constructor.name);
+    private readonly gaLogger = GreenApiLogger.getInstance(this.constructor.name);
 
-	constructor(protected storage: StorageProvider);
+    constructor(protected storage: StorageProvider);
 
-	// Validates incoming webhook requests
-	async validateRequest(request: T): Promise<boolean>;
+    // Validates incoming webhook requests
+    async validateRequest(request: T): Promise<boolean>;
 }
 ```
 
@@ -183,24 +182,24 @@ Example implementation of `BaseGreenApiAuthGuard`:
 
 ```typescript
 class YourAuthGuard extends BaseGreenApiAuthGuard<YourRequest> {
-	constructor(storage: StorageProvider) {
-		super(storage);
-	}
+    constructor(storage: StorageProvider) {
+        super(storage);
+    }
 }
 
 // Using with Express
 app.post('/webhook', async (req, res) => {
-	const guard = new YourAuthGuard(storage);
-	try {
-		await guard.validateRequest(req);
-		// Process webhook
-	} catch (error) {
-		if (error instanceof AuthenticationError) {
-			res.status(401).json({error: error.message});
-			return;
-		}
-		res.status(500).json({error: 'Internal server error'});
-	}
+    const guard = new YourAuthGuard(storage);
+    try {
+        await guard.validateRequest(req);
+        // Process webhook
+    } catch (error) {
+        if (error instanceof AuthenticationError) {
+            res.status(401).json({error: error.message});
+            return;
+        }
+        res.status(500).json({error: 'Internal server error'});
+    }
 });
 ```
 
@@ -221,12 +220,12 @@ logger.fatal("Fatal error", {critical: true});
 
 // Error logging with full context
 try {
-	await someOperation();
+    await someOperation();
 } catch (error) {
-	logger.logErrorResponse(error, "Operation failed", {
-		operationId: "123",
-		additionalInfo: "some context"
-	});
+    logger.logErrorResponse(error, "Operation failed", {
+        operationId: "123",
+        additionalInfo: "some context"
+    });
 }
 ```
 
@@ -252,20 +251,20 @@ try {
 
 ```json
 {
-  "timestamp": "30/01/2025, 04:34:49",
-  "level": "error",
-  "context": "CoreService",
-  "message": "Operation failed",
-  "error": "Failed to process request",
-  "stack": [
-    "Error: Failed to process request",
-    "    at CoreService.process (/app/service.js:123:45)",
-    "    at async Router.handle (/app/router.js:67:89)"
-  ],
-  "additionalContext": {
-    "requestId": "abc-123",
-    "userId": "user_456"
-  }
+    "timestamp": "30/01/2025, 04:34:49",
+    "level": "error",
+    "context": "CoreService",
+    "message": "Operation failed",
+    "error": "Failed to process request",
+    "stack": [
+        "Error: Failed to process request",
+        "    at CoreService.process (/app/service.js:123:45)",
+        "    at async Router.handle (/app/router.js:67:89)"
+    ],
+    "additionalContext": {
+        "requestId": "abc-123",
+        "userId": "user_456"
+    }
 }
 ```
 
@@ -274,12 +273,12 @@ try {
 ```typescript
 // Axios error handling
 try {
-	await apiRequest();
+    await apiRequest();
 } catch (error) {
-	logger.logErrorResponse(error, "API Request failed", {
-		endpoint: "/users",
-		method: "POST"
-	});
+    logger.logErrorResponse(error, "API Request failed", {
+        endpoint: "/users",
+        method: "POST"
+    });
 }
 ```
 
@@ -307,13 +306,13 @@ The logger is framework-agnostic but can be easily integrated with any framework
 ```typescript
 // Express example
 app.use((err, req, res, next) => {
-	const logger = GreenApiLogger.getInstance("Express");
-	logger.error("Request failed", {
-		path: req.path,
-		method: req.method,
-		error: err.message
-	});
-	next(err);
+    const logger = GreenApiLogger.getInstance("Express");
+    logger.error("Request failed", {
+        path: req.path,
+        method: req.method,
+        error: err.message
+    });
+    next(err);
 });
 ```
 
@@ -327,7 +326,7 @@ For example, when using NestJS, you can disable its built-in logger like this:
 ```typescript
 // main.ts
 const app = await NestFactory.create(AppModule, {
-	logger: false  // Disable NestJS logger
+    logger: false  // Disable NestJS logger
 });
 ```
 
@@ -357,66 +356,14 @@ gaLogger = GreenApiLogger.getInstance(YourClass.name);
 
 - `getInstance(context: string = "Global"): GreenApiLogger`: Get or create logger instance for specified context
 
-#### Best Practices
-
-1. **Use Consistent Context Names**
-
-```typescript
-// In your component/service
-private readonly
-logger = GreenApiLogger.getInstance(YourService.name);
-```
-
-2. **Include Relevant Context**
-
-```typescript
-logger.info("User action completed", {
-	userId: user.id,
-	action: "profile_update",
-	duration: timeTaken
-});
-```
-
-3. **Proper Error Handling**
-
-```typescript
-try {
-	await complexOperation();
-} catch (error) {
-	logger.logErrorResponse(error, "Complex operation failed", {
-		operationId: id,
-		parameters: params
-	});
-}
-```
-
-4. **Use Appropriate Log Levels**
-
-```typescript
-// Debug for detailed information
-logger.debug("Processing chunk", {chunkId: 123, size: 1024});
-
-// Info for general operation
-logger.info("User logged in", {userId: 456});
-
-// Warn for potential issues
-logger.warn("High memory usage", {memoryUsage: "85%"});
-
-// Error for actual problems
-logger.error("Database connection failed", {dbHost: "primary"});
-
-// Fatal for critical issues
-logger.fatal("System shutdown required", {reason: "data corruption"});
-```
-
 ### 6. GreenApiClient
 
 Direct interface to GREEN-API methods.
 
 ```typescript
 const client = new GreenApiClient({
-	idInstance: 'your_instance_id',
-	apiTokenInstance: 'your_token'
+    idInstance: 'your_instance_id',
+    apiTokenInstance: 'your_token'
 });
 
 // Examples:
@@ -481,17 +428,17 @@ First, define the message types for your platform:
 ```typescript
 // types/types.ts
 export interface YourPlatformWebhook {
-	id: string;
-	from: string;
-	message: string;
-	timestamp: number;
-	// Add other platform-specific fields
+    id: string;
+    from: string;
+    message: string;
+    timestamp: number;
+    // Add other platform-specific fields
 }
 
 export interface YourPlatformMessage {
-	recipient: string;
-	content: string;
-	// Add other platform-specific fields
+    recipient: string;
+    content: string;
+    // Add other platform-specific fields
 }
 ```
 
@@ -505,22 +452,22 @@ import { MessageTransformer, Message, GreenApiWebhook } from '@green-api/greenap
 import { YourPlatformWebhook, YourPlatformMessage } from '../types/types';
 
 export class YourTransformer extends MessageTransformer<YourPlatformWebhook, YourPlatformMessage> {
-	toPlatformMessage(webhook: GreenApiWebhook): YourPlatformMessage {
-		// Transform GREEN-API webhook to your platform format
-		return {
-			recipient: webhook.senderData.sender,
-			content: webhook.messageData.textMessageData?.textMessage || '',
-		};
-	}
+    toPlatformMessage(webhook: GreenApiWebhook): YourPlatformMessage {
+        // Transform GREEN-API webhook to your platform format
+        return {
+            recipient: webhook.senderData.sender,
+            content: webhook.messageData.textMessageData?.textMessage || '',
+        };
+    }
 
-	toGreenApiMessage(message: YourPlatformWebhook): Message {
-		// Transform your platform webhook to GREEN-API format
-		return {
-			type: 'text',
-			chatId: message.from,
-			message: message.message,
-		};
-	}
+    toGreenApiMessage(message: YourPlatformWebhook): Message {
+        // Transform your platform webhook to GREEN-API format
+        return {
+            type: 'text',
+            chatId: message.from,
+            message: message.message,
+        };
+    }
 }
 ```
 
@@ -534,28 +481,28 @@ import { StorageProvider, BaseUser, Instance, Settings } from '@green-api/greena
 import { PrismaClient } from '@prisma/client'; // Or your database client
 
 export class YourStorage extends StorageProvider {
-	private db: PrismaClient;
+    private db: PrismaClient;
 
-	constructor() {
-		this.db = new PrismaClient();
-	}
+    constructor() {
+        this.db = new PrismaClient();
+    }
 
-	async findUserByEmail(email: string) {
-		return this.db.user.findUnique({where: {email}});
-	}
+    async findUserByEmail(email: string) {
+        return this.db.user.findUnique({where: {email}});
+    }
 
-	async createInstance(instance: Instance) {
-		return this.db.instance.create({
-			data: {
-				idInstance: instance.idInstance,
-				apiTokenInstance: instance.apiTokenInstance,
-				userId: instance.userId,
-				settings: instance.settings || {},
-			},
-		});
-	}
+    async createInstance(instance: Instance) {
+        return this.db.instance.create({
+            data: {
+                idInstance: instance.idInstance,
+                apiTokenInstance: instance.apiTokenInstance,
+                userId: instance.userId,
+                settings: instance.settings || {},
+            },
+        });
+    }
 
-	// Implement other required methods
+    // Implement other required methods
 }
 ```
 
@@ -570,17 +517,17 @@ import { YourPlatformClient } from 'your-platform-sdk';
 import { YourPlatformWebhook, YourPlatformMessage } from '../types/types';
 
 export class YourAdapter extends BaseAdapter<YourPlatformWebhook, YourPlatformMessage> {
-	async createPlatformClient(config: { apiKey: string, apiUrl: string }) {
-		return new YourPlatformClient({
-			baseUrl: config.apiUrl,
-			apiKey: config.apiKey,
-		});
-	}
+    async createPlatformClient(config: { apiKey: string, apiUrl: string }) {
+        return new YourPlatformClient({
+            baseUrl: config.apiUrl,
+            apiKey: config.apiKey,
+        });
+    }
 
-	async sendToPlatform(message: YourPlatformMessage, instance: Instance) {
-		const client = await this.createPlatformClient(instance.config);
-		await client.sendMessage(message);
-	}
+    async sendToPlatform(message: YourPlatformMessage, instance: Instance) {
+        const client = await this.createPlatformClient(instance.config);
+        await client.sendMessage(message);
+    }
 }
 ```
 
@@ -601,74 +548,74 @@ const transformer = new YourTransformer();
 const adapter = new YourAdapter(transformer, storage);
 
 class WebhookGuard extends BaseGreenApiAuthGuard {
-	constructor(storage: StorageProvider) {
-		super(storage);
-	}
+    constructor(storage: StorageProvider) {
+        super(storage);
+    }
 }
 
 const guard = new WebhookGuard(storage);
 
 // Webhook endpoints
 router.post('/green-api', async (req, res) => {
-	try {
-		// Validate webhook first
-		await guard.validateRequest(req);
+    try {
+        // Validate webhook first
+        await guard.validateRequest(req);
 
-		// Process webhook if validation passed
-		// As the second parameter, specfify the types of webhooks to be processed (otherwise skipped)
-		await adapter.handleGreenApiWebhook(req.body, ['incomingMessageReceived']);
-		res.status(200).json({status: 'ok'});
-	} catch (error) {
-		if (error instanceof AuthenticationError) {
-			res.status(401).json({error: error.message});
-			return;
-		}
-		console.error('Webhook error:', error);
-		res.status(500).json({error: 'Internal server error'});
-	}
+        // Process webhook if validation passed
+        // As the second parameter, specfify the types of webhooks to be processed (otherwise skipped)
+        await adapter.handleGreenApiWebhook(req.body, ['incomingMessageReceived']);
+        res.status(200).json({status: 'ok'});
+    } catch (error) {
+        if (error instanceof AuthenticationError) {
+            res.status(401).json({error: error.message});
+            return;
+        }
+        console.error('Webhook error:', error);
+        res.status(500).json({error: 'Internal server error'});
+    }
 });
 
 router.post('/platform', async (req, res) => {
-	try {
-		const instanceId = req.query.instanceId;
-		await adapter.handlePlatformWebhook(req.body, instanceId);
-		res.status(200).json({status: 'ok'});
-	} catch (error) {
-		console.error('Platform webhook error:', error);
-		res.status(500).json({error: 'Internal server error'});
-	}
+    try {
+        const instanceId = req.query.instanceId;
+        await adapter.handlePlatformWebhook(req.body, instanceId);
+        res.status(200).json({status: 'ok'});
+    } catch (error) {
+        console.error('Platform webhook error:', error);
+        res.status(500).json({error: 'Internal server error'});
+    }
 });
 
 router.post('/instance', async (req, res) => {
-	try {
-		const {idInstance, apiTokenInstance, userEmail} = req.body;
+    try {
+        const {idInstance, apiTokenInstance, userEmail} = req.body;
 
-		if (!idInstance || !apiTokenInstance || !userEmail) {
-			throw new BadRequestError('Required fields missing');
-		}
+        if (!idInstance || !apiTokenInstance || !userEmail) {
+            throw new BadRequestError('Required fields missing');
+        }
 
-		const user = await storage.findUserByEmail(userEmail);
-		const instance = await adapter.createInstance({
-			idInstance: Number(idInstance),
-			apiTokenInstance,
-			settings: {
-				webhookUrl: `${process.env.APP_URL}/webhook/green-api`,
-				webhookUrlToken: `token_${Date.now()}`,
-				incomingWebhook: 'yes'
-			},
-			userId: user.id
-		});
+        const user = await storage.findUserByEmail(userEmail);
+        const instance = await adapter.createInstance({
+            idInstance: Number(idInstance),
+            apiTokenInstance,
+            settings: {
+                webhookUrl: `${process.env.APP_URL}/webhook/green-api`,
+                webhookUrlToken: `token_${Date.now()}`,
+                incomingWebhook: 'yes'
+            },
+            userId: user.id
+        });
 
-		res.status(200).json({
-			status: 'ok',
-			data: instance,
-			message: 'Instance created successfully. Please wait 2 minutes for settings to apply.'
-		});
+        res.status(200).json({
+            status: 'ok',
+            data: instance,
+            message: 'Instance created successfully. Please wait 2 minutes for settings to apply.'
+        });
 
-	} catch (error) {
-		console.error('Instance creation error:', error);
-		res.status(500).json({error: 'Failed to create instance'});
-	}
+    } catch (error) {
+        console.error('Instance creation error:', error);
+        res.status(500).json({error: 'Failed to create instance'});
+    }
 });
 
 export default router;
@@ -692,25 +639,25 @@ import { YourStorage } from './core/storage';
 dotenv.config();
 
 async function bootstrap() {
-	// Initialize components
-	const storage = new YourStorage();
-	const transformer = new YourTransformer();
-	const adapter = new YourAdapter(transformer, storage);
+    // Initialize components
+    const storage = new YourStorage();
+    const transformer = new YourTransformer();
+    const adapter = new YourAdapter(transformer, storage);
 
-	// Create Express application
-	const app = express();
-	app.use(bodyParser.json());
+    // Create Express application
+    const app = express();
+    app.use(bodyParser.json());
 
-	// Set up webhook routes
-	app.use('/webhook', webhookRouter);
+    // Set up webhook routes
+    app.use('/webhook', webhookRouter);
 
-	// Start server
-	const port = process.env.PORT || 3000;
-	app.listen(port, () => {
-		console.log(`Server running on port ${port}`);
-	});
+    // Start server
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+    });
 
-	console.log('Integration platform ready!');
+    console.log('Integration platform ready!');
 }
 
 // Handle errors
@@ -723,19 +670,19 @@ bootstrap();
 
 ```json
 {
-  "name": "greenapi-integration-yourplatform",
-  "version": "1.0.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsc",
-    "prepublishOnly": "npm run build"
-  },
-  "dependencies": {
-    "@green-api/greenapi-integration": "^0.4.0",
-    "express": "^4.18.2"
-    // other dependencies
-  }
+    "name": "greenapi-integration-yourplatform",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "prepublishOnly": "npm run build"
+    },
+    "dependencies": {
+        "@green-api/greenapi-integration": "^0.4.0",
+        "express": "^4.18.2"
+        // other dependencies
+    }
 }
 ```
 
@@ -800,16 +747,16 @@ examples/
 
 ```typescript
 interface SimplePlatformWebhook {
-	messageId: string;
-	from: string;
-	text: string;
-	timestamp: number;
+    messageId: string;
+    from: string;
+    text: string;
+    timestamp: number;
 }
 
 interface SimplePlatformMessage {
-	to: string;
-	content: string;
-	replyTo?: string;
+    to: string;
+    content: string;
+    replyTo?: string;
 }
 ```
 
@@ -817,36 +764,36 @@ interface SimplePlatformMessage {
 
 ```typescript
 import {
-	MessageTransformer,
-	Message,
-	GreenApiWebhook,
-	formatPhoneNumber,
-	IntegrationError,
+    MessageTransformer,
+    Message,
+    GreenApiWebhook,
+    formatPhoneNumber,
+    IntegrationError,
 } from "@green-api/greenapi-integration";
 import { SimplePlatformMessage, SimplePlatformWebhook } from "./types";
 
 export class SimpleTransformer extends MessageTransformer<SimplePlatformWebhook, SimplePlatformMessage> {
-	toPlatformMessage(webhook: GreenApiWebhook): SimplePlatformMessage {
-		if (webhook.typeWebhook === "incomingMessageReceived") {
-			if (webhook.messageData.typeMessage !== "extendedTextMessage") {
-				throw new IntegrationError("Only text messages are supported", "BAD_REQUEST_ERROR", 400);
-			}
+    toPlatformMessage(webhook: GreenApiWebhook): SimplePlatformMessage {
+        if (webhook.typeWebhook === "incomingMessageReceived") {
+            if (webhook.messageData.typeMessage !== "extendedTextMessage") {
+                throw new IntegrationError("Only text messages are supported", "BAD_REQUEST_ERROR", 400);
+            }
 
-			return {
-				to: webhook.senderData.sender,
-				content: webhook.messageData.extendedTextMessageData?.text || "",
-			};
-		}
-		throw new IntegrationError("Only incomingMessageReceived type webhooks are supported", "INTEGRATION_ERROR", 500);
-	}
+            return {
+                to: webhook.senderData.sender,
+                content: webhook.messageData.extendedTextMessageData?.text || "",
+            };
+        }
+        throw new IntegrationError("Only incomingMessageReceived type webhooks are supported", "INTEGRATION_ERROR", 500);
+    }
 
-	toGreenApiMessage(message: SimplePlatformWebhook): Message {
-		return {
-			type: "text",
-			chatId: formatPhoneNumber(message.from),
-			message: message.text,
-		};
-	}
+    toGreenApiMessage(message: SimplePlatformWebhook): Message {
+        return {
+            type: "text",
+            chatId: formatPhoneNumber(message.from),
+            message: message.text,
+        };
+    }
 }
 ```
 
@@ -856,44 +803,44 @@ export class SimpleTransformer extends MessageTransformer<SimplePlatformWebhook,
 import { StorageProvider, BaseUser, Instance } from '@green-api/greenapi-integration';
 
 export class SimpleStorage extends StorageProvider {
-	private users: Map<string, BaseUser> = new Map();
-	private instances: Map<number, Instance> = new Map();
+    private users: Map<string, BaseUser> = new Map();
+    private instances: Map<number, Instance> = new Map();
 
-	async createInstance(instance: Instance, userId: bigint): Promise<Instance> {
-		this.instances.set(Number(instance.idInstance), {
-			...instance,
-		});
-		return instance;
-	}
+    async createInstance(instance: Instance, userId: bigint): Promise<Instance> {
+        this.instances.set(Number(instance.idInstance), {
+            ...instance,
+        });
+        return instance;
+    }
 
-	async getInstance(idInstance: number): Promise<Instance | null> {
-		return this.instances.get(idInstance) || null;
-	}
+    async getInstance(idInstance: number): Promise<Instance | null> {
+        return this.instances.get(idInstance) || null;
+    }
 
-	async removeInstance(instanceId: number): Promise<Instance> {
-		const instance = this.instances.get(instanceId);
-		if (!instance) throw new Error('Instance not found');
-		this.instances.delete(instanceId);
-		return instance;
-	}
+    async removeInstance(instanceId: number): Promise<Instance> {
+        const instance = this.instances.get(instanceId);
+        if (!instance) throw new Error('Instance not found');
+        this.instances.delete(instanceId);
+        return instance;
+    }
 
-	async createUser(data: any): Promise<BaseUser> {
-		const user = {id: Date.now(), ...data};
-		this.users.set(data.email, user);
-		return user;
-	}
+    async createUser(data: any): Promise<BaseUser> {
+        const user = {id: Date.now(), ...data};
+        this.users.set(data.email, user);
+        return user;
+    }
 
-	async findUser(identifier: string): Promise<BaseUser | null> {
-		return this.users.get(identifier) || null;
-	}
+    async findUser(identifier: string): Promise<BaseUser | null> {
+        return this.users.get(identifier) || null;
+    }
 
-	async updateUser(identifier: string, data: any): Promise<BaseUser> {
-		const user = await this.findUser(identifier);
-		if (!user) throw new Error('User not found');
-		const updated = {...user, ...data};
-		this.users.set(identifier, updated);
-		return updated;
-	}
+    async updateUser(identifier: string, data: any): Promise<BaseUser> {
+        const user = await this.findUser(identifier);
+        if (!user) throw new Error('User not found');
+        const updated = {...user, ...data};
+        this.users.set(identifier, updated);
+        return updated;
+    }
 }
 ```
 
@@ -905,38 +852,38 @@ import { SimplePlatformMessage, SimplePlatformWebhook } from "./types";
 import axios from 'axios';
 
 export class SimpleAdapter extends BaseAdapter<SimplePlatformWebhook, SimplePlatformMessage> {
-	async createPlatformClient(config: { apiKey: string, apiUrl: string }) {
-		return axios.create({
-			baseURL: config.apiUrl,
-			headers: {
-				'Authorization': `Bearer ${config.apiKey}`,
-				'Content-Type': 'application/json'
-			}
-		});
-	}
+    async createPlatformClient(config: { apiKey: string, apiUrl: string }) {
+        return axios.create({
+            baseURL: config.apiUrl,
+            headers: {
+                'Authorization': `Bearer ${config.apiKey}`,
+                'Content-Type': 'application/json'
+            }
+        });
+    }
 
-	async sendToPlatform(message: SimplePlatformMessage, instance: Instance): Promise<void> {
-		// In a real implementation, we would send to the platform
-		// For demo, we'll just log and simulate a response
-		console.log('Platform received message:', message);
+    async sendToPlatform(message: SimplePlatformMessage, instance: Instance): Promise<void> {
+        // In a real implementation, we would send to the platform
+        // For demo, we'll just log and simulate a response
+        console.log('Platform received message:', message);
 
-		// Simulate platform processing and responding
-		setTimeout(() => {
-			console.log('Platform processing complete, sending response...');
-			this.simulatePlatformResponse(message, instance.idInstance);
-		}, 1000);
-	}
+        // Simulate platform processing and responding
+        setTimeout(() => {
+            console.log('Platform processing complete, sending response...');
+            this.simulatePlatformResponse(message, instance.idInstance);
+        }, 1000);
+    }
 
-	private async simulatePlatformResponse(originalMessage: SimplePlatformMessage, idInstance: number | bigint) {
-		const platformWebhook: SimplePlatformWebhook = {
-			messageId: `resp_${Date.now()}`,
-			from: originalMessage.to.replace('@c.us', ''),
-			text: `Thanks for your message: "${originalMessage.content}". This is an automated response.`,
-			timestamp: Date.now()
-		};
+    private async simulatePlatformResponse(originalMessage: SimplePlatformMessage, idInstance: number | bigint) {
+        const platformWebhook: SimplePlatformWebhook = {
+            messageId: `resp_${Date.now()}`,
+            from: originalMessage.to.replace('@c.us', ''),
+            text: `Thanks for your message: "${originalMessage.content}". This is an automated response.`,
+            timestamp: Date.now()
+        };
 
-		await this.handlePlatformWebhook(platformWebhook, idInstance);
-	}
+        await this.handlePlatformWebhook(platformWebhook, idInstance);
+    }
 }
 ```
 
@@ -954,90 +901,78 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 async function main() {
-	// Initialize components
-	const transformer = new SimpleTransformer();
-	const storage = new SimpleStorage();
-	const adapter = new SimpleAdapter(transformer, storage);
+    // Initialize components
+    const transformer = new SimpleTransformer();
+    const storage = new SimpleStorage();
+    const adapter = new SimpleAdapter(transformer, storage);
 
-	// Configuration for both instances
-	const visitorInstance = {
-		idInstance: Number(process.env.VISITOR_ID_INSTANCE),
-		apiTokenInstance: process.env.VISITOR_API_TOKEN!,
-	};
+    // Configuration for both instances
+    const visitorInstance = {
+        idInstance: Number(process.env.VISITOR_ID_INSTANCE),
+        apiTokenInstance: process.env.VISITOR_API_TOKEN!,
+    };
 
-	const agentInstance = {
-		idInstance: Number(process.env.AGENT_ID_INSTANCE),
-		apiTokenInstance: process.env.AGENT_API_TOKEN!,
-	};
-	console.log(visitorInstance, agentInstance);
+    const agentInstance = {
+        idInstance: Number(process.env.AGENT_ID_INSTANCE),
+        apiTokenInstance: process.env.AGENT_API_TOKEN!,
+    };
+    console.log(visitorInstance, agentInstance);
 
-	// Create visitor's GREEN-API client (for sending initial message)
-	const visitorClient = new GreenApiClient(visitorInstance);
+    // Create visitor's GREEN-API client (for sending initial message)
+    const visitorClient = new GreenApiClient(visitorInstance);
 
-	// Set up agent instance
-	console.log("Setting up agent instance...");
-	const user = await adapter.createUser("agent@example.com", {
-		email: "agent@example.com",
-		name: "Agent",
-	});
+    // Set up agent instance
+    console.log("Setting up agent instance...");
+    const user = await adapter.createUser("agent@example.com", {
+        email: "agent@example.com",
+        name: "Agent",
+    });
 
-	const instance = await adapter.createInstance({
-		idInstance: agentInstance.idInstance, apiTokenInstance: agentInstance.apiTokenInstance, settings: {
-			webhookUrl: process.env.WEBHOOK_URL + "/webhook/green-api",
-			webhookUrlToken: "your-secure-token",
-			incomingWebhook: "yes",
-		},
-	}, user.email);
+    const instance = await adapter.createInstance({
+        idInstance: agentInstance.idInstance, apiTokenInstance: agentInstance.apiTokenInstance, settings: {
+            webhookUrl: process.env.WEBHOOK_URL + "/webhook/green-api",
+            webhookUrlToken: "your-secure-token",
+            incomingWebhook: "yes",
+        },
+    }, user.email);
 
-	console.log("Waiting 2 minutes for settings to apply...");
-	await new Promise(resolve => setTimeout(resolve, 120000));
-	console.log("Instance ready!");
+    console.log("Waiting 2 minutes for settings to apply...");
+    await new Promise(resolve => setTimeout(resolve, 120000));
+    console.log("Instance ready!");
 
-	// Set up webhook server
-	const app = express();
-	app.use(bodyParser.json());
+    // Set up webhook server
+    const app = express();
+    app.use(bodyParser.json());
 
-	// Handle GREEN-API webhooks
-	app.post("/webhook/green-api", async (req, res) => {
-		try {
-			console.log("Received webhook from GREEN-API:", req.body);
-			await adapter.handleGreenApiWebhook(req.body, ["incomingMessageReceived"]);
-			res.status(200).json({status: "ok"});
-		} catch (error) {
-			console.error("Error handling webhook:", error);
-			res.status(500).json({error: "Internal server error"});
-		}
-	});
+    // Handle GREEN-API webhooks
+    app.post("/webhook/green-api", async (req, res) => {
+        try {
+            console.log("Received webhook from GREEN-API:", req.body);
+            await adapter.handleGreenApiWebhook(req.body, ["incomingMessageReceived"]);
+            res.status(200).json({status: "ok"});
+        } catch (error) {
+            console.error("Error handling webhook:", error);
+            res.status(500).json({error: "Internal server error"});
+        }
+    });
 
-	// Start the server
-	const port = Number(process.env.PORT) || 3000;
-	app.listen(port, () => {
-		console.log(`Webhook server listening on port ${port}`);
-	});
+    // Start the server
+    const port = Number(process.env.PORT) || 3000;
+    app.listen(port, () => {
+        console.log(`Webhook server listening on port ${port}`);
+    });
 
-	// Send initial message from visitor
-	console.log("Sending initial message from visitor...");
-	await visitorClient.sendMessage({
-		chatId: formatPhoneNumber(process.env.AGENT_PHONE_NUMBER!),
-		message: "Hello! This is a test message from a visitor.",
-	});
+    // Send initial message from visitor
+    console.log("Sending initial message from visitor...");
+    await visitorClient.sendMessage({
+        chatId: formatPhoneNumber(process.env.AGENT_PHONE_NUMBER!),
+        message: "Hello! This is a test message from a visitor.",
+    });
 
-	console.log("Initial message sent! Check the agent WhatsApp app to see the response.");
+    console.log("Initial message sent! Check the agent WhatsApp app to see the response.");
 }
 
 main().catch(console.error);
-```
-
-### .env
-
-```env
-VISITOR_ID_INSTANCE=your_visitor_instance_id
-VISITOR_API_TOKEN=your_visitor_instance_token
-AGENT_ID_INSTANCE=your_agent_instance_id
-AGENT_API_TOKEN=your_agent_instance_token
-AGENT_PHONE_NUMBER=your_agent_phone_number
-WEBHOOK_URL=your_webhook_url
-PORT=3000
 ```
 
 ## Real-World Examples
@@ -1066,10 +1001,10 @@ isValidSettingValue('webhookUrl', 'https://example.com') // Returns true
 
 // Clean settings
 const input = {
-	webhookUrl: 'https://example.com',
-	outgoingWebhook: 'yes',
-	invalidKey: 'value',
-	delaySendMessagesMilliseconds: 'invalid'
+    webhookUrl: 'https://example.com',
+    outgoingWebhook: 'yes',
+    invalidKey: 'value',
+    delaySendMessagesMilliseconds: 'invalid'
 }
 validateAndCleanSettings(input) // Returns { webhookUrl: 'https://example.com', outgoingWebhook: 'yes' }
 ```
