@@ -6,7 +6,7 @@
 
 # Interface: BaseJournalMessage
 
-Defined in: [src/types/types.ts:161](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L161)
+Defined in: [src/types/types.ts:154](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L154)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:161](https://github.com/green-api/greenapi-integ
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:165](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L165)
+Defined in: [src/types/types.ts:158](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L158)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:165](https://github.com/green-api/greenapi-integ
 
 > **forwardingScore**: `number`
 
-Defined in: [src/types/types.ts:167](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L167)
+Defined in: [src/types/types.ts:160](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L160)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:167](https://github.com/green-api/greenapi-integ
 
 > **idMessage**: `string`
 
-Defined in: [src/types/types.ts:162](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L162)
+Defined in: [src/types/types.ts:155](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L155)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [src/types/types.ts:162](https://github.com/green-api/greenapi-integ
 
 > **isForwarded**: `boolean`
 
-Defined in: [src/types/types.ts:166](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L166)
+Defined in: [src/types/types.ts:159](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L159)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [src/types/types.ts:166](https://github.com/green-api/greenapi-integ
 
 > **timestamp**: `number`
 
-Defined in: [src/types/types.ts:163](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L163)
+Defined in: [src/types/types.ts:156](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L156)
 
 ***
 
@@ -54,4 +54,4 @@ Defined in: [src/types/types.ts:163](https://github.com/green-api/greenapi-integ
 
 > **typeMessage**: [`MessageType`](../type-aliases/MessageType.md)
 
-Defined in: [src/types/types.ts:164](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L164)
+Defined in: [src/types/types.ts:157](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L157)

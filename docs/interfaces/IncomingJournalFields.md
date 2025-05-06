@@ -6,7 +6,7 @@
 
 # Interface: IncomingJournalFields
 
-Defined in: [src/types/types.ts:170](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L170)
+Defined in: [src/types/types.ts:163](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L163)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:170](https://github.com/green-api/greenapi-integ
 
 > **senderContactName**: `string`
 
-Defined in: [src/types/types.ts:174](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L174)
+Defined in: [src/types/types.ts:167](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L167)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:174](https://github.com/green-api/greenapi-integ
 
 > **senderId**: `string`
 
-Defined in: [src/types/types.ts:172](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L172)
+Defined in: [src/types/types.ts:165](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L165)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:172](https://github.com/green-api/greenapi-integ
 
 > **senderName**: `string`
 
-Defined in: [src/types/types.ts:173](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L173)
+Defined in: [src/types/types.ts:166](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L166)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [src/types/types.ts:173](https://github.com/green-api/greenapi-integ
 
 > **type**: `"incoming"`
 
-Defined in: [src/types/types.ts:171](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L171)
+Defined in: [src/types/types.ts:164](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L164)

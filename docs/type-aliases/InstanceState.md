@@ -8,6 +8,6 @@
 
 > **InstanceState**: `"notAuthorized"` \| `"authorized"` \| `"blocked"` \| `"starting"` \| `"yellowCard"`
 
-Defined in: [src/types/types.ts:698](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L698)
+Defined in: [src/types/types.ts:691](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L691)
 
 Represents an instance state in the GREEN-API system.

@@ -6,7 +6,7 @@
 
 # Interface: RemoveAdmin
 
-Defined in: [src/types/types.ts:817](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L817)
+Defined in: [src/types/types.ts:810](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L810)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:817](https://github.com/green-api/greenapi-integ
 
 > **groupId**: `string`
 
-Defined in: [src/types/types.ts:818](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L818)
+Defined in: [src/types/types.ts:811](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L811)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:818](https://github.com/green-api/greenapi-integ
 
 > **participantChatId**: `string`
 
-Defined in: [src/types/types.ts:819](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L819)
+Defined in: [src/types/types.ts:812](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L812)

@@ -6,7 +6,7 @@
 
 # Class: `abstract` BaseGreenApiAuthGuard\<T\>
 
-Defined in: [src/core/guard.ts:35](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/core/guard.ts#L35)
+Defined in: [src/core/guard.ts:35](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/guard.ts#L35)
 
 Base authentication guard for validating incoming GREEN-API webhooks.
 Ensures that webhooks are authenticated and come from valid instances.
@@ -46,7 +46,7 @@ Request type extending BaseRequest, contains headers and body
 
 > `protected` **new BaseGreenApiAuthGuard**\<`T`\>(`storage`): [`BaseGreenApiAuthGuard`](BaseGreenApiAuthGuard.md)\<`T`\>
 
-Defined in: [src/core/guard.ts:43](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/core/guard.ts#L43)
+Defined in: [src/core/guard.ts:43](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/guard.ts#L43)
 
 Creates an instance of BaseGreenApiAuthGuard.
 
@@ -68,7 +68,7 @@ Storage provider for accessing instance data
 
 > `protected` **storage**: [`StorageProvider`](StorageProvider.md)
 
-Defined in: [src/core/guard.ts:43](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/core/guard.ts#L43)
+Defined in: [src/core/guard.ts:43](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/guard.ts#L43)
 
 Storage provider for accessing instance data
 
@@ -78,7 +78,7 @@ Storage provider for accessing instance data
 
 > **validateRequest**(`request`): `Promise`\<`boolean`\>
 
-Defined in: [src/core/guard.ts:56](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/core/guard.ts#L56)
+Defined in: [src/core/guard.ts:56](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/guard.ts#L56)
 
 Validates an incoming webhook request.
 Checks for presence of authorization token and validates it against instance settings.

@@ -6,7 +6,7 @@
 
 # Interface: SetGroupPicture
 
-Defined in: [src/types/types.ts:826](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L826)
+Defined in: [src/types/types.ts:819](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L819)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:826](https://github.com/green-api/greenapi-integ
 
 > **file**: `Blob` \| `File`
 
-Defined in: [src/types/types.ts:828](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L828)
+Defined in: [src/types/types.ts:821](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L821)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:828](https://github.com/green-api/greenapi-integ
 
 > **groupId**: `string`
 
-Defined in: [src/types/types.ts:827](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L827)
+Defined in: [src/types/types.ts:820](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L820)

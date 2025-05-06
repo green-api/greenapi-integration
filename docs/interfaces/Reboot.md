@@ -6,7 +6,7 @@
 
 # Interface: Reboot
 
-Defined in: [src/types/types.ts:593](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L593)
+Defined in: [src/types/types.ts:586](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L586)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:593](https://github.com/green-api/greenapi-integ
 
 > **isReboot**: `boolean`
 
-Defined in: [src/types/types.ts:594](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L594)
+Defined in: [src/types/types.ts:587](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L587)

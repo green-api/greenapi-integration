@@ -6,7 +6,7 @@
 
 # Interface: UploadFile
 
-Defined in: [src/types/types.ts:732](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L732)
+Defined in: [src/types/types.ts:725](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L725)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:732](https://github.com/green-api/greenapi-integ
 
 > **urlFile**: `string`
 
-Defined in: [src/types/types.ts:733](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L733)
+Defined in: [src/types/types.ts:726](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L726)

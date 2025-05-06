@@ -6,7 +6,7 @@
 
 # Interface: QR
 
-Defined in: [src/types/types.ts:722](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L722)
+Defined in: [src/types/types.ts:715](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L715)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:722](https://github.com/green-api/greenapi-integ
 
 > **message**: `string`
 
-Defined in: [src/types/types.ts:724](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L724)
+Defined in: [src/types/types.ts:717](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L717)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:724](https://github.com/green-api/greenapi-integ
 
 > **type**: `"qrCode"` \| `"error"` \| `"alreadyLogged"`
 
-Defined in: [src/types/types.ts:723](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L723)
+Defined in: [src/types/types.ts:716](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L716)

@@ -6,7 +6,7 @@
 
 # Interface: GetChatHistory
 
-Defined in: [src/types/types.ts:156](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L156)
+Defined in: [src/types/types.ts:149](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L149)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:156](https://github.com/green-api/greenapi-integ
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:157](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L157)
+Defined in: [src/types/types.ts:150](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L150)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:157](https://github.com/green-api/greenapi-integ
 
 > `optional` **count**: `number`
 
-Defined in: [src/types/types.ts:158](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L158)
+Defined in: [src/types/types.ts:151](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L151)

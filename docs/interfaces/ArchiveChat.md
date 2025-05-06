@@ -6,7 +6,7 @@
 
 # Interface: ArchiveChat
 
-Defined in: [src/types/types.ts:674](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L674)
+Defined in: [src/types/types.ts:667](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L667)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:674](https://github.com/green-api/greenapi-integ
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:675](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L675)
+Defined in: [src/types/types.ts:668](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L668)

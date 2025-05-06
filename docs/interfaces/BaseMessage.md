@@ -6,9 +6,18 @@
 
 # Interface: BaseMessage
 
-Defined in: [src/types/types.ts:79](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L79)
+Defined in: [src/types/types.ts:23](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L23)
 
 Common properties shared by all message types.
+
+## Extended by
+
+- [`SendMessage`](SendMessage.md)
+- [`SendFileByUpload`](SendFileByUpload.md)
+- [`SendFileByUrl`](SendFileByUrl.md)
+- [`SendLocation`](SendLocation.md)
+- [`SendContact`](SendContact.md)
+- [`SendPoll`](SendPoll.md)
 
 ## Properties
 
@@ -16,7 +25,7 @@ Common properties shared by all message types.
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:80](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L80)
+Defined in: [src/types/types.ts:24](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L24)
 
 ***
 
@@ -24,4 +33,4 @@ Defined in: [src/types/types.ts:80](https://github.com/green-api/greenapi-integr
 
 > `optional` **quotedMessageId**: `string`
 
-Defined in: [src/types/types.ts:81](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L81)
+Defined in: [src/types/types.ts:25](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L25)

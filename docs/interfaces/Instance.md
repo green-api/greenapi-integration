@@ -6,7 +6,7 @@
 
 # Interface: Instance
 
-Defined in: [src/types/types.ts:16](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L16)
+Defined in: [src/types/types.ts:16](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L16)
 
 Extended instance interface that allows for additional platform-specific properties.
 Use this when you need to store extra data with your instance.
@@ -25,7 +25,7 @@ Use this when you need to store extra data with your instance.
 
 > **apiTokenInstance**: `string`
 
-Defined in: [src/types/types.ts:7](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L7)
+Defined in: [src/types/types.ts:7](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L7)
 
 #### Inherited from
 
@@ -37,7 +37,7 @@ Defined in: [src/types/types.ts:7](https://github.com/green-api/greenapi-integra
 
 > **idInstance**: `number` \| `bigint`
 
-Defined in: [src/types/types.ts:6](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L6)
+Defined in: [src/types/types.ts:6](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L6)
 
 #### Inherited from
 
@@ -49,7 +49,7 @@ Defined in: [src/types/types.ts:6](https://github.com/green-api/greenapi-integra
 
 > `optional` **settings**: [`Settings`](Settings.md) \| `Record`\<`string`, `any`\>
 
-Defined in: [src/types/types.ts:9](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L9)
+Defined in: [src/types/types.ts:9](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L9)
 
 #### Inherited from
 
@@ -61,7 +61,7 @@ Defined in: [src/types/types.ts:9](https://github.com/green-api/greenapi-integra
 
 > `optional` **stateInstance**: [`InstanceState`](../type-aliases/InstanceState.md)
 
-Defined in: [src/types/types.ts:8](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L8)
+Defined in: [src/types/types.ts:8](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L8)
 
 #### Inherited from
 

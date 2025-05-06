@@ -6,7 +6,7 @@
 
 # Interface: Product
 
-Defined in: [src/types/types.ts:645](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L645)
+Defined in: [src/types/types.ts:638](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L638)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:645](https://github.com/green-api/greenapi-integ
 
 > **availability**: `string`
 
-Defined in: [src/types/types.ts:649](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L649)
+Defined in: [src/types/types.ts:642](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L642)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:649](https://github.com/green-api/greenapi-integ
 
 > `optional` **description**: `string`
 
-Defined in: [src/types/types.ts:651](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L651)
+Defined in: [src/types/types.ts:644](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L644)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:651](https://github.com/green-api/greenapi-integ
 
 > **id**: `string`
 
-Defined in: [src/types/types.ts:646](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L646)
+Defined in: [src/types/types.ts:639](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L639)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [src/types/types.ts:646](https://github.com/green-api/greenapi-integ
 
 > **imageUrls**: [`ProductImageUrls`](ProductImageUrls.md)
 
-Defined in: [src/types/types.ts:647](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L647)
+Defined in: [src/types/types.ts:640](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L640)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [src/types/types.ts:647](https://github.com/green-api/greenapi-integ
 
 > **isHidden**: `boolean`
 
-Defined in: [src/types/types.ts:653](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L653)
+Defined in: [src/types/types.ts:646](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L646)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [src/types/types.ts:653](https://github.com/green-api/greenapi-integ
 
 > **name**: `string`
 
-Defined in: [src/types/types.ts:650](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L650)
+Defined in: [src/types/types.ts:643](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L643)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [src/types/types.ts:650](https://github.com/green-api/greenapi-integ
 
 > **price**: `null` \| `string`
 
-Defined in: [src/types/types.ts:652](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L652)
+Defined in: [src/types/types.ts:645](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L645)
 
 ***
 
@@ -70,4 +70,4 @@ Defined in: [src/types/types.ts:652](https://github.com/green-api/greenapi-integ
 
 > **reviewStatus**: [`ProductReviewStatus`](ProductReviewStatus.md)
 
-Defined in: [src/types/types.ts:648](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L648)
+Defined in: [src/types/types.ts:641](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L641)

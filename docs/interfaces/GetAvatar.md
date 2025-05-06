@@ -6,7 +6,7 @@
 
 # Interface: GetAvatar
 
-Defined in: [src/types/types.ts:618](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L618)
+Defined in: [src/types/types.ts:611](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L611)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:618](https://github.com/green-api/greenapi-integ
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:619](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L619)
+Defined in: [src/types/types.ts:612](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L612)

@@ -6,7 +6,7 @@
 
 # Interface: LeaveGroupResponse
 
-Defined in: [src/types/types.ts:841](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L841)
+Defined in: [src/types/types.ts:834](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L834)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:841](https://github.com/green-api/greenapi-integ
 
 > `optional` **leaveGroup**: `boolean`
 
-Defined in: [src/types/types.ts:842](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L842)
+Defined in: [src/types/types.ts:835](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L835)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:842](https://github.com/green-api/greenapi-integ
 
 > `optional` **removeAdmin**: `boolean`
 
-Defined in: [src/types/types.ts:843](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L843)
+Defined in: [src/types/types.ts:836](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L836)

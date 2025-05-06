@@ -6,9 +6,6 @@
 
 # Type Alias: Message
 
-> **Message**: `object` & [`BaseMessage`](../interfaces/BaseMessage.md) \| `object` & [`BaseMessage`](../interfaces/BaseMessage.md) \| `object` & [`BaseMessage`](../interfaces/BaseMessage.md) \| `object` & [`BaseMessage`](../interfaces/BaseMessage.md) \| `object` & [`BaseMessage`](../interfaces/BaseMessage.md) \| `object` & [`BaseMessage`](../interfaces/BaseMessage.md) \| \{ `chatId`: `string`; `chatIdFrom`: `string`; `messages`: `string`[]; `type`: `"forward"`; \}
+> **Message**: [`SendMessage`](../interfaces/SendMessage.md) & `object` \| [`SendFileByUpload`](../interfaces/SendFileByUpload.md) & `object` \| [`SendFileByUrl`](../interfaces/SendFileByUrl.md) & `object` \| [`SendPoll`](../interfaces/SendPoll.md) & `object` \| [`SendLocation`](../interfaces/SendLocation.md) & `object` \| [`SendContact`](../interfaces/SendContact.md) & `object` \| [`ForwardMessages`](../interfaces/ForwardMessages.md) & `object`
 
-Defined in: [src/types/types.ts:24](https://github.com/green-api/greenapi-integration/blob/63683bb8d19b76d9e4ce6bd0a8121d8d2cf428af/src/types/types.ts#L24)
-
-Union type representing all possible message formats that can be sent through GREEN-API.
-Each message type has its own specific structure and required fields.
+Defined in: [src/types/types.ts:86](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L86)
