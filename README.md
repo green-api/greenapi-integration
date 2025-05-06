@@ -1020,7 +1020,6 @@ async function main() {
 	await visitorClient.sendMessage({
 		chatId: formatPhoneNumber(process.env.AGENT_PHONE_NUMBER!),
 		message: "Hello! This is a test message from a visitor.",
-		type: "text",
 	});
 
 	console.log("Initial message sent! Check the agent WhatsApp app to see the response.");
