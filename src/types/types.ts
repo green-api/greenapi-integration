@@ -18,70 +18,12 @@ export interface Instance extends BaseInstance {
 }
 
 /**
- * Union type representing all possible message formats that can be sent through GREEN-API.
- * Each message type has its own specific structure and required fields.
- */
-export type Message =
-	| ({
-	type: "text";
-	message: string;
-	linkPreview?: boolean;
-} & BaseMessage)
-	| ({
-	type: "upload-file";
-	caption?: string;
-	file: {
-		data: Blob | File;
-		fileName: string;
-	};
-} & BaseMessage)
-	| ({
-	type: "url-file";
-	caption?: string;
-	file: {
-		url: string;
-		fileName: string;
-	};
-} & BaseMessage)
-	| ({
-	type: "poll";
-	message: string;
-	options: PollOption[];
-	multipleAnswers?: boolean;
-} & BaseMessage)
-	| ({
-	type: "location";
-	nameLocation?: string;
-	address?: string;
-	latitude: number;
-	longitude: number;
-} & BaseMessage)
-	| ({
-	type: "contact";
-	contact: {
-		phoneContact: number;
-		firstName?: string;
-		middleName?: string;
-		lastName?: string;
-		company?: string;
-	};
-} & BaseMessage)
-	| {
-	type: "forward";
-	chatId: string;
-	chatIdFrom: string;
-	messages: string[];
-};
-
-/**
  * Common properties shared by all message types.
  */
 export interface BaseMessage {
 	chatId: string;
 	quotedMessageId?: string;
 }
-
-export type SendMessageType = "text" | "upload-file" | "url-file" | "poll" | "location" | "contact" | "forward";
 
 export interface ForwardMessagesResponse {
 	messages: string[];
@@ -91,13 +33,64 @@ export interface PollOption {
 	optionName: string;
 }
 
-export type SendMessage = Extract<Message, { type: "text" }>;
-export type SendFileByUpload = Extract<Message, { type: "upload-file" }>;
-export type SendFileByUrl = Extract<Message, { type: "url-file" }>;
-export type SendLocation = Extract<Message, { type: "location" }>;
-export type SendContact = Extract<Message, { type: "contact" }>;
-export type SendPoll = Extract<Message, { type: "poll" }>;
-export type ForwardMessages = Extract<Message, { type: "forward" }>;
+export interface SendMessage extends BaseMessage {
+	message: string;
+	linkPreview?: boolean;
+}
+
+export interface SendFileByUpload extends BaseMessage {
+	caption?: string;
+	file: {
+		data: Blob | File;
+		fileName: string;
+	};
+}
+
+export interface SendFileByUrl extends BaseMessage {
+	caption?: string;
+	file: {
+		url: string;
+		fileName: string;
+	};
+}
+
+export interface SendLocation extends BaseMessage {
+	nameLocation?: string;
+	address?: string;
+	latitude: number;
+	longitude: number;
+}
+
+export interface SendContact extends BaseMessage {
+	contact: {
+		phoneContact: number;
+		firstName?: string;
+		middleName?: string;
+		lastName?: string;
+		company?: string;
+	};
+}
+
+export interface SendPoll extends BaseMessage {
+	message: string;
+	options: PollOption[];
+	multipleAnswers?: boolean;
+}
+
+export interface ForwardMessages {
+	chatId: string;
+	chatIdFrom: string;
+	messages: string[];
+}
+
+export type Message =
+  | (SendMessage & { type: "text" })
+  | (SendFileByUpload & { type: "upload-file" })
+  | (SendFileByUrl & { type: "url-file" })
+  | (SendPoll & { type: "poll" })
+  | (SendLocation & { type: "location" })
+  | (SendContact & { type: "contact" })
+  | (ForwardMessages & { type: "forward" });
 
 export type QueueMessageType =
 	| "sendMessage"
