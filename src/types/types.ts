@@ -5,8 +5,8 @@
 export interface BaseInstance {
 	idInstance: number | bigint;
 	apiTokenInstance: string;
-	stateInstance?: InstanceState;
-	settings?: Settings | Record<string, any>;
+	stateInstance?: InstanceState | null;
+	settings?: Settings | Record<string, any> | null;
 }
 
 /**
@@ -842,7 +842,7 @@ export interface BaseRequest {
 }
 
 export interface BaseUser {
-	id: number | bigint;
+	id: number | bigint | string;
 
 	[key: string]: any;
 }
