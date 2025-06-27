@@ -84,13 +84,13 @@ export interface ForwardMessages {
 }
 
 export type Message =
-  | (SendMessage & { type: "text" })
-  | (SendFileByUpload & { type: "upload-file" })
-  | (SendFileByUrl & { type: "url-file" })
-  | (SendPoll & { type: "poll" })
-  | (SendLocation & { type: "location" })
-  | (SendContact & { type: "contact" })
-  | (ForwardMessages & { type: "forward" });
+	| (SendMessage & { type: "text" })
+	| (SendFileByUpload & { type: "upload-file" })
+	| (SendFileByUrl & { type: "url-file" })
+	| (SendPoll & { type: "poll" })
+	| (SendLocation & { type: "location" })
+	| (SendContact & { type: "contact" })
+	| (ForwardMessages & { type: "forward" });
 
 export type QueueMessageType =
 	| "sendMessage"
@@ -139,7 +139,10 @@ export type MessageType =
 	| "buttonsMessage"
 	| "listMessage"
 	| "templateMessage"
-	| "groupInviteMessage";
+	| "groupInviteMessage"
+	| "interactiveButtons"
+	| "interactiveButtonsReply"
+	| "templateButtonsReplyMessage";
 
 export interface GetMessage {
 	chatId: string;
@@ -283,6 +286,42 @@ export interface TemplateMessageData extends ForwardableMessage {
 	buttons: TemplateButtonData[];
 }
 
+export interface InteractiveButtonData {
+	type: "copy" | "call" | "url";
+	buttonId: string;
+	buttonText: string;
+	copyCode?: string;
+	phoneNumber?: string;
+	url?: string;
+}
+
+export interface InteractiveButtonsData extends ForwardableMessage {
+	titleText?: string;
+	contentText: string;
+	footerText?: string;
+	buttons: InteractiveButtonData[];
+}
+
+export interface InteractiveReplyButtonData {
+	type: "reply";
+	buttonId: string;
+	buttonText: string;
+}
+
+export interface InteractiveButtonsReplyData extends ForwardableMessage {
+	titleText?: string;
+	contentText: string;
+	footerText?: string;
+	buttons: InteractiveReplyButtonData[];
+}
+
+export interface TemplateButtonsReplyMessageData {
+	stanzaId: string;
+	selectedIndex: number;
+	selectedId: string;
+	selectedDisplayText: string;
+}
+
 export interface GroupInviteMessageData {
 	groupJid: string;
 	inviteCode: string;
@@ -398,6 +437,22 @@ export type QuotedMessage = {
 } | {
 	typeMessage: "groupInviteMessage";
 	groupInviteMessageData: GroupInviteMessageData;
+} | {
+	typeMessage: "interactiveButtons";
+	contentText: string;
+	titleText?: string;
+	footerText?: string;
+	buttons: InteractiveButtonData[];
+} | {
+	typeMessage: "interactiveButtonsReply";
+	contentText: string;
+	titleText?: string;
+	footerText?: string;
+	buttons: InteractiveReplyButtonData[];
+} | {
+	typeMessage: "templateButtonsReplyMessage";
+	selectedDisplayText: string;
+	selectedId: string;
 });
 
 export interface PollVote {
@@ -512,6 +567,15 @@ export type WebhookMessageData = {
 } | {
 	typeMessage: "groupInviteMessage";
 	groupInviteMessageData: GroupInviteMessageData;
+} | {
+	typeMessage: "interactiveButtons";
+	interactiveButtons: InteractiveButtonsData;
+} | {
+	typeMessage: "interactiveButtonsReply";
+	interactiveButtonsReply: InteractiveButtonsReplyData;
+} | {
+	typeMessage: "templateButtonsReplyMessage";
+	templateButtonReplyMessage: TemplateButtonsReplyMessageData;
 };
 
 export interface MessageWebhook {
