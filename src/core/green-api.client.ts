@@ -57,6 +57,7 @@ import {
 	JournalResponse,
 	GetChatHistory,
 	IncomingJournalResponse, OutgoingJournalResponse,
+	SendTextStatus, SendVoiceStatus, SendMediaStatus, GetStatusStatisticResponse
 } from "../types/types";
 import { IntegrationError } from "./errors";
 import { GreenApiLogger } from "./logger";
@@ -743,5 +744,118 @@ export class GreenApiClient {
 	 */
 	async lastOutgoingMessages(minutes?: number): Promise<OutgoingJournalResponse[]> {
 		return this.makeRequest("get", "lastOutgoingMessages", undefined, minutes ? {minutes} : undefined);
+	}
+
+		/**
+	 * The method is aimed for sending a text status
+	 *
+	 * @param status - Status data containing message, backgroundColor (optional), font (optional), participants (optional)
+	 * @returns Promise resolving to send response with message ID
+	 *
+	 * @example
+	 * ```typescript
+	 * await client.sendTextStatus({
+	 *   message: "I use Green-API to send this status!",
+	 *   backgroundColor: "#228B22", // optional
+	 *   font: "SERIF", // optional
+	 *   participants: ["70000001234@c.us", "440000001234@c.us"] // optional
+	 * });
+	 * ```
+	 */
+	async sendTextStatus(status: SendTextStatus): Promise<SendResponse> {
+		return this.makeRequest("post", "sendTextStatus", {
+			message: status.message,
+			backgroundColor: status.backgroundColor,
+			font: status.font,
+			participants: status.participants,
+		});
+	}
+
+	/**
+	 * The method is aimed for sending a voice status
+	 *
+	 * @param status - Status data containing urlFile, fileName, backgroundColor (optional), participants (optional)
+	 * @returns Promise resolving to send response with message ID
+	 *
+	 * @example
+	 * ```typescript
+	 * await client.sendVoiceStatus({
+	 *   urlFile: "https://my.site.com/img/horse.mp3",
+	 *   fileName: "horse.mp3",
+	 *   backgroundColor: "#228B22", // optional
+	 *   participants: ["70000001234@c.us", "440000001234@c.us"] // optional
+	 * });
+	 * ```
+	 */
+	async sendVoiceStatus(status: SendVoiceStatus): Promise<SendResponse> {
+		return this.makeRequest("post", "sendVoiceStatus", {
+			urlFile: status.urlFile,
+			fileName: status.fileName,
+			backgroundColor: status.backgroundColor,
+			participants: status.participants,
+		});
+	}
+
+	/**
+	 * The method is aimed for sending a pictures or video status
+	 *
+	 * @param status - Message data containing urlFile, fileName, backgroundColor (optional), participants (optional)
+	 * @returns Promise resolving to send response with message ID
+	 *
+	 * @example
+	 * ```typescript
+	 * await client.sendVoiceStatus({
+	 *   urlFile: "https://my.site.com/img/horse.png",
+	 *   fileName: "horse.png",
+	 *   caption: "Little horse",
+	 *   participants: ["70000001234@c.us", "440000001234@c.us"] // optional
+	 * });
+	 * ```
+	 */
+	async sendMediaStatus(status: SendMediaStatus): Promise<SendResponse> {
+		return this.makeRequest("post", "sendMediaStatus", {
+			urlFile: status.urlFile,
+			fileName: status.fileName,
+			caption: status.caption,
+			participants: status.participants,
+		});
+	}
+
+	/**
+	 * The method returns the incoming status messages of the instance. 
+	 * In the default mode the incoming status messages for 24 hours are returned.
+	 * Note: Requires "Receive webhooks" setting to be enabled.
+	 * Messages can take up to 2 minutes to appear in history.
+	 *
+	 * @param minutes - Optional time period in minutes
+	 * @returns Promise resolving to array of incoming statuses
+	 */
+	async getIncomingStatuses(minutes?: number): Promise<IncomingJournalResponse[]> {
+		return this.makeRequest("get", "getIncomingStatuses", undefined, minutes ? {minutes} : undefined);
+	}
+
+	/**
+	 * The method returns the outgoing statuses of the account.
+	 * In the default mode the outgoing status messages for 24 hours are returned.
+	 * Note: Requires "Receive webhooks" setting to be enabled.
+	 * Messages can take up to 2 minutes to appear in history.
+	 *
+	 * @param minutes - Optional time period in minutes
+	 * @returns Promise resolving to array of outgoing statuses
+	 */
+	async getOutgoingStatuses(minutes?: number): Promise<OutgoingJournalResponse[]> {
+		return this.makeRequest("get", "getOutgoingStatuses", undefined, minutes ? {minutes} : undefined);
+	}
+
+	/**
+	 * The method returns an array of recipients marked sent/delivered/read for a given status.
+	 * Note: Requires "Receive webhooks" setting to be enabled.
+	 * Messages can take up to 2 minutes to appear in history.
+	 *
+	 * @param idMessage - Status message ID
+	 * @returns Promise resolving to array participant, timestamp, status
+	 */
+	async getStatusStatistic(idMessage?: string): Promise<GetStatusStatisticResponse[]> {
+		return this.makeRequest("get", "getStatusStatistic", undefined, idMessage ? {idMessage} : undefined);
 	}
 }

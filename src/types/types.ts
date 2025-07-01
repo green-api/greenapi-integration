@@ -910,3 +910,30 @@ export interface BaseUser {
 
 	[key: string]: any;
 }
+
+export interface SendTextStatus {
+	message: string;
+	backgroundColor: string | null;
+	font: string | null;
+	participants: string[] | null;
+}
+
+export interface SendVoiceStatus {
+	urlFile: string;
+	fileName: string;
+	backgroundColor: string | null;
+	participants: string[] | null;
+}
+
+export interface SendMediaStatus {
+	urlFile: string;
+	fileName: string;
+	caption: string | null;
+	participants: string[] | null;
+}
+
+export interface GetStatusStatisticResponse {
+	timestamp: number;
+	participant: string;
+	status: string;
+}
