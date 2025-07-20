@@ -56,7 +56,7 @@ import {
 	GetMessage,
 	JournalResponse,
 	GetChatHistory,
-	IncomingJournalResponse, OutgoingJournalResponse,
+	IncomingJournalResponse, OutgoingJournalResponse, SendInteractiveButtons, SendInteractiveButtonsReply,
 } from "../types/types";
 import { IntegrationError } from "./errors";
 import { GreenApiLogger } from "./logger";
@@ -321,6 +321,96 @@ export class GreenApiClient {
 		return this.makeRequest("post", "sendContact", {
 			chatId: message.chatId,
 			contact: message.contact,
+			quotedMessageId: message.quotedMessageId,
+		});
+	}
+
+	/**
+	 * Sends interactive buttons to a WhatsApp chat.
+	 * Supports copy, call, url, and reply button types.
+	 *
+	 * @param message - Interactive buttons message data
+	 * @returns Promise resolving to send response
+	 *
+	 * @example
+	 * ```typescript
+	 * await client.sendInteractiveButtons({
+	 *   chatId: "1234567890@c.us",
+	 *   header: "Choose an option",
+	 *   body: "Please select one of the following:",
+	 *   footer: "Powered by GREEN-API",
+	 *   buttons: [
+	 *     {
+	 *       type: "copy",
+	 *       buttonId: "1",
+	 *       buttonText: "Copy Code",
+	 *       copyCode: "DISCOUNT50"
+	 *     },
+	 *     {
+	 *       type: "call",
+	 *       buttonId: "2", 
+	 *       buttonText: "Call Us",
+	 *       phoneNumber: "1234567890"
+	 *     },
+	 *     {
+	 *       type: "url",
+	 *       buttonId: "3",
+	 *       buttonText: "Visit Website",
+	 *       url: "https://example.com"
+	 *     }
+	 *   ]
+	 * });
+	 * ```
+	 */
+	async sendInteractiveButtons(message: SendInteractiveButtons): Promise<SendResponse> {
+		return this.makeRequest("post", "sendInteractiveButtons", {
+			chatId: message.chatId,
+			header: message.header,
+			body: message.body,
+			footer: message.footer,
+			buttons: message.buttons,
+			quotedMessageId: message.quotedMessageId,
+		});
+	}
+
+	/**
+	 * Sends interactive reply buttons to a WhatsApp chat.
+	 * These buttons return text to the chat when pressed.
+	 *
+	 * @param message - Interactive reply buttons message data
+	 * @returns Promise resolving to send response
+	 *
+	 * @example
+	 * ```typescript
+	 * await client.sendInteractiveButtonsReply({
+	 *   chatId: "1234567890@c.us",
+	 *   header: "Survey",
+	 *   body: "How satisfied are you with our service?",
+	 *   footer: "Your feedback matters",
+	 *   buttons: [
+	 *     {
+	 *       buttonId: "1",
+	 *       buttonText: "Very Satisfied"
+	 *     },
+	 *     {
+	 *       buttonId: "2", 
+	 *       buttonText: "Satisfied"
+	 *     },
+	 *     {
+	 *       buttonId: "3",
+	 *       buttonText: "Needs Improvement"
+	 *     }
+	 *   ]
+	 * });
+	 * ```
+	 */
+	async sendInteractiveButtonsReply(message: SendInteractiveButtonsReply): Promise<SendResponse> {
+		return this.makeRequest("post", "sendInteractiveButtonsReply", {
+			chatId: message.chatId,
+			header: message.header,
+			body: message.body,
+			footer: message.footer,
+			buttons: message.buttons,
 			quotedMessageId: message.quotedMessageId,
 		});
 	}

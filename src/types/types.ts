@@ -77,6 +77,30 @@ export interface SendPoll extends BaseMessage {
 	multipleAnswers?: boolean;
 }
 
+export interface SendInteractiveButtons extends BaseMessage {
+	header?: string;
+	body: string;
+	footer?: string;
+	buttons: Array<{
+		type: "copy" | "call" | "url" | "reply";
+		buttonId: string;
+		buttonText: string;
+		copyCode?: string;
+		phoneNumber?: string;
+		url?: string;
+	}>;
+}
+
+export interface SendInteractiveButtonsReply extends BaseMessage {
+	header?: string;
+	body: string;
+	footer?: string;
+	buttons: Array<{
+		buttonId: string;
+		buttonText: string;
+	}>;
+}
+
 export interface ForwardMessages {
 	chatId: string;
 	chatIdFrom: string;
