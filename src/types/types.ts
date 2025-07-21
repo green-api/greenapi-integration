@@ -82,7 +82,7 @@ export interface SendInteractiveButtons extends BaseMessage {
 	body: string;
 	footer?: string;
 	buttons: Array<{
-		type: "copy" | "call" | "url" | "reply";
+		type: "copy" | "call" | "url";
 		buttonId: string;
 		buttonText: string;
 		copyCode?: string;
