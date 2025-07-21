@@ -1,6 +1,6 @@
 {
   "name": "@green-api/greenapi-integration",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "GREEN-API Integration library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
