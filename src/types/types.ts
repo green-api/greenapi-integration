@@ -7,6 +7,7 @@ export interface BaseInstance {
 	apiTokenInstance: string;
 	stateInstance?: InstanceState | null;
 	settings?: Settings | Record<string, any> | null;
+	apiUrl?: string | null;
 }
 
 /**
@@ -114,7 +115,9 @@ export type Message =
 	| (SendPoll & { type: "poll" })
 	| (SendLocation & { type: "location" })
 	| (SendContact & { type: "contact" })
-	| (ForwardMessages & { type: "forward" });
+	| (ForwardMessages & { type: "forward" })
+	| (SendInteractiveButtons & { type: "interactive-buttons" })
+	| (SendInteractiveButtonsReply & { type: "interactive-buttons-reply" });
 
 export type QueueMessageType =
 	| "sendMessage"
@@ -617,6 +620,7 @@ export interface MessageWebhook {
 		chatName: string;
 		senderName: string;
 		senderContactName?: string;
+		senderPhoneNumber?: number;
 	};
 	messageData: WebhookMessageData & {
 		quotedMessage?: QuotedMessage;
@@ -653,6 +657,7 @@ export type GreenApiWebhook =
  */
 export interface Settings {
 	wid?: string;
+	typeInstance?: string;
 	webhookUrl?: string;
 	webhookUrlToken?: string;
 	delaySendMessagesMilliseconds?: number;
@@ -696,6 +701,20 @@ export interface CheckWhatsappResponse {
 	existsWhatsapp: boolean;
 }
 
+export interface CheckAccount {
+	phoneNumber?: number;
+	username?: string;
+	force?: boolean;
+}
+
+export interface CheckAccountResponse {
+	exist: boolean;
+	chatId: string;
+	username?: string;
+	phoneNumber?: number;
+	fromCache?: boolean;
+}
+
 export interface GetAvatar {
 	chatId: string;
 }
@@ -708,10 +727,13 @@ export interface GetAvatarResponse {
 export type ContactType = "user" | "group";
 
 export interface Contact {
-	id: string;
+	id?: string;
+	chatId?: string;
 	name: string;
 	contactName: string;
 	type: ContactType;
+	phoneNumber?: number;
+	username?: string;
 }
 
 export interface ProductImageUrls {
@@ -781,7 +803,9 @@ export type InstanceState =
 	| "authorized"
 	| "blocked"
 	| "starting"
-	| "yellowCard";
+	| "yellowCard"
+	| "suspended"
+	| "pendingPassword";
 
 export interface StateInstance {
 	stateInstance: InstanceState;
@@ -819,6 +843,17 @@ export interface WaSettings {
 	phone: string;
 	stateInstance: InstanceState;
 	deviceId: string;
+}
+
+export interface AccountSettings {
+	avatar: string;
+	phone: string;
+	stateInstance: InstanceState;
+	chatId: string;
+	historySyncProgress: number;
+	username?: string;
+	logoutProcess?: boolean;
+	suspendedUntil?: number;
 }
 
 export interface SetProfilePicture {

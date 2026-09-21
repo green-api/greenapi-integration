@@ -16,6 +16,7 @@ import {
 	GetAuthorizationCode,
 	SetProfilePicture,
 	WaSettings,
+	AccountSettings,
 	UploadFile,
 	SendLocation,
 	SendContact,
@@ -27,6 +28,8 @@ import {
 	ReadChat,
 	CheckWhatsapp,
 	CheckWhatsappResponse,
+	CheckAccount,
+	CheckAccountResponse,
 	GetAvatarResponse,
 	GetAvatar,
 	Contact,
@@ -61,6 +64,7 @@ import {
 } from "../types/types";
 import { IntegrationError } from "./errors";
 import { GreenApiLogger } from "./logger";
+import { DEFAULT_API_URL } from "../defaults";
 
 /**
  * Client for direct interaction with GREEN-API's WhatsApp gateway.
@@ -84,7 +88,7 @@ import { GreenApiLogger } from "./logger";
  */
 export class GreenApiClient {
 	private client: AxiosInstance;
-	private readonly baseUrl = "https://api.green-api.com";
+	private readonly baseUrl: string;
 	private readonly gaLogger = GreenApiLogger.getInstance(GreenApiClient.name);
 
 	/**
@@ -93,6 +97,7 @@ export class GreenApiClient {
 	 * @param instance - Configuration containing idInstance and apiTokenInstance
 	 */
 	constructor(private instance: Instance) {
+		this.baseUrl = (instance.apiUrl || DEFAULT_API_URL).replace(/\/+$/, "");
 		this.client = axios.create({
 			baseURL: this.buildUrl(),
 		});
@@ -131,7 +136,12 @@ export class GreenApiClient {
 				: this.client.post(url, data, config));
 			return response.data;
 		} catch (error: any) {
-			throw new IntegrationError(`Failed to ${endpoint.replace(/([A-Z])/g, " $1").toLowerCase()}: ${error.message}. ${JSON.stringify(error.response?.data)}`, "INTEGRATION_ERROR");
+			throw new IntegrationError(
+				`Failed to ${endpoint.replace(/([A-Z])/g, " $1").toLowerCase()}: ${error.message}. ${JSON.stringify(error.response?.data)}`,
+				"INTEGRATION_ERROR",
+				error.response?.status ?? 500,
+				error.response?.data,
+			);
 		}
 	}
 
@@ -223,7 +233,7 @@ export class GreenApiClient {
 	 */
 	async sendFileByUpload(message: SendFileByUpload): Promise<SendFileByUploadResponse> {
 		const formData = new FormData();
-		formData.append("file", message.file.data);
+		formData.append("file", message.file.data, message.file.fileName);
 		formData.append("chatId", message.chatId);
 		formData.append("fileName", message.file.fileName);
 		if (message.caption) formData.append("caption", message.caption);
@@ -476,6 +486,10 @@ export class GreenApiClient {
 	 *
 	 * @returns Promise resolving to WhatsApp settings
 	 */
+	async getAccountSettings(): Promise<AccountSettings> {
+		return this.makeRequest("get", "getAccountSettings");
+	}
+
 	async getWaSettings(): Promise<WaSettings> {
 		return this.makeRequest("get", "getWaSettings");
 	}
@@ -621,6 +635,23 @@ export class GreenApiClient {
 			throw new Error("Phone number must be 11 or 12 digits");
 		}
 		return this.makeRequest("post", "checkWhatsapp", params);
+	}
+
+	/**
+	 * Checks whether a messenger account exists for a phone number or username (Telegram, MAX).
+	 *
+	 * @param params - Phone number in international format, or a Telegram username starting with "@"
+	 * @returns Promise resolving to the existence flag and, when the account exists, its chat id
+	 * @throws {Error} If neither phoneNumber nor username is given
+	 */
+	async checkAccount(params: CheckAccount): Promise<CheckAccountResponse> {
+		if (params.phoneNumber === undefined && !params.username) {
+			throw new Error("Either phoneNumber or username is required");
+		}
+		if (params.phoneNumber !== undefined && !Number.isInteger(params.phoneNumber)) {
+			throw new Error("Phone number must contain only digits");
+		}
+		return this.makeRequest("post", "checkAccount", params);
 	}
 
 	/**

@@ -172,6 +172,10 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 					return client.sendLocation(transformedMessage);
 				case "forward":
 					return client.forwardMessages(transformedMessage);
+				case "interactive-buttons":
+					return client.sendInteractiveButtons(transformedMessage);
+				case "interactive-buttons-reply":
+					return client.sendInteractiveButtonsReply(transformedMessage);
 				default:
 					throw new Error("Invalid file message format");
 			}
