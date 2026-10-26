@@ -114,6 +114,8 @@ export abstract class BaseAdapter<TPlatformWebhook, TPlatformMessage, TUser exte
 		return new GreenApiClient({
 			idInstance: instance.idInstance,
 			apiTokenInstance: instance.apiTokenInstance,
+			apiUrl: instance.apiUrl,
+			mediaUrl: instance.mediaUrl,
 		});
 	}
 

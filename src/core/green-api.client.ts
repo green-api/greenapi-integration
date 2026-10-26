@@ -60,11 +60,12 @@ import {
 	JournalResponse,
 	GetChatHistory,
 	IncomingJournalResponse, OutgoingJournalResponse, SendInteractiveButtons, SendInteractiveButtonsReply,
-	SendTextStatus, SendVoiceStatus, SendMediaStatus, GetStatusStatisticResponse
+	SendTextStatus, SendVoiceStatus, SendMediaStatus, GetStatusStatisticResponse,
+	GreenApiClientOptions, GreenApiClientLogger, ReceiveNotificationResponse, DeleteNotificationResponse,
 } from "../types/types";
 import { IntegrationError } from "./errors";
 import { GreenApiLogger } from "./logger";
-import { DEFAULT_API_URL } from "../defaults";
+import { DEFAULT_API_URL, DEFAULT_PICTURE_FILE_NAME, REDACTED_TOKEN } from "../defaults";
 
 /**
  * Client for direct interaction with GREEN-API's WhatsApp gateway.
@@ -88,59 +89,92 @@ import { DEFAULT_API_URL } from "../defaults";
  */
 export class GreenApiClient {
 	private client: AxiosInstance;
+	private mediaClient: AxiosInstance;
 	private readonly baseUrl: string;
-	private readonly gaLogger = GreenApiLogger.getInstance(GreenApiClient.name);
+	private readonly mediaBaseUrl: string;
+	private readonly gaLogger: GreenApiClientLogger | null;
 
 	/**
 	 * Creates a GREEN-API client instance.
 	 *
-	 * @param instance - Configuration containing idInstance and apiTokenInstance
+	 * @param instance - Configuration containing idInstance, apiTokenInstance and optionally apiUrl and mediaUrl
+	 * @param options - Client options, e.g. `logger: null` to disable request logging
 	 */
-	constructor(private instance: Instance) {
+	constructor(private instance: Instance, options: GreenApiClientOptions = {}) {
 		this.baseUrl = (instance.apiUrl || DEFAULT_API_URL).replace(/\/+$/, "");
+		this.mediaBaseUrl = (instance.mediaUrl || this.baseUrl).replace(/\/+$/, "");
 		this.client = axios.create({
-			baseURL: this.buildUrl(),
+			baseURL: this.buildUrl(this.baseUrl),
 		});
+		this.mediaClient = axios.create({
+			baseURL: this.buildUrl(this.mediaBaseUrl),
+		});
+		this.gaLogger = options.logger === undefined ? GreenApiLogger.getInstance(GreenApiClient.name) : options.logger;
 	}
 
-	private buildUrl(): string {
-		return `${this.baseUrl}/waInstance${this.instance.idInstance}`;
+	private buildUrl(host: string): string {
+		return `${host}/waInstance${this.instance.idInstance}`;
+	}
+
+	private toBlob(data: Blob | Uint8Array): Blob {
+		return data instanceof Blob ? data : new Blob([data as Uint8Array<ArrayBuffer>]);
+	}
+
+	private toBuffer(data: Uint8Array): Buffer {
+		return Buffer.isBuffer(data) ? data : Buffer.from(data.buffer, data.byteOffset, data.byteLength);
 	}
 
 	private buildEndpoint(endpoint: string): string {
 		return `/${endpoint}/${this.instance.apiTokenInstance}`;
 	}
 
+	private redactToken(text: string): string {
+		const token = this.instance.apiTokenInstance;
+		return token ? text.split(token).join(REDACTED_TOKEN) : text;
+	}
+
 	private async makeRequest<T>(
-		method: "get" | "post",
+		method: "get" | "post" | "delete",
 		endpoint: string,
 		data?: any,
 		queryParams?: Record<string, string | number>,
 		config?: any,
+		pathAfterToken?: string,
+		host: "api" | "media" = "api",
 	): Promise<T> {
 		try {
-			this.gaLogger.info("Making a request", {
+			this.gaLogger?.info("Making a request", {
 				idInstance: this.instance.idInstance,
 				endpoint,
 				method,
-				data,
+				data: Buffer.isBuffer(data) ? `${data.length} bytes` : data,
 				queryParams,
 				config,
 			});
-			const url = this.buildEndpoint(endpoint) + (queryParams ? "?" + new URLSearchParams(
+			const url = this.buildEndpoint(endpoint) + (pathAfterToken ? `/${pathAfterToken}` : "") + (queryParams ? "?" + new URLSearchParams(
 				Object.entries(queryParams).map(([key, value]) => [key, value.toString()]),
 			).toString() : "");
+			const client = host === "media" ? this.mediaClient : this.client;
 
-			const response: AxiosResponse<T> = await (method === "get"
-				? this.client.get(url, config)
-				: this.client.post(url, data, config));
+			let response: AxiosResponse<T>;
+			if (method === "get") {
+				response = await client.get(url, config);
+			} else if (method === "delete") {
+				response = await client.delete(url, config);
+			} else {
+				response = await client.post(url, data, config);
+			}
 			return response.data;
 		} catch (error: any) {
+			const responseData = error.response?.data === undefined
+				? undefined
+				: JSON.parse(this.redactToken(JSON.stringify(error.response.data)));
+			const reason = this.redactToken(String(error.message));
 			throw new IntegrationError(
-				`Failed to ${endpoint.replace(/([A-Z])/g, " $1").toLowerCase()}: ${error.message}. ${JSON.stringify(error.response?.data)}`,
+				`Failed to ${endpoint.replace(/([A-Z])/g, " $1").toLowerCase()}: ${reason}${responseData === undefined ? "" : `. ${JSON.stringify(responseData)}`}`,
 				"INTEGRATION_ERROR",
 				error.response?.status ?? 500,
-				error.response?.data,
+				responseData,
 			);
 		}
 	}
@@ -148,17 +182,16 @@ export class GreenApiClient {
 	private async makeFileUploadRequest<T>(
 		endpoint: string,
 		formData: FormData,
-		headers?: Record<string, string>,
+		host: "api" | "media" = "api",
 	): Promise<T> {
 		return this.makeRequest(
 			"post",
 			endpoint,
 			formData,
 			undefined,
-			{
-				headers: {"Content-Type": "multipart/form-data"},
-				...headers,
-			},
+			{headers: {"Content-Type": "multipart/form-data"}},
+			undefined,
+			host,
 		);
 	}
 
@@ -233,13 +266,13 @@ export class GreenApiClient {
 	 */
 	async sendFileByUpload(message: SendFileByUpload): Promise<SendFileByUploadResponse> {
 		const formData = new FormData();
-		formData.append("file", message.file.data, message.file.fileName);
+		formData.append("file", this.toBlob(message.file.data), message.file.fileName);
 		formData.append("chatId", message.chatId);
 		formData.append("fileName", message.file.fileName);
 		if (message.caption) formData.append("caption", message.caption);
 		if (message.quotedMessageId) formData.append("quotedMessageId", message.quotedMessageId);
 
-		return this.makeFileUploadRequest("sendFileByUpload", formData);
+		return this.makeFileUploadRequest("sendFileByUpload", formData, "media");
 	}
 
 	/**
@@ -497,40 +530,57 @@ export class GreenApiClient {
 	/**
 	 * Sets the profile picture for the WhatsApp account.
 	 *
-	 * @param file - Image file to use as profile picture
+	 * @param file - Image file (jpg) to use as profile picture
+	 * @param fileName - File name with extension
 	 * @returns Promise resolving to profile picture update response
 	 */
-	async setProfilePicture(file: Blob | File): Promise<SetProfilePicture> {
-		const formData = new FormData();
-		formData.append("file", file);
-		return this.makeFileUploadRequest("setProfilePicture", formData);
+	async setProfilePicture(file: Blob | File | Uint8Array, fileName?: string): Promise<SetProfilePicture> {
+		return this.requestWithFile("setProfilePicture", {data: file, fileName: this.pictureFileName(file, fileName)});
 	}
 
 	/**
 	 * Uploads a file to GREEN-API servers.
 	 *
 	 * @param file - File to upload
-	 * @param customFileName - Optional custom name for the file
+	 * @param fileName - File name with extension
 	 * @returns Promise resolving to upload response with file URL
 	 */
-	async uploadFile(file: Blob | File, customFileName?: string): Promise<UploadFile> {
-		const formData = new FormData();
-		formData.append("file", file);
-
+	async uploadFile(file: Blob | File | Uint8Array, fileName?: string): Promise<UploadFile> {
+		const mimeType = file instanceof Blob ? file.type : "";
 		const headers: Record<string, string> = {};
-
-		if (file instanceof File) {
-			const mimeType = file.type;
-			if (mimeType) {
-				headers["Content-Type"] = mimeType;
-			} else if (customFileName) {
-				headers["GA-Filename"] = customFileName;
-			}
-		} else if (customFileName) {
-			headers["GA-Filename"] = customFileName;
+		if (mimeType) {
+			headers["Content-Type"] = mimeType;
+		} else if (fileName) {
+			headers["GA-Filename"] = fileName;
 		}
+		const body = file instanceof Blob ? Buffer.from(await file.arrayBuffer()) : this.toBuffer(file);
 
-		return this.makeFileUploadRequest("uploadFile", formData, headers);
+		return this.makeRequest("post", "uploadFile", body, undefined, {headers}, undefined, "media");
+	}
+
+	/**
+	 * Calls any GREEN-API method that takes a file.
+	 *
+	 * @param endpoint - GREEN-API method name, e.g. "setGroupPicture"
+	 * @param file - File content and file name
+	 * @param fields - Other form fields
+	 * @returns Promise resolving to the raw response body
+	 */
+	async requestWithFile<T = unknown>(
+		endpoint: string,
+		file: { data: Blob | File | Uint8Array; fileName: string },
+		fields: Record<string, string | number | boolean> = {},
+	): Promise<T> {
+		const formData = new FormData();
+		formData.append("file", this.toBlob(file.data), file.fileName);
+		for (const [key, value] of Object.entries(fields)) {
+			formData.append(key, String(value));
+		}
+		return this.makeFileUploadRequest(endpoint, formData);
+	}
+
+	private pictureFileName(file: Blob | File | Uint8Array, fileName?: string): string {
+		return fileName || (file instanceof File && file.name ? file.name : DEFAULT_PICTURE_FILE_NAME);
 	}
 
 	/**
@@ -580,6 +630,63 @@ export class GreenApiClient {
 	 */
 	async clearMessagesQueue(): Promise<ClearMessagesQueue> {
 		return this.makeRequest("get", "clearMessagesQueue");
+	}
+
+	/**
+	 * Calls any GREEN-API method by name.
+	 *
+	 * @param method - HTTP method
+	 * @param endpoint - GREEN-API method name, e.g. "getContacts"
+	 * @param data - Request body for POST
+	 * @param queryParams - Query parameters
+	 * @returns Promise resolving to the raw response body
+	 *
+	 * @example
+	 * ```typescript
+	 * const contacts = await client.request("get", "getContacts");
+	 * ```
+	 */
+	async request<T = unknown>(
+		method: "get" | "post" | "delete",
+		endpoint: string,
+		data?: unknown,
+		queryParams?: Record<string, string | number>,
+	): Promise<T> {
+		return this.makeRequest(method, endpoint, data, queryParams);
+	}
+
+	/**
+	 * Receives the next notification from the instance queue.
+	 *
+	 * @param receiveTimeout - Seconds to wait for a notification, 5 to 60
+	 * @returns Promise resolving to the notification, or null when the queue stayed empty
+	 *
+	 * @example
+	 * ```typescript
+	 * const notification = await client.receiveNotification(20);
+	 * if (notification) {
+	 *   await client.deleteNotification(notification.receiptId);
+	 * }
+	 * ```
+	 */
+	async receiveNotification(receiveTimeout?: number): Promise<ReceiveNotificationResponse | null> {
+		const response = await this.makeRequest<ReceiveNotificationResponse | null | "">(
+			"get",
+			"receiveNotification",
+			undefined,
+			receiveTimeout === undefined ? undefined : {receiveTimeout},
+		);
+		return response || null;
+	}
+
+	/**
+	 * Deletes a processed notification from the instance queue.
+	 *
+	 * @param receiptId - Receipt ID from receiveNotification
+	 * @returns Promise resolving to deletion result
+	 */
+	async deleteNotification(receiptId: number): Promise<DeleteNotificationResponse> {
+		return this.makeRequest("delete", "deleteNotification", undefined, undefined, undefined, receiptId.toString());
 	}
 
 	/**
@@ -799,11 +906,11 @@ export class GreenApiClient {
 	 * @returns Promise resolving to picture update status
 	 */
 	async setGroupPicture(params: SetGroupPicture): Promise<SetGroupPictureResponse> {
-		const formData = new FormData();
-		formData.append("file", params.file);
-		formData.append("groupId", params.groupId);
-
-		return this.makeFileUploadRequest("setGroupPicture", formData);
+		return this.requestWithFile(
+			"setGroupPicture",
+			{data: params.file, fileName: this.pictureFileName(params.file, params.fileName)},
+			{groupId: params.groupId},
+		);
 	}
 
 	/**

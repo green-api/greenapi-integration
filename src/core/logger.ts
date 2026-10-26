@@ -227,9 +227,7 @@ export class GreenApiLogger {
 				status: axiosError.response?.status,
 				statusText: axiosError.response?.statusText,
 				data: axiosError.response?.data,
-				url: axiosError.config?.url,
 				method: axiosError.config?.method,
-				headers: axiosError.response?.headers,
 				timestamp: new Date().toISOString(),
 				...additionalContext,
 			});

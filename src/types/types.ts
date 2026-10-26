@@ -8,6 +8,7 @@ export interface BaseInstance {
 	stateInstance?: InstanceState | null;
 	settings?: Settings | Record<string, any> | null;
 	apiUrl?: string | null;
+	mediaUrl?: string | null;
 }
 
 /**
@@ -42,7 +43,7 @@ export interface SendMessage extends BaseMessage {
 export interface SendFileByUpload extends BaseMessage {
 	caption?: string;
 	file: {
-		data: Blob | File;
+		data: Blob | File | Uint8Array;
 		fileName: string;
 	};
 }
@@ -144,6 +145,23 @@ export interface QueueMessage {
 
 export interface ClearMessagesQueue {
 	isCleared: boolean;
+}
+
+export interface ReceiveNotificationResponse {
+	receiptId: number;
+	body: GreenApiWebhook;
+}
+
+export interface DeleteNotificationResponse {
+	result: boolean;
+}
+
+export interface GreenApiClientLogger {
+	info(message: string, context?: Record<string, any>): void;
+}
+
+export interface GreenApiClientOptions {
+	logger?: GreenApiClientLogger | null;
 }
 
 export type MessageType =
@@ -941,7 +959,8 @@ export interface RemoveAdminResponse {
 
 export interface SetGroupPicture {
 	groupId: string;
-	file: Blob | File;
+	file: Blob | File | Uint8Array;
+	fileName?: string;
 }
 
 export interface SetGroupPictureResponse {
