@@ -6,7 +6,7 @@
 
 # Interface: ContactsArrayMessageData
 
-Defined in: [src/types/types.ts:322](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L322)
+Defined in: [src/types/types.ts:406](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L406)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/types/types.ts:322](https://github.com/green-api/greenapi-integ
 
 > **contacts**: `object`[]
 
-Defined in: [src/types/types.ts:323](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L323)
+Defined in: [src/types/types.ts:407](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L407)
 
 #### displayName
 
@@ -34,7 +34,7 @@ Defined in: [src/types/types.ts:323](https://github.com/green-api/greenapi-integ
 
 > **forwardingScore**: `number`
 
-Defined in: [src/types/types.ts:200](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L200)
+Defined in: [src/types/types.ts:248](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L248)
 
 #### Inherited from
 
@@ -46,7 +46,7 @@ Defined in: [src/types/types.ts:200](https://github.com/green-api/greenapi-integ
 
 > **isForwarded**: `boolean`
 
-Defined in: [src/types/types.ts:201](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L201)
+Defined in: [src/types/types.ts:249](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L249)
 
 #### Inherited from
 

@@ -6,7 +6,7 @@
 
 # Interface: ReactionMessageData
 
-Defined in: [src/types/types.ts:222](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L222)
+Defined in: [src/types/types.ts:270](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L270)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:222](https://github.com/green-api/greenapi-integ
 
 > **text**: `string`
 
-Defined in: [src/types/types.ts:223](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L223)
+Defined in: [src/types/types.ts:271](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L271)

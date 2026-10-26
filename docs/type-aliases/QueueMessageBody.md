@@ -6,6 +6,6 @@
 
 # Type Alias: QueueMessageBody
 
-> **QueueMessageBody**: [`SendMessage`](../interfaces/SendMessage.md) \| [`SendPoll`](../interfaces/SendPoll.md) \| [`SendFileByUrl`](../interfaces/SendFileByUrl.md) \| [`SendLocation`](../interfaces/SendLocation.md) \| [`SendContact`](../interfaces/SendContact.md) \| [`ForwardMessages`](../interfaces/ForwardMessages.md)
+> **QueueMessageBody** = [`SendMessage`](../interfaces/SendMessage.md) \| [`SendPoll`](../interfaces/SendPoll.md) \| [`SendFileByUrl`](../interfaces/SendFileByUrl.md) \| [`SendLocation`](../interfaces/SendLocation.md) \| [`SendContact`](../interfaces/SendContact.md) \| [`ForwardMessages`](../interfaces/ForwardMessages.md)
 
-Defined in: [src/types/types.ts:103](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L103)
+Defined in: [src/types/types.ts:131](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L131)

@@ -6,20 +6,20 @@
 
 # Interface: LeaveGroupResponse
 
-Defined in: [src/types/types.ts:834](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L834)
+Defined in: [src/types/types.ts:976](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L976)
 
 ## Properties
 
 ### leaveGroup?
 
-> `optional` **leaveGroup**: `boolean`
+> `optional` **leaveGroup?**: `boolean`
 
-Defined in: [src/types/types.ts:835](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L835)
+Defined in: [src/types/types.ts:977](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L977)
 
 ***
 
 ### removeAdmin?
 
-> `optional` **removeAdmin**: `boolean`
+> `optional` **removeAdmin?**: `boolean`
 
-Defined in: [src/types/types.ts:836](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L836)
+Defined in: [src/types/types.ts:978](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L978)

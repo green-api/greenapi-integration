@@ -6,6 +6,6 @@
 
 # Type Alias: MessageType
 
-> **MessageType**: `"textMessage"` \| `"extendedTextMessage"` \| `"imageMessage"` \| `"videoMessage"` \| `"documentMessage"` \| `"audioMessage"` \| `"contactMessage"` \| `"locationMessage"` \| `"contactsArrayMessage"` \| `"pollMessage"` \| `"reactionMessage"` \| `"pollUpdateMessage"` \| `"quotedMessage"` \| `"stickerMessage"` \| `"editedMessage"` \| `"deletedMessage"` \| `"buttonsMessage"` \| `"listMessage"` \| `"templateMessage"` \| `"groupInviteMessage"`
+> **MessageType** = `"textMessage"` \| `"extendedTextMessage"` \| `"imageMessage"` \| `"videoMessage"` \| `"documentMessage"` \| `"audioMessage"` \| `"contactMessage"` \| `"locationMessage"` \| `"contactsArrayMessage"` \| `"pollMessage"` \| `"reactionMessage"` \| `"pollUpdateMessage"` \| `"quotedMessage"` \| `"stickerMessage"` \| `"editedMessage"` \| `"deletedMessage"` \| `"buttonsMessage"` \| `"listMessage"` \| `"templateMessage"` \| `"groupInviteMessage"` \| `"interactiveButtons"` \| `"interactiveButtonsReply"` \| `"templateButtonsReplyMessage"`
 
-Defined in: [src/types/types.ts:122](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L122)
+Defined in: [src/types/types.ts:167](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L167)

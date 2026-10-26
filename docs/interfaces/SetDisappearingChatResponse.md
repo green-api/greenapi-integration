@@ -6,7 +6,7 @@
 
 # Interface: SetDisappearingChatResponse
 
-Defined in: [src/types/types.ts:682](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L682)
+Defined in: [src/types/types.ts:810](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L810)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:682](https://github.com/green-api/greenapi-integ
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:683](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L683)
+Defined in: [src/types/types.ts:811](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L811)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:683](https://github.com/green-api/greenapi-integ
 
 > **disappearingMessagesInChat**: `boolean`
 
-Defined in: [src/types/types.ts:684](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L684)
+Defined in: [src/types/types.ts:812](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L812)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [src/types/types.ts:684](https://github.com/green-api/greenapi-integ
 
 > **ephemeralExpiration**: [`EphemeralExpiration`](../type-aliases/EphemeralExpiration.md)
 
-Defined in: [src/types/types.ts:685](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L685)
+Defined in: [src/types/types.ts:813](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L813)

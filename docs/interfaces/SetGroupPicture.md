@@ -6,15 +6,23 @@
 
 # Interface: SetGroupPicture
 
-Defined in: [src/types/types.ts:819](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L819)
+Defined in: [src/types/types.ts:960](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L960)
 
 ## Properties
 
 ### file
 
-> **file**: `Blob` \| `File`
+> **file**: `Blob` \| `File` \| `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [src/types/types.ts:821](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L821)
+Defined in: [src/types/types.ts:962](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L962)
+
+***
+
+### fileName?
+
+> `optional` **fileName?**: `string`
+
+Defined in: [src/types/types.ts:963](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L963)
 
 ***
 
@@ -22,4 +30,4 @@ Defined in: [src/types/types.ts:821](https://github.com/green-api/greenapi-integ
 
 > **groupId**: `string`
 
-Defined in: [src/types/types.ts:820](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L820)
+Defined in: [src/types/types.ts:961](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L961)

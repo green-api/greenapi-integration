@@ -6,6 +6,6 @@
 
 # Type Alias: QueueMessageType
 
-> **QueueMessageType**: `"sendMessage"` \| `"sendPoll"` \| `"sendFileByUrl"` \| `"sendLocation"` \| `"sendContact"` \| `"ForwardMessages"`
+> **QueueMessageType** = `"sendMessage"` \| `"sendPoll"` \| `"sendFileByUrl"` \| `"sendLocation"` \| `"sendContact"` \| `"ForwardMessages"`
 
-Defined in: [src/types/types.ts:95](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L95)
+Defined in: [src/types/types.ts:123](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L123)

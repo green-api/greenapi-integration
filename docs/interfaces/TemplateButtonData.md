@@ -6,15 +6,15 @@
 
 # Interface: TemplateButtonData
 
-Defined in: [src/types/types.ts:271](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L271)
+Defined in: [src/types/types.ts:319](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L319)
 
 ## Properties
 
 ### callButton?
 
-> `optional` **callButton**: [`CallButtonData`](CallButtonData.md)
+> `optional` **callButton?**: [`CallButtonData`](CallButtonData.md)
 
-Defined in: [src/types/types.ts:274](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L274)
+Defined in: [src/types/types.ts:322](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L322)
 
 ***
 
@@ -22,20 +22,20 @@ Defined in: [src/types/types.ts:274](https://github.com/green-api/greenapi-integ
 
 > **index**: `number`
 
-Defined in: [src/types/types.ts:272](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L272)
+Defined in: [src/types/types.ts:320](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L320)
 
 ***
 
 ### quickReplyButton?
 
-> `optional` **quickReplyButton**: [`QuickReplyButtonData`](QuickReplyButtonData.md)
+> `optional` **quickReplyButton?**: [`QuickReplyButtonData`](QuickReplyButtonData.md)
 
-Defined in: [src/types/types.ts:275](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L275)
+Defined in: [src/types/types.ts:323](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L323)
 
 ***
 
 ### urlButton?
 
-> `optional` **urlButton**: [`UrlButtonData`](UrlButtonData.md)
+> `optional` **urlButton?**: [`UrlButtonData`](UrlButtonData.md)
 
-Defined in: [src/types/types.ts:273](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L273)
+Defined in: [src/types/types.ts:321](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L321)

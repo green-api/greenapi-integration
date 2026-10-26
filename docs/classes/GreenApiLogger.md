@@ -6,7 +6,7 @@
 
 # Class: GreenApiLogger
 
-Defined in: [src/core/logger.ts:42](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/logger.ts#L42)
+Defined in: [src/core/logger.ts:42](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/logger.ts#L42)
 
 Logger for GREEN-API integration library.
 Provides structured JSON logging with colored output and error handling.
@@ -32,9 +32,9 @@ try {
 
 ### debug()
 
-> **debug**(`message`, `context`): `void`
+> **debug**(`message`, `context?`): `void`
 
-Defined in: [src/core/logger.ts:148](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/logger.ts#L148)
+Defined in: [src/core/logger.ts:148](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/logger.ts#L148)
 
 Logs a debug message
 
@@ -46,7 +46,7 @@ Logs a debug message
 
 Debug message
 
-##### context
+##### context?
 
 `Record`\<`string`, `any`\> = `{}`
 
@@ -60,9 +60,9 @@ Additional context data
 
 ### error()
 
-> **error**(`message`, `context`): `void`
+> **error**(`message`, `context?`): `void`
 
-Defined in: [src/core/logger.ts:175](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/logger.ts#L175)
+Defined in: [src/core/logger.ts:175](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/logger.ts#L175)
 
 Logs an error message
 
@@ -74,7 +74,7 @@ Logs an error message
 
 Error message
 
-##### context
+##### context?
 
 `Record`\<`string`, `any`\> = `{}`
 
@@ -88,9 +88,9 @@ Additional context data
 
 ### fatal()
 
-> **fatal**(`message`, `context`): `void`
+> **fatal**(`message`, `context?`): `void`
 
-Defined in: [src/core/logger.ts:202](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/logger.ts#L202)
+Defined in: [src/core/logger.ts:202](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/logger.ts#L202)
 
 Logs a fatal error message
 
@@ -102,7 +102,7 @@ Logs a fatal error message
 
 Fatal error message
 
-##### context
+##### context?
 
 `Record`\<`string`, `any`\> = `{}`
 
@@ -116,9 +116,9 @@ Additional context data
 
 ### info()
 
-> **info**(`message`, `context`): `void`
+> **info**(`message`, `context?`): `void`
 
-Defined in: [src/core/logger.ts:157](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/logger.ts#L157)
+Defined in: [src/core/logger.ts:157](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/logger.ts#L157)
 
 Logs an info message
 
@@ -130,7 +130,7 @@ Logs an info message
 
 Info message
 
-##### context
+##### context?
 
 `Record`\<`string`, `any`\> = `{}`
 
@@ -144,9 +144,9 @@ Additional context data
 
 ### log()
 
-> **log**(`message`, `context`?): `void`
+> **log**(`message`, `context?`): `void`
 
-Defined in: [src/core/logger.ts:184](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/logger.ts#L184)
+Defined in: [src/core/logger.ts:184](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/logger.ts#L184)
 
 Alternative method for logging info messages
 
@@ -172,9 +172,9 @@ Context string
 
 ### logErrorResponse()
 
-> **logErrorResponse**(`error`, `context`, `additionalContext`): `void`
+> **logErrorResponse**(`error`, `context`, `additionalContext?`): `void`
 
-Defined in: [src/core/logger.ts:223](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/logger.ts#L223)
+Defined in: [src/core/logger.ts:223](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/logger.ts#L223)
 
 Logs detailed error information, handling both Axios errors and regular errors.
 Particularly useful for API errors and exceptions.
@@ -193,7 +193,7 @@ Error object (Axios error or regular error)
 
 Error context description
 
-##### additionalContext
+##### additionalContext?
 
 `Record`\<`string`, `any`\> = `{}`
 
@@ -217,9 +217,9 @@ try {
 
 ### verbose()
 
-> **verbose**(`message`, `context`?): `void`
+> **verbose**(`message`, `context?`): `void`
 
-Defined in: [src/core/logger.ts:193](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/logger.ts#L193)
+Defined in: [src/core/logger.ts:193](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/logger.ts#L193)
 
 Logs a verbose debug message
 
@@ -245,9 +245,9 @@ Context string
 
 ### warn()
 
-> **warn**(`message`, `context`): `void`
+> **warn**(`message`, `context?`): `void`
 
-Defined in: [src/core/logger.ts:166](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/logger.ts#L166)
+Defined in: [src/core/logger.ts:166](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/logger.ts#L166)
 
 Logs a warning message
 
@@ -259,7 +259,7 @@ Logs a warning message
 
 Warning message
 
-##### context
+##### context?
 
 `Record`\<`string`, `any`\> = `{}`
 
@@ -273,16 +273,16 @@ Additional context data
 
 ### getInstance()
 
-> `static` **getInstance**(`context`): [`GreenApiLogger`](GreenApiLogger.md)
+> `static` **getInstance**(`context?`): `GreenApiLogger`
 
-Defined in: [src/core/logger.ts:72](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/core/logger.ts#L72)
+Defined in: [src/core/logger.ts:72](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/logger.ts#L72)
 
 Gets a logger instance for the specified context.
 Creates a new instance if one doesn't exist, otherwise returns existing instance.
 
 #### Parameters
 
-##### context
+##### context?
 
 `string` = `"Global"`
 
@@ -290,7 +290,7 @@ The context for the logger (default: "Global")
 
 #### Returns
 
-[`GreenApiLogger`](GreenApiLogger.md)
+`GreenApiLogger`
 
 Logger instance for the specified context
 

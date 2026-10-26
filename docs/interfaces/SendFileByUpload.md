@@ -6,7 +6,7 @@
 
 # Interface: SendFileByUpload
 
-Defined in: [src/types/types.ts:41](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L41)
+Defined in: [src/types/types.ts:43](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L43)
 
 Common properties shared by all message types.
 
@@ -18,9 +18,9 @@ Common properties shared by all message types.
 
 ### caption?
 
-> `optional` **caption**: `string`
+> `optional` **caption?**: `string`
 
-Defined in: [src/types/types.ts:42](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L42)
+Defined in: [src/types/types.ts:44](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L44)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/types/types.ts:42](https://github.com/green-api/greenapi-integr
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:24](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L24)
+Defined in: [src/types/types.ts:26](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L26)
 
 #### Inherited from
 
@@ -40,11 +40,11 @@ Defined in: [src/types/types.ts:24](https://github.com/green-api/greenapi-integr
 
 > **file**: `object`
 
-Defined in: [src/types/types.ts:43](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L43)
+Defined in: [src/types/types.ts:45](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L45)
 
 #### data
 
-> **data**: `Blob` \| `File`
+> **data**: `Blob` \| `File` \| `Uint8Array`\<`ArrayBufferLike`\>
 
 #### fileName
 
@@ -54,9 +54,9 @@ Defined in: [src/types/types.ts:43](https://github.com/green-api/greenapi-integr
 
 ### quotedMessageId?
 
-> `optional` **quotedMessageId**: `string`
+> `optional` **quotedMessageId?**: `string`
 
-Defined in: [src/types/types.ts:25](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L25)
+Defined in: [src/types/types.ts:27](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L27)
 
 #### Inherited from
 

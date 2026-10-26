@@ -6,7 +6,7 @@
 
 # Interface: Product
 
-Defined in: [src/types/types.ts:638](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L638)
+Defined in: [src/types/types.ts:766](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L766)
 
 ## Properties
 
@@ -14,15 +14,15 @@ Defined in: [src/types/types.ts:638](https://github.com/green-api/greenapi-integ
 
 > **availability**: `string`
 
-Defined in: [src/types/types.ts:642](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L642)
+Defined in: [src/types/types.ts:770](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L770)
 
 ***
 
 ### description?
 
-> `optional` **description**: `string`
+> `optional` **description?**: `string`
 
-Defined in: [src/types/types.ts:644](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L644)
+Defined in: [src/types/types.ts:772](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L772)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:644](https://github.com/green-api/greenapi-integ
 
 > **id**: `string`
 
-Defined in: [src/types/types.ts:639](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L639)
+Defined in: [src/types/types.ts:767](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L767)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [src/types/types.ts:639](https://github.com/green-api/greenapi-integ
 
 > **imageUrls**: [`ProductImageUrls`](ProductImageUrls.md)
 
-Defined in: [src/types/types.ts:640](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L640)
+Defined in: [src/types/types.ts:768](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L768)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [src/types/types.ts:640](https://github.com/green-api/greenapi-integ
 
 > **isHidden**: `boolean`
 
-Defined in: [src/types/types.ts:646](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L646)
+Defined in: [src/types/types.ts:774](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L774)
 
 ***
 
@@ -54,15 +54,15 @@ Defined in: [src/types/types.ts:646](https://github.com/green-api/greenapi-integ
 
 > **name**: `string`
 
-Defined in: [src/types/types.ts:643](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L643)
+Defined in: [src/types/types.ts:771](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L771)
 
 ***
 
 ### price
 
-> **price**: `null` \| `string`
+> **price**: `string` \| `null`
 
-Defined in: [src/types/types.ts:645](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L645)
+Defined in: [src/types/types.ts:773](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L773)
 
 ***
 
@@ -70,4 +70,4 @@ Defined in: [src/types/types.ts:645](https://github.com/green-api/greenapi-integ
 
 > **reviewStatus**: [`ProductReviewStatus`](ProductReviewStatus.md)
 
-Defined in: [src/types/types.ts:641](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L641)
+Defined in: [src/types/types.ts:769](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L769)

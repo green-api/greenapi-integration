@@ -6,7 +6,7 @@
 
 # Interface: ReadChat
 
-Defined in: [src/types/types.ts:594](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L594)
+Defined in: [src/types/types.ts:705](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L705)
 
 ## Properties
 
@@ -14,12 +14,12 @@ Defined in: [src/types/types.ts:594](https://github.com/green-api/greenapi-integ
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:595](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L595)
+Defined in: [src/types/types.ts:706](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L706)
 
 ***
 
 ### idMessage?
 
-> `optional` **idMessage**: `string`
+> `optional` **idMessage?**: `string`
 
-Defined in: [src/types/types.ts:596](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L596)
+Defined in: [src/types/types.ts:707](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L707)

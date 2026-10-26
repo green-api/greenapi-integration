@@ -6,9 +6,9 @@
 
 # Function: formatPhoneNumber()
 
-> **formatPhoneNumber**(`phone`, `chatType`): `string`
+> **formatPhoneNumber**(`phone`, `chatType?`): `string`
 
-Defined in: [src/utils/helpers.ts:22](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/utils/helpers.ts#L22)
+Defined in: [src/utils/helpers.ts:22](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/utils/helpers.ts#L22)
 
 Formats a phone number into GREEN-API's expected format.
 Removes all non-digit characters and adds @c.us or @g.us suffix.
@@ -21,11 +21,11 @@ Removes all non-digit characters and adds @c.us or @g.us suffix.
 
 The phone number to format
 
-### chatType
+### chatType?
+
+`"group"` \| `"private"` = `"private"`
 
 The type of a chat, can be either "group" or "private"
-
-`"group"` | `"private"`
 
 ## Returns
 

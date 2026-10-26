@@ -6,7 +6,7 @@
 
 # Interface: CreateGroupResponse
 
-Defined in: [src/types/types.ts:747](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L747)
+Defined in: [src/types/types.ts:888](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L888)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:747](https://github.com/green-api/greenapi-integ
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:749](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L749)
+Defined in: [src/types/types.ts:890](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L890)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:749](https://github.com/green-api/greenapi-integ
 
 > **created**: `boolean`
 
-Defined in: [src/types/types.ts:748](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L748)
+Defined in: [src/types/types.ts:889](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L889)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [src/types/types.ts:748](https://github.com/green-api/greenapi-integ
 
 > **groupInviteLink**: `string`
 
-Defined in: [src/types/types.ts:750](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L750)
+Defined in: [src/types/types.ts:891](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L891)

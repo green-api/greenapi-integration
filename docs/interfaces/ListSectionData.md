@@ -6,7 +6,7 @@
 
 # Interface: ListSectionData
 
-Defined in: [src/types/types.ts:243](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L243)
+Defined in: [src/types/types.ts:291](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L291)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:243](https://github.com/green-api/greenapi-integ
 
 > **rows**: [`ListRowData`](ListRowData.md)[]
 
-Defined in: [src/types/types.ts:245](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L245)
+Defined in: [src/types/types.ts:293](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L293)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:245](https://github.com/green-api/greenapi-integ
 
 > **title**: `string`
 
-Defined in: [src/types/types.ts:244](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L244)
+Defined in: [src/types/types.ts:292](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L292)

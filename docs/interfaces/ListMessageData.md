@@ -6,7 +6,7 @@
 
 # Interface: ListMessageData
 
-Defined in: [src/types/types.ts:248](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L248)
+Defined in: [src/types/types.ts:296](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L296)
 
 ## Extends
 
@@ -16,9 +16,9 @@ Defined in: [src/types/types.ts:248](https://github.com/green-api/greenapi-integ
 
 ### buttonText?
 
-> `optional` **buttonText**: `string`
+> `optional` **buttonText?**: `string`
 
-Defined in: [src/types/types.ts:252](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L252)
+Defined in: [src/types/types.ts:300](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L300)
 
 ***
 
@@ -26,15 +26,15 @@ Defined in: [src/types/types.ts:252](https://github.com/green-api/greenapi-integ
 
 > **contentText**: `string`
 
-Defined in: [src/types/types.ts:249](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L249)
+Defined in: [src/types/types.ts:297](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L297)
 
 ***
 
 ### footer?
 
-> `optional` **footer**: `string`
+> `optional` **footer?**: `string`
 
-Defined in: [src/types/types.ts:251](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L251)
+Defined in: [src/types/types.ts:299](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L299)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/types/types.ts:251](https://github.com/green-api/greenapi-integ
 
 > **forwardingScore**: `number`
 
-Defined in: [src/types/types.ts:200](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L200)
+Defined in: [src/types/types.ts:248](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L248)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [src/types/types.ts:200](https://github.com/green-api/greenapi-integ
 
 > **isForwarded**: `boolean`
 
-Defined in: [src/types/types.ts:201](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L201)
+Defined in: [src/types/types.ts:249](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L249)
 
 #### Inherited from
 
@@ -66,12 +66,12 @@ Defined in: [src/types/types.ts:201](https://github.com/green-api/greenapi-integ
 
 > **sections**: [`ListSectionData`](ListSectionData.md)[]
 
-Defined in: [src/types/types.ts:253](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L253)
+Defined in: [src/types/types.ts:301](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L301)
 
 ***
 
 ### title?
 
-> `optional` **title**: `string`
+> `optional` **title?**: `string`
 
-Defined in: [src/types/types.ts:250](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L250)
+Defined in: [src/types/types.ts:298](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L298)

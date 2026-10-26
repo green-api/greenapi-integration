@@ -6,7 +6,7 @@
 
 # Interface: OutgoingJournalFields
 
-Defined in: [src/types/types.ts:170](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L170)
+Defined in: [src/types/types.ts:218](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L218)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:170](https://github.com/green-api/greenapi-integ
 
 > **sendByApi**: `boolean`
 
-Defined in: [src/types/types.ts:173](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L173)
+Defined in: [src/types/types.ts:221](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L221)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:173](https://github.com/green-api/greenapi-integ
 
 > **statusMessage**: [`OutgoingMessageStatus`](../type-aliases/OutgoingMessageStatus.md)
 
-Defined in: [src/types/types.ts:172](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L172)
+Defined in: [src/types/types.ts:220](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L220)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [src/types/types.ts:172](https://github.com/green-api/greenapi-integ
 
 > **type**: `"outgoing"`
 
-Defined in: [src/types/types.ts:171](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L171)
+Defined in: [src/types/types.ts:219](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L219)

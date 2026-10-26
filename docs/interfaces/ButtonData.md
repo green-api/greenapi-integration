@@ -6,7 +6,7 @@
 
 # Interface: ButtonData
 
-Defined in: [src/types/types.ts:226](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L226)
+Defined in: [src/types/types.ts:274](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L274)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:226](https://github.com/green-api/greenapi-integ
 
 > **buttonId**: `string`
 
-Defined in: [src/types/types.ts:227](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L227)
+Defined in: [src/types/types.ts:275](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L275)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:227](https://github.com/green-api/greenapi-integ
 
 > **buttonText**: `string`
 
-Defined in: [src/types/types.ts:228](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L228)
+Defined in: [src/types/types.ts:276](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L276)

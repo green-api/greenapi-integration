@@ -6,15 +6,15 @@
 
 # Interface: ListRowData
 
-Defined in: [src/types/types.ts:237](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L237)
+Defined in: [src/types/types.ts:285](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L285)
 
 ## Properties
 
 ### description?
 
-> `optional` **description**: `string`
+> `optional` **description?**: `string`
 
-Defined in: [src/types/types.ts:240](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L240)
+Defined in: [src/types/types.ts:288](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L288)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:240](https://github.com/green-api/greenapi-integ
 
 > **rowId**: `string`
 
-Defined in: [src/types/types.ts:239](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L239)
+Defined in: [src/types/types.ts:287](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L287)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [src/types/types.ts:239](https://github.com/green-api/greenapi-integ
 
 > **title**: `string`
 
-Defined in: [src/types/types.ts:238](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L238)
+Defined in: [src/types/types.ts:286](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L286)

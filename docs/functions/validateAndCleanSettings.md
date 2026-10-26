@@ -8,7 +8,7 @@
 
 > **validateAndCleanSettings**(`settings`): [`Settings`](../interfaces/Settings.md)
 
-Defined in: [src/utils/helpers.ts:110](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/utils/helpers.ts#L110)
+Defined in: [src/utils/helpers.ts:110](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/utils/helpers.ts#L110)
 
 Validates and cleans a settings object against the Settings interface.
 Removes any properties that don't match the interface or have invalid values.

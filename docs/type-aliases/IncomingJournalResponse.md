@@ -6,12 +6,12 @@
 
 # Type Alias: IncomingJournalResponse
 
-> **IncomingJournalResponse**: [`BaseIncomingJournalMessage`](BaseIncomingJournalMessage.md) & [`JournalMessageData`](JournalMessageData.md)\<[`WebhookMessageData`](WebhookMessageData.md)\> & `object`
+> **IncomingJournalResponse** = [`BaseIncomingJournalMessage`](BaseIncomingJournalMessage.md) & [`JournalMessageData`](JournalMessageData.md)\<[`WebhookMessageData`](WebhookMessageData.md)\> & `object`
 
-Defined in: [src/types/types.ts:191](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L191)
+Defined in: [src/types/types.ts:239](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L239)
 
-## Type declaration
+## Type Declaration
 
 ### quotedMessage?
 
-> `optional` **quotedMessage**: [`QuotedMessage`](QuotedMessage.md)
+> `optional` **quotedMessage?**: [`QuotedMessage`](QuotedMessage.md)

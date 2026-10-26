@@ -6,15 +6,15 @@
 
 # Interface: EditedMessageData
 
-Defined in: [src/types/types.ts:212](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L212)
+Defined in: [src/types/types.ts:260](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L260)
 
 ## Properties
 
 ### caption?
 
-> `optional` **caption**: `string`
+> `optional` **caption?**: `string`
 
-Defined in: [src/types/types.ts:214](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L214)
+Defined in: [src/types/types.ts:262](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L262)
 
 ***
 
@@ -22,12 +22,12 @@ Defined in: [src/types/types.ts:214](https://github.com/green-api/greenapi-integ
 
 > **stanzaId**: `string`
 
-Defined in: [src/types/types.ts:215](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L215)
+Defined in: [src/types/types.ts:263](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L263)
 
 ***
 
 ### textMessage?
 
-> `optional` **textMessage**: `string`
+> `optional` **textMessage?**: `string`
 
-Defined in: [src/types/types.ts:213](https://github.com/green-api/greenapi-integration/blob/1e2009040b9fbee0c78f6935b3e8b1d1b6550313/src/types/types.ts#L213)
+Defined in: [src/types/types.ts:261](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L261)
