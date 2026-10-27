@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
+import { lookup } from "mime-types";
 import {
 	Instance,
 	Settings,
@@ -116,8 +117,19 @@ export class GreenApiClient {
 		return `${host}/waInstance${this.instance.idInstance}`;
 	}
 
-	private toBlob(data: Blob | Uint8Array): Blob {
-		return data instanceof Blob ? data : new Blob([data as Uint8Array<ArrayBuffer>]);
+	private mimeType(data: Blob | Uint8Array, fileName?: string): string | undefined {
+		if (data instanceof Blob && data.type) {
+			return data.type;
+		}
+		return (fileName && lookup(fileName)) || undefined;
+	}
+
+	private toBlob(data: Blob | Uint8Array, fileName?: string): Blob {
+		const type = this.mimeType(data, fileName);
+		if (data instanceof Blob && (data.type || !type)) {
+			return data;
+		}
+		return new Blob([data instanceof Blob ? data : data as Uint8Array<ArrayBuffer>], type ? {type} : undefined);
 	}
 
 	private toBuffer(data: Uint8Array): Buffer {
@@ -266,7 +278,7 @@ export class GreenApiClient {
 	 */
 	async sendFileByUpload(message: SendFileByUpload): Promise<SendFileByUploadResponse> {
 		const formData = new FormData();
-		formData.append("file", this.toBlob(message.file.data), message.file.fileName);
+		formData.append("file", this.toBlob(message.file.data, message.file.fileName), message.file.fileName);
 		formData.append("chatId", message.chatId);
 		formData.append("fileName", message.file.fileName);
 		if (message.caption) formData.append("caption", message.caption);
@@ -546,11 +558,9 @@ export class GreenApiClient {
 	 * @returns Promise resolving to upload response with file URL
 	 */
 	async uploadFile(file: Blob | File | Uint8Array, fileName?: string): Promise<UploadFile> {
-		const mimeType = file instanceof Blob ? file.type : "";
-		const headers: Record<string, string> = {};
-		if (mimeType) {
-			headers["Content-Type"] = mimeType;
-		} else if (fileName) {
+		const mimeType = this.mimeType(file, fileName);
+		const headers: Record<string, string | false> = {"Content-Type": mimeType || false};
+		if (!mimeType && fileName) {
 			headers["GA-Filename"] = fileName;
 		}
 		const body = file instanceof Blob ? Buffer.from(await file.arrayBuffer()) : this.toBuffer(file);
@@ -572,7 +582,7 @@ export class GreenApiClient {
 		fields: Record<string, string | number | boolean> = {},
 	): Promise<T> {
 		const formData = new FormData();
-		formData.append("file", this.toBlob(file.data), file.fileName);
+		formData.append("file", this.toBlob(file.data, file.fileName), file.fileName);
 		for (const [key, value] of Object.entries(fields)) {
 			formData.append(key, String(value));
 		}
