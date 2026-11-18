@@ -1,3 +1,5 @@
+import { CallErrorCode } from "../types/types";
+
 /**
  * Base error class for all integration-related errors.
  *
@@ -100,5 +102,27 @@ export class NotFoundError extends IntegrationError {
 	 */
 	constructor(message: string) {
 		super(message, "NOT_FOUND_ERROR", 404);
+	}
+}
+
+/**
+ * Error thrown when a call command fails.
+ *
+ * @category Errors
+ */
+export class CallError extends IntegrationError {
+	declare readonly code: CallErrorCode;
+
+	/**
+	 * Creates a call error.
+	 *
+	 * @param code - Call error code
+	 * @param message - Human-readable error message
+	 * @param statusCode - HTTP status code
+	 * @param details - Response from GREEN-API
+	 */
+	constructor(code: CallErrorCode, message: string, statusCode: number = 500, details?: unknown) {
+		super(message, code, statusCode, details);
+		this.name = "CallError";
 	}
 }

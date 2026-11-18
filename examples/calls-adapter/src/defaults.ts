@@ -1,0 +1,9 @@
+export const SERVICE_LOG_LIMIT = 200;
+export const DEFAULT_API_URL = "https://api.green-api.com";
+export const DEFAULT_FFMPEG_PATH = "ffmpeg";
+export const DEFAULT_PORT = 3000;
+export const REQUEST_URL_BASE = "http://localhost";
+export const RELAY_PATH = "/calls-relay";
+export const PHONE_CLIENT_PATH = "/phone-client";
+export const PHONE_CLIENT_MODULE = "@green-api/greenapi-integration/dist/browser/calls-phone.js";
+export const REQUIRED_ENV = ["ID_INSTANCE", "API_TOKEN_INSTANCE", "WEBHOOK_TOKEN", "PHONE_KEY", "ANNOUNCEMENT_FILE"] as const;

@@ -19,6 +19,7 @@
     "Types",
     "Utilities",
     "Errors",
+    "Calls",
     "*"
   ],
   "categorizeByGroup": true,

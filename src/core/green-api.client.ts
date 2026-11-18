@@ -63,6 +63,8 @@ import {
 	IncomingJournalResponse, OutgoingJournalResponse, SendInteractiveButtons, SendInteractiveButtonsReply,
 	SendTextStatus, SendVoiceStatus, SendMediaStatus, GetStatusStatisticResponse,
 	GreenApiClientOptions, GreenApiClientLogger, ReceiveNotificationResponse, DeleteNotificationResponse,
+	CallsDial, CallIdResponse, CallState, IceServer, GetCallRecording, CallRecording,
+	IncomingCallJournal, OutgoingCallJournal,
 } from "../types/types";
 import { IntegrationError } from "./errors";
 import { GreenApiLogger } from "./logger";
@@ -1095,5 +1097,99 @@ export class GreenApiClient {
 	 */
 	async getStatusStatistic(idMessage?: string): Promise<GetStatusStatisticResponse[]> {
 		return this.makeRequest("get", "getStatusStatistic", undefined, idMessage ? {idMessage} : undefined);
+	}
+
+	/**
+	 * Starts an outgoing call.
+	 *
+	 * @param params - Chat ID of the person to call
+	 * @returns Promise resolving to the call ID
+	 */
+	async callsDial(params: CallsDial): Promise<CallIdResponse> {
+		return this.makeRequest("post", "callsDial", params);
+	}
+
+	/**
+	 * Accepts the incoming call.
+	 *
+	 * @returns Promise resolving to the call ID
+	 */
+	async callsAccept(): Promise<CallIdResponse> {
+		return this.makeRequest("post", "callsAccept");
+	}
+
+	/**
+	 * Rejects the incoming call.
+	 *
+	 * @returns Promise resolving to the call ID
+	 */
+	async callsReject(): Promise<CallIdResponse> {
+		return this.makeRequest("post", "callsReject");
+	}
+
+	/**
+	 * Ends the current call.
+	 *
+	 * @returns Promise resolving to the call ID
+	 */
+	async callsHangUp(): Promise<CallIdResponse> {
+		return this.makeRequest("post", "callsHangUp");
+	}
+
+	/**
+	 * Returns the current call state of the instance.
+	 *
+	 * @returns Promise resolving to the call state
+	 */
+	async callsState(): Promise<CallState> {
+		return this.makeRequest("get", "callsState");
+	}
+
+	/**
+	 * Returns the ICE servers for the call audio connection.
+	 *
+	 * @returns Promise resolving to the ICE servers
+	 */
+	async callsGetIceServers(): Promise<IceServer[]> {
+		return this.makeRequest("get", "callsGetIceServers");
+	}
+
+	/**
+	 * Returns the recording of a call.
+	 *
+	 * @param params - Call ID from the call webhook or journal
+	 * @returns Promise resolving to the recording status and download URL
+	 */
+	async getCallRecording(params: GetCallRecording): Promise<CallRecording> {
+		return this.makeRequest("post", "getCallRecording", params);
+	}
+
+	/**
+	 * Returns the incoming calls of the instance.
+	 *
+	 * @param minutes - Optional time period in minutes
+	 * @returns Promise resolving to array of incoming calls
+	 */
+	async lastIncomingCalls(minutes?: number): Promise<IncomingCallJournal[]> {
+		return this.makeRequest("get", "lastIncomingCalls", undefined, minutes ? {minutes} : undefined);
+	}
+
+	/**
+	 * Returns the outgoing calls of the instance.
+	 *
+	 * @param minutes - Optional time period in minutes
+	 * @returns Promise resolving to array of outgoing calls
+	 */
+	async lastOutgoingCalls(minutes?: number): Promise<OutgoingCallJournal[]> {
+		return this.makeRequest("get", "lastOutgoingCalls", undefined, minutes ? {minutes} : undefined);
+	}
+
+	/**
+	 * Returns the WebSocket URL of the call audio connection. The URL contains the instance token.
+	 *
+	 * @returns The callsRtc URL
+	 */
+	getCallsRtcUrl(): string {
+		return `${this.buildUrl(this.baseUrl).replace(/^http/, "ws")}${this.buildEndpoint("callsRtc")}`;
 	}
 }

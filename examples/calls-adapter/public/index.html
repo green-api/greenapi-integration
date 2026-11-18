@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calls sample</title>
+	<style>
+		body { font-family: system-ui, sans-serif; margin: 24px; max-width: 760px; }
+		section { border: 1px solid #ccc; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; }
+		h2 { margin-top: 0; font-size: 18px; }
+		input[type=text] { padding: 6px; width: 200px; }
+		button { padding: 6px 12px; margin: 4px 4px 4px 0; }
+		.error { color: #b00020; }
+		#log { list-style: none; padding: 0; font-family: ui-monospace, monospace; font-size: 13px; }
+		#log li, #timeline li { padding: 2px 0; border-bottom: 1px solid #eee; }
+		#timeline { list-style: none; padding: 0; font-family: ui-monospace, monospace; font-size: 13px; }
+		#stats { font-family: ui-monospace, monospace; font-size: 13px; white-space: pre; margin: 0 0 8px; }
+	</style>
+</head>
+<body>
+<h1>Calls sample</h1>
+
+<section>
+	<h2>Phone: a person talks</h2>
+	<p>State: <strong id="phoneState">connecting</strong></p>
+	<input id="phoneNumber" type="text" placeholder="79001234567">
+	<button id="dial">Call</button>
+	<button id="accept">Accept</button>
+	<button id="reject">Reject</button>
+	<button id="join">Join</button>
+	<button id="hangUp">Hang up</button>
+	<label><input id="mute" type="checkbox"> Mute</label>
+	<p id="phoneError" class="error"></p>
+</section>
+
+<section>
+	<h2>Robot: a program talks</h2>
+	<p>Calls the number, plays the announcement file when answered, then hangs up.</p>
+	<input id="robotNumber" type="text" placeholder="79001234567">
+	<button id="robotCall">Call and play</button>
+	<button id="robotHangUp">Hang up</button>
+	<p id="robotError" class="error"></p>
+</section>
+
+<section>
+	<h2>Diagnostics</h2>
+	<pre id="stats">No audio connection</pre>
+	<ul id="timeline"></ul>
+</section>
+
+<section>
+	<h2>Service log</h2>
+	<ul id="log"></ul>
+</section>
+
+<script type="module">
+	import { CallsPhone } from "/phone-client/calls-phone.js";
+
+	const key = new URLSearchParams(location.search).get("key") ?? "";
+	const scheme = location.protocol === "https:" ? "wss" : "ws";
+	const keyQuery = `key=${encodeURIComponent(key)}`;
+	const phone = new CallsPhone(`${scheme}://${location.host}/calls-relay?${keyQuery}`);
+	const $ = (id) => document.getElementById(id);
+	const chatId = (value) => `${value.replace(/\D/g, "")}@c.us`;
+
+	const reasons = {
+		dial: "Available when there is no call",
+		accept: "Available during an incoming call",
+		reject: "Available during an incoming call",
+		join: "Available during a call that this page has no audio for",
+		hangUp: "Available during a call",
+	};
+
+	function render(state) {
+		const label = state.info?.wid ? `${state.state} (${state.info.wid})` : state.state;
+		$("phoneState").textContent = state.reason ? `${label}, ${state.reason}` : label;
+		const enabled = {
+			dial: state.state === "idle",
+			accept: state.state === "inc-call",
+			reject: state.state === "inc-call",
+			join: (state.state === "out-call" || state.state === "on-call") && !phone.hasAudio,
+			hangUp: state.state !== "idle",
+		};
+		for (const [id, on] of Object.entries(enabled)) {
+			$(id).disabled = !on;
+			$(id).title = on ? "" : reasons[id];
+		}
+	}
+
+	async function run(target, action) {
+		$(target).textContent = "";
+		try {
+			await action();
+		} catch (error) {
+			$(target).textContent = error?.message ?? String(error);
+		}
+	}
+
+	const clock = (time) => new Date(time).toLocaleTimeString();
+
+	function note(text) {
+		const item = document.createElement("li");
+		item.textContent = `${clock(Date.now())}  ${text}`;
+		$("timeline").prepend(item);
+	}
+
+	const level = (value) => value === undefined ? "n/a" : `${"#".repeat(Math.round(value * 20)).padEnd(20, ".")} ${value.toFixed(3)}`;
+
+	async function refreshStats() {
+		const stats = await phone.getStats().catch(() => null);
+		if (!stats) {
+			$("stats").textContent = "No audio connection";
+			return;
+		}
+		$("stats").textContent = [
+			`connection   ${stats.connectionState}, ICE ${stats.iceConnectionState}`,
+			`microphone   ${stats.microphone || "none"}`,
+			`mic level    ${level(stats.microphoneLevel)}`,
+			`sent         ${stats.packetsSent} packets, ${stats.bytesSent} bytes`,
+			`received     ${stats.packetsReceived} packets, ${stats.bytesReceived} bytes, ${stats.packetsLost} lost`,
+			`phone level  ${level(stats.remoteLevel)}`,
+		].join("\n");
+	}
+
+	phone.addEventListener("state", (event) => {
+		render(event.detail);
+		const info = event.detail.info?.wid ? ` ${event.detail.info.wid}` : "";
+		note(`state ${event.detail.state}${info}${event.detail.reason ? `, reason ${event.detail.reason}` : ""}`);
+	});
+	phone.addEventListener("media", (event) => {
+		render(phone.state);
+		note(`audio connection ${event.detail.connectionState}, ICE ${event.detail.iceConnectionState}`);
+	});
+	phone.addEventListener("ended", (event) => note(`call ended${event.detail.reason ? `: ${event.detail.reason}` : ""}`));
+	phone.addEventListener("error", (event) => {
+		$("phoneError").textContent = event.detail.message;
+		note(`error ${event.detail.code}: ${event.detail.message}`);
+	});
+	phone.addEventListener("closed", (event) => {
+		$("phoneState").textContent = `closed: ${event.detail.reason}`;
+		note(`relay closed ${event.detail.code}: ${event.detail.reason}`);
+	});
+
+	$("dial").onclick = () => run("phoneError", () => phone.dial(chatId($("phoneNumber").value)));
+	$("accept").onclick = () => run("phoneError", () => phone.accept());
+	$("reject").onclick = () => run("phoneError", () => phone.reject());
+	$("join").onclick = () => run("phoneError", async () => {
+		await phone.join();
+		render(phone.state);
+	});
+	$("hangUp").onclick = () => run("phoneError", () => phone.hangUp());
+	$("mute").onchange = (event) => phone.setMuted(event.target.checked);
+
+	async function post(url, body) {
+		const response = await fetch(`${url}?${keyQuery}`, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)});
+		const data = await response.json();
+		if (!response.ok) {
+			throw new Error(data.message);
+		}
+		return data;
+	}
+
+	$("robotCall").onclick = () => run("robotError", () => post("/api/robot", {phone: $("robotNumber").value}));
+	$("robotHangUp").onclick = () => run("robotError", () => post("/api/calls", {action: "hangUp"}));
+
+	async function refreshLog() {
+		try {
+			const entries = await (await fetch(`/api/log?${keyQuery}`)).json();
+			$("log").replaceChildren(...entries.map((entry) => {
+				const item = document.createElement("li");
+				item.textContent = `${clock(entry.time)}  ${entry.text}`;
+				if (entry.kind === "error") {
+					item.className = "error";
+				}
+				return item;
+			}));
+		} catch {
+		}
+	}
+
+	render(phone.state);
+	setInterval(refreshLog, 1000);
+	setInterval(refreshStats, 1000);
+	run("phoneError", () => phone.connect());
+</script>
+</body>
+</html>

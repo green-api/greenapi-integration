@@ -85,6 +85,7 @@ export function isValidSettingValue(key: keyof Settings, value: any): boolean {
 		case "keepOnlineStatus":
 		case "pollMessageWebhook":
 		case "incomingCallWebhook":
+		case "outgoingCallWebhook":
 			return value === "yes" || value === "no";
 		default:
 			return false;

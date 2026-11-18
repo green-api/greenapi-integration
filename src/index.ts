@@ -1,9 +1,15 @@
 export * from "./types/types";
 export { BaseAdapter } from "./core/base-adapter";
+export { BaseCallsAdapter } from "./core/base-calls-adapter";
 export { GreenApiClient } from "./core/green-api.client";
 export { MessageTransformer } from "./core/message-transformer";
 export { BaseGreenApiAuthGuard } from "./core/guard";
 export { StorageProvider } from "./core/storage-provider";
 export { GreenApiLogger } from "./core/logger";
+export { isCallWebhook, toCallEvent, describeCallEndReason } from "./core/call-events";
+export { runCallCommand, toCallError } from "./core/call-commands";
+export { CallVoice, CallVoiceOptions } from "./voice/call-voice";
+export { CallsRelay, CallsRelayOptions } from "./voice/calls-relay";
+export { CallsRtcConnection } from "./voice/calls-rtc-connection";
 export * from "./utils/helpers";
 export * from "./core/errors";

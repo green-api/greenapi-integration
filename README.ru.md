@@ -24,6 +24,7 @@
 
 - [Установка](#установка)
 - [Основные компоненты](#основные-компоненты)
+- [Звонки](#звонки)
 - [Руководство для разработчика](#руководство-для-разработчика)
 - [Рабочий пример](#рабочий-пример)
 - [Реальные примеры](#реальные-примеры)
@@ -370,6 +371,167 @@ await client.setProfilePicture(fileBlob);
 await client.getAuthorizationCode(phoneNumber);
 await client.getQR();
 ```
+
+## Звонки
+
+Часть для звонков берёт на себя то, что одинаково в любой интеграции звонков: команды, вебхуки звонков, ошибки и
+голос. Интеграции остаётся решить, как звонки выглядят в её платформе.
+
+### BaseCallsAdapter
+
+Реализуйте два метода:
+
+- `toCallCommand(request)`: превращает запрос вашей платформы в `{action: "dial", chatId}`, `{action: "accept"}`,
+  `{action: "reject"}` или `{action: "hangUp"}`
+- `sendCallEventToPlatform(event, instance)`: показывает событие звонка в вашей платформе
+
+```typescript
+class YourCallsAdapter extends BaseCallsAdapter<YourCallRequest> {
+    toCallCommand(request: YourCallRequest): CallCommand {
+        return request.type === "call"
+            ? {action: "dial", chatId: formatPhoneNumber(request.phone)}
+            : {action: request.type};
+    }
+
+    async sendCallEventToPlatform(event: CallEvent, instance: Instance) {
+        await yourPlatform.logCall(event.callId, event.chatId, event.description);
+    }
+}
+
+app.post("/webhook", async (req, res) => {
+    await guard.validateRequest(req);
+    await callsAdapter.handleGreenApiWebhook(req.body);
+    res.sendStatus(200);
+});
+
+app.post("/calls", async (req, res) => {
+    try {
+        res.json(await callsAdapter.handlePlatformCommand(req.body, idInstance));
+    } catch (error) {
+        const callError = toCallError(error);
+        res.status(callError.statusCode).json({code: callError.code, message: callError.message});
+    }
+});
+```
+
+У инстанса должны быть включены `incomingWebhook`, `incomingCallWebhook` и `outgoingCallWebhook` (`"yes"`).
+
+#### События звонков
+
+`handleGreenApiWebhook` превращает вебхуки `incomingCall` и `outgoingCall` в один `CallEvent`:
+
+| Поле              | Значение                                                        |
+|-------------------|-----------------------------------------------------------------|
+| `callId`          | ID звонка, тот же, что `callId` из dial и accept                |
+| `direction`       | `incoming` или `outgoing`                                       |
+| `chatId`          | Собеседник                                                      |
+| `status`          | `offer`, `pickUp`, `hangUp`, `declined`, `missed` или `invalid` |
+| `ended`           | True для `hangUp`, `declined`, `missed` и `invalid`             |
+| `description`     | Текст для показа, например "Missed call" или "No answer"        |
+| `durationSeconds` | Длительность разговора завершённого звонка                      |
+| `byApi`           | True, если звонок сделан или принят через API                   |
+| `webhook`         | Исходный вебхук                                                 |
+
+#### Ошибки
+
+Команды звонков бросают `CallError`. `code` говорит, что случилось, `message` готов к показу:
+
+| Код                  | Когда                                               |
+|----------------------|-----------------------------------------------------|
+| `INVALID_CHAT_ID`    | На этот номер или чат нельзя позвонить              |
+| `NO_RECENT_CONTACT`  | Чат не писал и не звонил инстансу последние 72 часа |
+| `NOT_IN_TARIFF`      | Тариф инстанса не включает звонки                   |
+| `CALLS_NOT_ENABLED`  | Звонки у инстанса выключены                         |
+| `ALREADY_IN_CALL`    | Инстанс уже в звонке                                |
+| `NO_INCOMING_CALL`   | Принять или отклонить без входящего звонка          |
+| `NO_ACTIVE_CALL`     | Завершить без звонка                                |
+| `CALL_ENDED`         | Звонок закончился до команды                        |
+| `CALL_REFUSED`       | WhatsApp отказал в звонке                           |
+| `TIMEOUT`            | Сервер звонков не ответил вовремя                   |
+| `INSTANCE_NOT_READY` | Инстанс ещё не запущен                              |
+| `INSTANCE_NOT_FOUND` | Инстанса нет                                        |
+| `CALL_FAILED`        | Любой другой сбой                                   |
+
+### Голос
+
+Без голоса звонок соединяется, но в тишине. Голос бывает двух видов.
+
+**Говорит программа.** `CallVoice` работает на вашем сервере, проигрывает в звонок аудиофайлы или потоки и отдаёт
+голос собеседника кадрами Opus. Нужны Node.js 22, `npm install werift@^0.25.2 ws` и ffmpeg.
+
+```typescript
+const voice = callsAdapter.createCallVoice(instance);
+await voice.open();
+await voice.dial("79001234567@c.us");
+await voice.waitFor("on-call");
+await voice.play("./announcement.ogg");
+await voice.hangUp();
+voice.close();
+```
+
+`waitFor` бросает `CallError`, в сообщении которого причина завершения звонка, например "No answer". Чтобы ответить,
+вызовите `voice.accept()` после события `incomingCall` со статусом `offer`. Голос собеседника приходит в
+`voice.on("audio", (opus) => ...)`.
+
+**Живой звук.** `CallVoice` также передаёт звук в реальном времени в обе стороны в виде PCM, без ffmpeg. Для этого
+нужен `npm install opusscript` вдобавок к werift и ws. Звук идёт как 16-битный little-endian моно PCM с частотой
+`pcmSampleRate`, которую вы задаёте при создании: 8000, 12000, 16000, 24000 или 48000 (по умолчанию 24000).
+
+```typescript
+const voice = callsAdapter.createCallVoice(instance, {pcmSampleRate: 16000});
+voice.on("remote-pcm", (pcm) => handleIncomingAudio(pcm));
+await voice.open();
+await voice.dial("79001234567@c.us");
+await voice.waitFor("on-call");
+voice.sendPcm(outgoingAudioChunk);
+```
+
+- `sendPcm(chunk)` ставит звук в очередь кусками любого размера и отправляет его в реальном времени, по 20 мс. Звук,
+  отправленный до ответа, ждёт, пока соединится аудио.
+- `clearAudio()` сразу сбрасывает очередь, например когда собеседник начинает говорить.
+- `drainAudio()` завершается, когда всё из очереди отправлено; `pendingAudioMs` показывает, сколько ещё в очереди.
+- `remote-pcm` отдаёт звук собеседника, раскодированный в PCM с той же частотой. Поток непрерывный: паузы, которые
+  телефон не передаёт, и потерянные пакеты приходят тишиной, так что звук совпадает с реальным временем.
+- `play()` и `sendPcm()` не смешиваются: запуск одного останавливает другое.
+
+**Говорит человек.** `CallsPhone` работает в браузере вашей платформы, с микрофоном и динамиком. `CallsRelay` на
+вашем сервере соединяет его с GREEN-API, поэтому токен инстанса не попадает в браузер. Для релея нужен
+`npm install ws`. Кому можно пользоваться телефоном, решаете вы в `authorize`. `phone.join()` подключает браузер к
+звонку, начатому в другом месте, например вашим сервером через API; звук звонка переходит в браузер.
+
+```typescript
+const relay = new CallsRelay({
+    authorize: async (request) => findInstanceForUser(request),
+});
+server.on("upgrade", (request, socket, head) => {
+    if (request.url?.startsWith("/calls-relay")) {
+        relay.handleUpgrade(request, socket, head);
+    }
+});
+app.use("/phone-client", express.static(path.dirname(require.resolve("@green-api/greenapi-integration/dist/browser/calls-phone.js"))));
+```
+
+```html
+<script type="module">
+    import { CallsPhone } from "/phone-client/calls-phone.js";
+
+    const phone = new CallsPhone("wss://your-server/calls-relay");
+    phone.addEventListener("state", (event) => console.log(event.detail.state));
+    await phone.connect();
+    await phone.dial("79001234567@c.us");
+</script>
+```
+
+### Пример звонков
+
+`examples/calls-adapter`: рабочая интеграция звонков: телефон в браузере, робот, который звонит и проигрывает файл,
+и журнал событий звонков.
+
+1. Соберите библиотеку: `npm install && npm run build` в корне репозитория
+2. В `examples/calls-adapter` скопируйте `.env.example` в `.env` и заполните. `PUBLIC_URL`: публичный HTTPS-адрес
+   примера для вебхуков, например туннель на `PORT`. `ANNOUNCEMENT_FILE`: любой аудиофайл, который читает ffmpeg
+3. Выполните `npm install` и `npm start`
+4. Откройте `http://localhost:3000/?key=<PHONE_KEY>`
 
 ## Руководство для разработчика
 

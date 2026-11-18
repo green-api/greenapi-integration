@@ -187,6 +187,7 @@ export type MessageType =
 	| "groupInviteMessage"
 	| "interactiveButtons"
 	| "interactiveButtonsReply"
+	| "interactiveButtonsResponse"
 	| "templateButtonsReplyMessage";
 
 export interface GetMessage {
@@ -367,6 +368,15 @@ export interface TemplateButtonsReplyMessageData {
 	selectedDisplayText: string;
 }
 
+export interface InteractiveButtonsResponseData {
+	stanzaId: string;
+	selectedIndex: number;
+	selectedId: string;
+	selectedDisplayText: string;
+	selectedButtonId?: string;
+	selectedButtonText?: string;
+}
+
 export interface GroupInviteMessageData {
 	groupJid: string;
 	inviteCode: string;
@@ -527,7 +537,8 @@ export type WebhookType =
 	| "outgoingAPIMessageReceived"
 	| "outgoingMessageReceived"
 	| "incomingMessageReceived"
-	| "incomingCall";
+	| "incomingCall"
+	| "outgoingCall";
 
 /**
  * Webhook payload received when a message status changes.
@@ -619,6 +630,9 @@ export type WebhookMessageData = {
 	typeMessage: "interactiveButtonsReply";
 	interactiveButtonsReply: InteractiveButtonsReplyData;
 } | {
+	typeMessage: "interactiveButtonsResponse";
+	interactiveButtonsResponse: InteractiveButtonsResponseData;
+} | {
 	typeMessage: "templateButtonsReplyMessage";
 	templateButtonReplyMessage: TemplateButtonsReplyMessageData;
 };
@@ -645,7 +659,7 @@ export interface MessageWebhook {
 	};
 }
 
-export type CallStatus = "offer" | "pickUp" | "hangUp" | "missed" | "declined";
+export type CallStatus = "offer" | "pickUp" | "hangUp" | "hungUp" | "missed" | "declined" | "invalid";
 
 export interface IncomingCallWebhook {
 	from: string;
@@ -658,7 +672,35 @@ export interface IncomingCallWebhook {
 	status: CallStatus;
 	timestamp: number;
 	idMessage: string;
+	isVideo?: boolean;
+	isGroup?: boolean;
+	duration?: number;
+	sendByApi?: boolean;
 }
+
+export interface CallParticipant {
+	id: string;
+	status: CallStatus;
+}
+
+export interface OutgoingCallWebhook {
+	from: string;
+	typeWebhook: "outgoingCall";
+	instanceData: {
+		idInstance: number;
+		wid: string;
+		typeInstance: string;
+	};
+	status: CallStatus;
+	timestamp: number;
+	idMessage: string;
+	isVideo?: boolean;
+	duration?: number;
+	participants?: CallParticipant[];
+	sendByApi?: boolean;
+}
+
+export type CallWebhook = IncomingCallWebhook | OutgoingCallWebhook;
 
 /**
  * Primary webhook types received from GREEN-API.
@@ -667,7 +709,8 @@ export type GreenApiWebhook =
 	MessageWebhook
 	| OutgoingMessageStatusWebhook
 	| StateInstanceWebhook
-	| IncomingCallWebhook;
+	| IncomingCallWebhook
+	| OutgoingCallWebhook;
 
 /**
  * Configuration settings for a GREEN-API instance.
@@ -689,6 +732,7 @@ export interface Settings {
 	keepOnlineStatus?: "yes" | "no";
 	pollMessageWebhook?: "yes" | "no";
 	incomingCallWebhook?: "yes" | "no";
+	outgoingCallWebhook?: "yes" | "no";
 	incomingBlockWebhook?: "yes" | "no";
 	editedMessageWebhook?: "yes" | "no";
 	deletedMessageWebhook?: "yes" | "no";
@@ -823,6 +867,7 @@ export type InstanceState =
 	| "starting"
 	| "yellowCard"
 	| "suspended"
+	| "pendingCode"
 	| "pendingPassword";
 
 export interface StateInstance {
@@ -1015,3 +1060,135 @@ export interface GetStatusStatisticResponse {
 	participant: string;
 	status: string;
 }
+
+export type CallStateKind = "idle" | "inc-call" | "out-call" | "on-call";
+
+export interface CallInfo {
+	id: string;
+	wid: string;
+	name: string;
+}
+
+export interface CallState {
+	state: CallStateKind;
+	info?: CallInfo;
+	reason?: string;
+}
+
+export interface CallsDial {
+	chatId: string;
+}
+
+export interface CallIdResponse {
+	callId: string;
+}
+
+export interface IceServer {
+	urls: string | string[];
+	username?: string;
+	credential?: string;
+}
+
+export interface GetCallRecording {
+	idMessage: string;
+}
+
+export interface CallRecording {
+	status?: "processing" | "ready" | "notFound" | "failed";
+	downloadUrl?: string;
+	expireAt?: number;
+	durationMs?: number;
+	sizeBytes?: number;
+}
+
+export interface IncomingCallJournal {
+	type: "incoming";
+	idMessage: string;
+	timestamp: number;
+	typeMessage: "incomingCall";
+	chatId: string;
+	isVideo: boolean;
+	isGroup: boolean | string;
+	status: CallStatus;
+	duration?: number;
+	sendByApi?: boolean;
+}
+
+export interface OutgoingCallJournal {
+	type: "outgoing";
+	idMessage: string;
+	timestamp: number;
+	typeMessage: "outgoingCall";
+	chatId: string;
+	duration: number;
+	isVideo: boolean;
+	status: CallStatus;
+	participants: CallParticipant[];
+	sendByApi?: boolean;
+}
+
+export type CallDirection = "incoming" | "outgoing";
+
+export type CallEventStatus = "offer" | "pickUp" | "hangUp" | "declined" | "missed" | "invalid";
+
+/**
+ * Call webhook from GREEN-API in one shape for both directions.
+ */
+export interface CallEvent {
+	callId: string;
+	idInstance: number;
+	direction: CallDirection;
+	chatId: string;
+	status: CallEventStatus;
+	ended: boolean;
+	description: string;
+	durationSeconds: number;
+	isVideo: boolean;
+	byApi: boolean;
+	timestamp: number;
+	webhook: CallWebhook;
+}
+
+export type CallCommand =
+	| {action: "dial"; chatId: string}
+	| {action: "accept"}
+	| {action: "reject"}
+	| {action: "hangUp"};
+
+export type CallErrorCode =
+	| "INVALID_CHAT_ID"
+	| "CALLS_NOT_ENABLED"
+	| "NOT_IN_TARIFF"
+	| "NO_RECENT_CONTACT"
+	| "INSTANCE_NOT_FOUND"
+	| "INSTANCE_NOT_READY"
+	| "ALREADY_IN_CALL"
+	| "NO_INCOMING_CALL"
+	| "NO_ACTIVE_CALL"
+	| "CALL_ENDED"
+	| "CALL_REFUSED"
+	| "CALL_FAILED"
+	| "TIMEOUT"
+	| "INVALID_AUDIO"
+	| "MISSING_OPUS_CODEC";
+
+export type CallsRtcServerFrame =
+	| {type: "state"; state: CallState}
+	| {type: "answer"; answer: {type: "answer"; sdp: string}}
+	| {type: "ice-candidate"; candidate: {candidate: string; sdpMid?: string | null; sdpMLineIndex?: number | null}}
+	| {type: "error"; message: string};
+
+export type CallsRtcClientFrame =
+	| {type: "offer"; offer: {type: "offer"; sdp: string}}
+	| {type: "ice-candidate"; candidate: {candidate: string; sdpMid?: string | null; sdpMLineIndex?: number | null}}
+	| {type: "stop"};
+
+export type CallsRelayCommandFrame = {
+	type: "command";
+	id: number;
+	command: CallCommand | {action: "iceServers"};
+};
+
+export type CallsRelayResultFrame =
+	| {type: "result"; id: number; callId?: string; iceServers?: IceServer[]}
+	| {type: "result"; id: number; error: {code: CallErrorCode; message: string}};
