@@ -6,7 +6,7 @@
 
 # Interface: CheckAccount
 
-Defined in: [src/types/types.ts:722](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L722)
+Defined in: [src/types/types.ts:766](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L766)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:722](https://github.com/green-api/greenapi-integ
 
 > `optional` **force?**: `boolean`
 
-Defined in: [src/types/types.ts:725](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L725)
+Defined in: [src/types/types.ts:769](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L769)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:725](https://github.com/green-api/greenapi-integ
 
 > `optional` **phoneNumber?**: `number`
 
-Defined in: [src/types/types.ts:723](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L723)
+Defined in: [src/types/types.ts:767](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L767)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [src/types/types.ts:723](https://github.com/green-api/greenapi-integ
 
 > `optional` **username?**: `string`
 
-Defined in: [src/types/types.ts:724](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L724)
+Defined in: [src/types/types.ts:768](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L768)

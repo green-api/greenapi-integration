@@ -6,7 +6,7 @@
 
 # Interface: BaseInstance
 
-Defined in: [src/types/types.ts:5](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L5)
+Defined in: [src/types/types.ts:5](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L5)
 
 Base interface for GREEN-API WhatsApp instances.
 Contains the essential credentials needed to interact with the API.
@@ -21,7 +21,7 @@ Contains the essential credentials needed to interact with the API.
 
 > **apiTokenInstance**: `string`
 
-Defined in: [src/types/types.ts:7](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L7)
+Defined in: [src/types/types.ts:7](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L7)
 
 ***
 
@@ -29,7 +29,7 @@ Defined in: [src/types/types.ts:7](https://github.com/green-api/greenapi-integra
 
 > `optional` **apiUrl?**: `string` \| `null`
 
-Defined in: [src/types/types.ts:10](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L10)
+Defined in: [src/types/types.ts:10](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L10)
 
 ***
 
@@ -37,7 +37,7 @@ Defined in: [src/types/types.ts:10](https://github.com/green-api/greenapi-integr
 
 > **idInstance**: `number` \| `bigint`
 
-Defined in: [src/types/types.ts:6](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L6)
+Defined in: [src/types/types.ts:6](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L6)
 
 ***
 
@@ -45,7 +45,7 @@ Defined in: [src/types/types.ts:6](https://github.com/green-api/greenapi-integra
 
 > `optional` **mediaUrl?**: `string` \| `null`
 
-Defined in: [src/types/types.ts:11](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L11)
+Defined in: [src/types/types.ts:11](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L11)
 
 ***
 
@@ -53,7 +53,7 @@ Defined in: [src/types/types.ts:11](https://github.com/green-api/greenapi-integr
 
 > `optional` **settings?**: [`Settings`](Settings.md) \| `Record`\<`string`, `any`\> \| `null`
 
-Defined in: [src/types/types.ts:9](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L9)
+Defined in: [src/types/types.ts:9](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L9)
 
 ***
 
@@ -61,4 +61,4 @@ Defined in: [src/types/types.ts:9](https://github.com/green-api/greenapi-integra
 
 > `optional` **stateInstance?**: [`InstanceState`](../type-aliases/InstanceState.md) \| `null`
 
-Defined in: [src/types/types.ts:8](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L8)
+Defined in: [src/types/types.ts:8](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L8)

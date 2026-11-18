@@ -6,7 +6,7 @@
 
 # Interface: WaSettings
 
-Defined in: [src/types/types.ts:859](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L859)
+Defined in: [src/types/types.ts:904](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L904)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:859](https://github.com/green-api/greenapi-integ
 
 > **avatar**: `string`
 
-Defined in: [src/types/types.ts:860](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L860)
+Defined in: [src/types/types.ts:905](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L905)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:860](https://github.com/green-api/greenapi-integ
 
 > **deviceId**: `string`
 
-Defined in: [src/types/types.ts:863](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L863)
+Defined in: [src/types/types.ts:908](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L908)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:863](https://github.com/green-api/greenapi-integ
 
 > **phone**: `string`
 
-Defined in: [src/types/types.ts:861](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L861)
+Defined in: [src/types/types.ts:906](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L906)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [src/types/types.ts:861](https://github.com/green-api/greenapi-integ
 
 > **stateInstance**: [`InstanceState`](../type-aliases/InstanceState.md)
 
-Defined in: [src/types/types.ts:862](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L862)
+Defined in: [src/types/types.ts:907](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L907)

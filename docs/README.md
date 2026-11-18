@@ -28,6 +28,7 @@ third-party services.
 
 - [Installation](#installation)
 - [Core Components](#core-components)
+- [Calls](#calls)
 - [Developer Guide](#developer-guide)
 - [Working Example](#working-example)
 - [Real-World Examples](#real-world-examples)
@@ -375,6 +376,167 @@ await client.setProfilePicture(fileBlob);
 await client.getAuthorizationCode(phoneNumber);
 await client.getQR();
 ```
+
+## Calls
+
+The calls part takes on what every calls integration shares: call commands, call webhooks, errors and voice. Your
+integration only decides how calls look in your platform.
+
+### BaseCallsAdapter
+
+Implement two methods:
+
+- `toCallCommand(request)`: turns a request from your platform into `{action: "dial", chatId}`, `{action: "accept"}`,
+  `{action: "reject"}` or `{action: "hangUp"}`
+- `sendCallEventToPlatform(event, instance)`: shows a call event in your platform
+
+```typescript
+class YourCallsAdapter extends BaseCallsAdapter<YourCallRequest> {
+    toCallCommand(request: YourCallRequest): CallCommand {
+        return request.type === "call"
+            ? {action: "dial", chatId: formatPhoneNumber(request.phone)}
+            : {action: request.type};
+    }
+
+    async sendCallEventToPlatform(event: CallEvent, instance: Instance) {
+        await yourPlatform.logCall(event.callId, event.chatId, event.description);
+    }
+}
+
+app.post("/webhook", async (req, res) => {
+    await guard.validateRequest(req);
+    await callsAdapter.handleGreenApiWebhook(req.body);
+    res.sendStatus(200);
+});
+
+app.post("/calls", async (req, res) => {
+    try {
+        res.json(await callsAdapter.handlePlatformCommand(req.body, idInstance));
+    } catch (error) {
+        const callError = toCallError(error);
+        res.status(callError.statusCode).json({code: callError.code, message: callError.message});
+    }
+});
+```
+
+The instance needs `incomingWebhook`, `incomingCallWebhook` and `outgoingCallWebhook` set to `"yes"`.
+
+#### Call events
+
+`handleGreenApiWebhook` turns `incomingCall` and `outgoingCall` webhooks into one `CallEvent`:
+
+| Field             | Meaning                                                         |
+|-------------------|-----------------------------------------------------------------|
+| `callId`          | Call ID, the same as `callId` returned by dial and accept       |
+| `direction`       | `incoming` or `outgoing`                                        |
+| `chatId`          | The other side of the call                                      |
+| `status`          | `offer`, `pickUp`, `hangUp`, `declined`, `missed` or `invalid`  |
+| `ended`           | True for `hangUp`, `declined`, `missed` and `invalid`           |
+| `description`     | Text to show, for example "Missed call" or "No answer"          |
+| `durationSeconds` | Talk time of an ended call                                      |
+| `byApi`           | True when the call was made or answered through the API         |
+| `webhook`         | The original webhook                                            |
+
+#### Errors
+
+Call commands throw `CallError`. `code` tells what happened, `message` is ready to show:
+
+| Code                 | When                                                                 |
+|----------------------|----------------------------------------------------------------------|
+| `INVALID_CHAT_ID`    | The number or chat cannot be called                                  |
+| `NO_RECENT_CONTACT`  | The chat has not written or called the instance in the last 72 hours |
+| `NOT_IN_TARIFF`      | The instance plan does not include calls                             |
+| `CALLS_NOT_ENABLED`  | Calls are turned off for the instance                                |
+| `ALREADY_IN_CALL`    | The instance is already in a call                                    |
+| `NO_INCOMING_CALL`   | Accept or reject without an incoming call                            |
+| `NO_ACTIVE_CALL`     | Hang up without a call                                               |
+| `CALL_ENDED`         | The call ended before the command                                    |
+| `CALL_REFUSED`       | WhatsApp refused the call                                            |
+| `TIMEOUT`            | The calls server did not answer in time                              |
+| `INSTANCE_NOT_READY` | The instance is not running yet                                      |
+| `INSTANCE_NOT_FOUND` | The instance does not exist                                          |
+| `CALL_FAILED`        | Any other failure                                                    |
+
+### Voice
+
+Without voice, a call connects in silence. There are two kinds of voice.
+
+**A program talks.** `CallVoice` runs on your server, plays audio files or streams into the call and gives you the
+other side's audio as Opus frames. It needs Node.js 22, `npm install werift@^0.25.2 ws` and ffmpeg.
+
+```typescript
+const voice = callsAdapter.createCallVoice(instance);
+await voice.open();
+await voice.dial("79001234567@c.us");
+await voice.waitFor("on-call");
+await voice.play("./announcement.ogg");
+await voice.hangUp();
+voice.close();
+```
+
+`waitFor` throws a `CallError` whose message says why the call ended, for example "No answer". To answer, call
+`voice.accept()` after an `incomingCall` event with status `offer`. Listen to `voice.on("audio", (opus) => ...)` for
+the other side's audio.
+
+**Live audio.** `CallVoice` also carries realtime audio in both directions as raw PCM, without ffmpeg. It needs
+`npm install opusscript` in addition to werift and ws. Audio is 16-bit little-endian mono PCM at the `pcmSampleRate`
+you pass when creating the voice: 8000, 12000, 16000, 24000 or 48000 (default 24000).
+
+```typescript
+const voice = callsAdapter.createCallVoice(instance, {pcmSampleRate: 16000});
+voice.on("remote-pcm", (pcm) => handleIncomingAudio(pcm));
+await voice.open();
+await voice.dial("79001234567@c.us");
+await voice.waitFor("on-call");
+voice.sendPcm(outgoingAudioChunk);
+```
+
+- `sendPcm(chunk)` queues audio in chunks of any size and sends it in real time, 20 ms at a time. Audio sent before
+  the call is answered waits until the audio is connected.
+- `clearAudio()` drops the queued audio at once, for example when the other side starts talking.
+- `drainAudio()` resolves when everything queued has been sent; `pendingAudioMs` tells how much is still queued.
+- `remote-pcm` gives the other side's audio decoded to PCM at the same sample rate. The stream is continuous: pauses
+  the phone doesn't send and lost packets come as silence, so the audio matches real time.
+- `play()` and `sendPcm()` don't mix: starting one stops the other.
+
+**A person talks.** `CallsPhone` runs in the browser of your platform and uses the microphone and speaker.
+`CallsRelay` on your server connects it to GREEN-API, so the instance token never reaches the browser. The relay needs
+`npm install ws`. You decide who may use the phone in `authorize`. `phone.join()` connects the browser to a call started
+elsewhere, for example by your server through the API; the call's audio moves to the browser.
+
+```typescript
+const relay = new CallsRelay({
+    authorize: async (request) => findInstanceForUser(request),
+});
+server.on("upgrade", (request, socket, head) => {
+    if (request.url?.startsWith("/calls-relay")) {
+        relay.handleUpgrade(request, socket, head);
+    }
+});
+app.use("/phone-client", express.static(path.dirname(require.resolve("@green-api/greenapi-integration/dist/browser/calls-phone.js"))));
+```
+
+```html
+<script type="module">
+    import { CallsPhone } from "/phone-client/calls-phone.js";
+
+    const phone = new CallsPhone("wss://your-server/calls-relay");
+    phone.addEventListener("state", (event) => console.log(event.detail.state));
+    await phone.connect();
+    await phone.dial("79001234567@c.us");
+</script>
+```
+
+### Calls example
+
+`examples/calls-adapter` is a working calls integration with a browser phone, a robot that calls and plays a file, and
+a log of call events.
+
+1. Build the library: `npm install && npm run build` in the repository root
+2. In `examples/calls-adapter`, copy `.env.example` to `.env` and fill it in. `PUBLIC_URL` is a public HTTPS address of
+   the example for webhooks, for example a tunnel to `PORT`. `ANNOUNCEMENT_FILE` is any audio file ffmpeg can read
+3. Run `npm install` and `npm start`
+4. Open `http://localhost:3000/?key=<PHONE_KEY>`
 
 ## Developer Guide
 

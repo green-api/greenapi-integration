@@ -6,7 +6,7 @@
 
 # Interface: ForwardableMessage
 
-Defined in: [src/types/types.ts:247](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L247)
+Defined in: [src/types/types.ts:248](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L248)
 
 ## Extended by
 
@@ -25,7 +25,7 @@ Defined in: [src/types/types.ts:247](https://github.com/green-api/greenapi-integ
 
 > **forwardingScore**: `number`
 
-Defined in: [src/types/types.ts:248](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L248)
+Defined in: [src/types/types.ts:249](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L249)
 
 ***
 
@@ -33,4 +33,4 @@ Defined in: [src/types/types.ts:248](https://github.com/green-api/greenapi-integ
 
 > **isForwarded**: `boolean`
 
-Defined in: [src/types/types.ts:249](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L249)
+Defined in: [src/types/types.ts:250](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L250)

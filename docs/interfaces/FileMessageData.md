@@ -6,7 +6,7 @@
 
 # Interface: FileMessageData
 
-Defined in: [src/types/types.ts:386](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L386)
+Defined in: [src/types/types.ts:396](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L396)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/types/types.ts:386](https://github.com/green-api/greenapi-integ
 
 > **caption**: `string`
 
-Defined in: [src/types/types.ts:388](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L388)
+Defined in: [src/types/types.ts:398](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L398)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/types/types.ts:388](https://github.com/green-api/greenapi-integ
 
 > **downloadUrl**: `string`
 
-Defined in: [src/types/types.ts:387](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L387)
+Defined in: [src/types/types.ts:397](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L397)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/types/types.ts:387](https://github.com/green-api/greenapi-integ
 
 > **fileName**: `string`
 
-Defined in: [src/types/types.ts:390](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L390)
+Defined in: [src/types/types.ts:400](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L400)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/types/types.ts:390](https://github.com/green-api/greenapi-integ
 
 > **forwardingScore**: `number`
 
-Defined in: [src/types/types.ts:248](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L248)
+Defined in: [src/types/types.ts:249](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L249)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [src/types/types.ts:248](https://github.com/green-api/greenapi-integ
 
 > `optional` **isAnimated?**: `boolean`
 
-Defined in: [src/types/types.ts:391](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L391)
+Defined in: [src/types/types.ts:401](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L401)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [src/types/types.ts:391](https://github.com/green-api/greenapi-integ
 
 > **isForwarded**: `boolean`
 
-Defined in: [src/types/types.ts:249](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L249)
+Defined in: [src/types/types.ts:250](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L250)
 
 #### Inherited from
 
@@ -74,7 +74,7 @@ Defined in: [src/types/types.ts:249](https://github.com/green-api/greenapi-integ
 
 > **jpegThumbnail**: `string`
 
-Defined in: [src/types/types.ts:253](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L253)
+Defined in: [src/types/types.ts:254](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L254)
 
 #### Inherited from
 
@@ -86,4 +86,4 @@ Defined in: [src/types/types.ts:253](https://github.com/green-api/greenapi-integ
 
 > **mimeType**: `string`
 
-Defined in: [src/types/types.ts:389](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L389)
+Defined in: [src/types/types.ts:399](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L399)

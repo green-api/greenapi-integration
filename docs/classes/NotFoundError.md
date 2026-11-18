@@ -6,7 +6,7 @@
 
 # Class: NotFoundError
 
-Defined in: [src/core/errors.ts:95](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/errors.ts#L95)
+Defined in: [src/core/errors.ts:97](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/errors.ts#L97)
 
 Error thrown when a requested resource is not found.
 
@@ -28,7 +28,7 @@ if (!instance) {
 
 > **new NotFoundError**(`message`): `NotFoundError`
 
-Defined in: [src/core/errors.ts:101](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/errors.ts#L101)
+Defined in: [src/core/errors.ts:103](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/errors.ts#L103)
 
 Creates a not found error.
 
@@ -54,7 +54,7 @@ Human-readable error message
 
 > `readonly` **code**: `string`
 
-Defined in: [src/core/errors.ts:27](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/errors.ts#L27)
+Defined in: [src/core/errors.ts:29](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/errors.ts#L29)
 
 Error code for programmatic handling
 
@@ -68,7 +68,7 @@ Error code for programmatic handling
 
 > `readonly` `optional` **details?**: `unknown`
 
-Defined in: [src/core/errors.ts:29](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/errors.ts#L29)
+Defined in: [src/core/errors.ts:31](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/errors.ts#L31)
 
 Additional error details or context
 
@@ -118,7 +118,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 > `readonly` **statusCode**: `number` = `500`
 
-Defined in: [src/core/errors.ts:28](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/errors.ts#L28)
+Defined in: [src/core/errors.ts:30](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/errors.ts#L30)
 
 HTTP status code (default: 500)
 

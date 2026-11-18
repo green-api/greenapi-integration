@@ -6,7 +6,7 @@
 
 # Abstract Class: BaseAdapter\<TPlatformWebhook, TPlatformMessage, TUser, TInstance\>
 
-Defined in: [src/core/base-adapter.ts:41](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L41)
+Defined in: [src/core/base-adapter.ts:41](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L41)
 
 Base adapter for platform integrations with GREEN-API.
 This class handles the core integration logic between your platform and GREEN-API's WhatsApp gateway.
@@ -58,7 +58,7 @@ Instance type extending Instance (default: Instance)
 
 > `protected` **new BaseAdapter**\<`TPlatformWebhook`, `TPlatformMessage`, `TUser`, `TInstance`\>(`transformer`, `storage`): `BaseAdapter`\<`TPlatformWebhook`, `TPlatformMessage`, `TUser`, `TInstance`\>
 
-Defined in: [src/core/base-adapter.ts:50](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L50)
+Defined in: [src/core/base-adapter.ts:50](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L50)
 
 Creates an instance of BaseAdapter.
 
@@ -86,7 +86,7 @@ Storage provider for user and instance data
 
 > `protected` `readonly` **gaLogger**: [`GreenApiLogger`](GreenApiLogger.md)
 
-Defined in: [src/core/base-adapter.ts:42](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L42)
+Defined in: [src/core/base-adapter.ts:42](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L42)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [src/core/base-adapter.ts:42](https://github.com/green-api/greenapi-
 
 > `protected` **storage**: [`StorageProvider`](StorageProvider.md)\<`TUser`, `TInstance`\>
 
-Defined in: [src/core/base-adapter.ts:52](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L52)
+Defined in: [src/core/base-adapter.ts:52](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L52)
 
 Storage provider for user and instance data
 
@@ -104,7 +104,7 @@ Storage provider for user and instance data
 
 > `protected` **transformer**: [`MessageTransformer`](MessageTransformer.md)\<`TPlatformWebhook`, `TPlatformMessage`\>
 
-Defined in: [src/core/base-adapter.ts:51](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L51)
+Defined in: [src/core/base-adapter.ts:51](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L51)
 
 Message transformer for converting between platform and GREEN-API formats
 
@@ -114,7 +114,7 @@ Message transformer for converting between platform and GREEN-API formats
 
 > **createGreenApiClient**(`instance`): [`GreenApiClient`](GreenApiClient.md)
 
-Defined in: [src/core/base-adapter.ts:113](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L113)
+Defined in: [src/core/base-adapter.ts:113](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L113)
 
 Creates a GREEN-API client instance.
 
@@ -138,7 +138,7 @@ GREEN-API client
 
 > **createInstance**(`instance`): `Promise`\<`TInstance`\>
 
-Defined in: [src/core/base-adapter.ts:230](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L230)
+Defined in: [src/core/base-adapter.ts:230](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L230)
 
 Creates a new instance with specified settings.
 
@@ -170,7 +170,7 @@ If instance creation fails
 
 > `abstract` **createPlatformClient**(`params`): `Promise`\<`any`\>
 
-Defined in: [src/core/base-adapter.ts:93](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L93)
+Defined in: [src/core/base-adapter.ts:93](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L93)
 
 Creates a platform-specific client. This method must be implemented to define how
 to create a client for your platform's API.
@@ -206,7 +206,7 @@ async createPlatformClient(config: YourConfig) {
 
 > **createUser**(`userCred`, `data`): `Promise`\<`TUser`\>
 
-Defined in: [src/core/base-adapter.ts:303](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L303)
+Defined in: [src/core/base-adapter.ts:303](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L303)
 
 Creates a new user in the storage.
 This method is implemented in the base adapter but can be overridden if needed.
@@ -235,7 +235,7 @@ User data
 
 > **getInstance**(`idInstance`): `Promise`\<`TInstance` \| `null`\>
 
-Defined in: [src/core/base-adapter.ts:272](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L272)
+Defined in: [src/core/base-adapter.ts:272](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L272)
 
 Retrieves an instance by ID.
 
@@ -263,7 +263,7 @@ If retrieval fails
 
 > **handleGreenApiWebhook**(`webhook`, `allowedTypes`): `Promise`\<`void`\>
 
-Defined in: [src/core/base-adapter.ts:197](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L197)
+Defined in: [src/core/base-adapter.ts:197](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L197)
 
 Handles incoming GREEN-API webhooks and forwards them to your platform.
 
@@ -299,7 +299,7 @@ If webhook handling fails
 
 > **handlePlatformWebhook**(`message`, `idInstance`): `Promise`\<[`ForwardMessagesResponse`](../interfaces/ForwardMessagesResponse.md) \| [`SendResponse`](../interfaces/SendResponse.md)\>
 
-Defined in: [src/core/base-adapter.ts:152](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L152)
+Defined in: [src/core/base-adapter.ts:152](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L152)
 
 Handles incoming webhooks from your platform and sends them to GREEN-API.
 
@@ -333,7 +333,7 @@ If instance is not found or message handling fails
 
 > **handleStateInstanceWebhook**(`webhook`): `Promise`\<`void`\>
 
-Defined in: [src/core/base-adapter.ts:102](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L102)
+Defined in: [src/core/base-adapter.ts:102](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L102)
 
 Handles instance state change webhooks from GREEN-API.
 Adapters MUST override this method if they need to handle instance state changes
@@ -358,7 +358,7 @@ Promise resolving when the webhook is handled
 
 > **removeInstance**(`idInstance`): `Promise`\<`TInstance`\>
 
-Defined in: [src/core/base-adapter.ts:257](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L257)
+Defined in: [src/core/base-adapter.ts:257](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L257)
 
 Removes an instance by ID.
 
@@ -386,7 +386,7 @@ If instance is not found
 
 > `abstract` **sendToPlatform**(`message`, `instance`): `Promise`\<`void`\>
 
-Defined in: [src/core/base-adapter.ts:74](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L74)
+Defined in: [src/core/base-adapter.ts:74](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L74)
 
 Sends a message to your platform. This method must be implemented to define how
 messages are sent to your specific platform.
@@ -429,7 +429,7 @@ async sendToPlatform(message: YourMessage, instance: Instance) {
 
 > **updateUser**(`userCred`, `userUpdateData`): `Promise`\<`TUser`\>
 
-Defined in: [src/core/base-adapter.ts:288](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/base-adapter.ts#L288)
+Defined in: [src/core/base-adapter.ts:288](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/base-adapter.ts#L288)
 
 Updates user information.
 

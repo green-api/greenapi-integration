@@ -6,7 +6,7 @@
 
 # Interface: SendInteractiveButtons
 
-Defined in: [src/types/types.ts:82](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L82)
+Defined in: [src/types/types.ts:82](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L82)
 
 Common properties shared by all message types.
 
@@ -20,7 +20,7 @@ Common properties shared by all message types.
 
 > **body**: `string`
 
-Defined in: [src/types/types.ts:84](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L84)
+Defined in: [src/types/types.ts:84](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L84)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/types/types.ts:84](https://github.com/green-api/greenapi-integr
 
 > **buttons**: `object`[]
 
-Defined in: [src/types/types.ts:86](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L86)
+Defined in: [src/types/types.ts:86](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L86)
 
 #### buttonId
 
@@ -60,7 +60,7 @@ Defined in: [src/types/types.ts:86](https://github.com/green-api/greenapi-integr
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:26](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L26)
+Defined in: [src/types/types.ts:26](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L26)
 
 #### Inherited from
 
@@ -72,7 +72,7 @@ Defined in: [src/types/types.ts:26](https://github.com/green-api/greenapi-integr
 
 > `optional` **footer?**: `string`
 
-Defined in: [src/types/types.ts:85](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L85)
+Defined in: [src/types/types.ts:85](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L85)
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: [src/types/types.ts:85](https://github.com/green-api/greenapi-integr
 
 > `optional` **header?**: `string`
 
-Defined in: [src/types/types.ts:83](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L83)
+Defined in: [src/types/types.ts:83](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L83)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [src/types/types.ts:83](https://github.com/green-api/greenapi-integr
 
 > `optional` **quotedMessageId?**: `string`
 
-Defined in: [src/types/types.ts:27](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L27)
+Defined in: [src/types/types.ts:27](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L27)
 
 #### Inherited from
 

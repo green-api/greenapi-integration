@@ -6,7 +6,7 @@
 
 # Interface: QueueMessage
 
-Defined in: [src/types/types.ts:139](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L139)
+Defined in: [src/types/types.ts:139](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L139)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:139](https://github.com/green-api/greenapi-integ
 
 > **body**: [`QueueMessageBody`](../type-aliases/QueueMessageBody.md)
 
-Defined in: [src/types/types.ts:143](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L143)
+Defined in: [src/types/types.ts:143](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L143)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:143](https://github.com/green-api/greenapi-integ
 
 > `optional` **messageID?**: `string`
 
-Defined in: [src/types/types.ts:140](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L140)
+Defined in: [src/types/types.ts:140](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L140)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:140](https://github.com/green-api/greenapi-integ
 
 > `optional` **messagesIDs?**: `string`[]
 
-Defined in: [src/types/types.ts:141](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L141)
+Defined in: [src/types/types.ts:141](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L141)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [src/types/types.ts:141](https://github.com/green-api/greenapi-integ
 
 > **type**: [`QueueMessageType`](../type-aliases/QueueMessageType.md)
 
-Defined in: [src/types/types.ts:142](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L142)
+Defined in: [src/types/types.ts:142](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L142)

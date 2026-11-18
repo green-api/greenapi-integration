@@ -6,8 +6,8 @@
 
 # Type Alias: GreenApiWebhook
 
-> **GreenApiWebhook** = [`MessageWebhook`](../interfaces/MessageWebhook.md) \| [`OutgoingMessageStatusWebhook`](../interfaces/OutgoingMessageStatusWebhook.md) \| [`StateInstanceWebhook`](../interfaces/StateInstanceWebhook.md) \| [`IncomingCallWebhook`](../interfaces/IncomingCallWebhook.md)
+> **GreenApiWebhook** = [`MessageWebhook`](../interfaces/MessageWebhook.md) \| [`OutgoingMessageStatusWebhook`](../interfaces/OutgoingMessageStatusWebhook.md) \| [`StateInstanceWebhook`](../interfaces/StateInstanceWebhook.md) \| [`IncomingCallWebhook`](../interfaces/IncomingCallWebhook.md) \| [`OutgoingCallWebhook`](../interfaces/OutgoingCallWebhook.md)
 
-Defined in: [src/types/types.ts:666](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L666)
+Defined in: [src/types/types.ts:708](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L708)
 
 Primary webhook types received from GREEN-API.

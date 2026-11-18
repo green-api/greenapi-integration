@@ -6,7 +6,7 @@
 
 # Interface: BaseRequest
 
-Defined in: [src/types/types.ts:981](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L981)
+Defined in: [src/types/types.ts:1026](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L1026)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:981](https://github.com/green-api/greenapi-integ
 
 > **body**: `any`
 
-Defined in: [src/types/types.ts:983](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L983)
+Defined in: [src/types/types.ts:1028](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L1028)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:983](https://github.com/green-api/greenapi-integ
 
 > **headers**: `Record`\<`string`, `any`\>
 
-Defined in: [src/types/types.ts:982](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L982)
+Defined in: [src/types/types.ts:1027](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L1027)

@@ -6,7 +6,7 @@
 
 # Abstract Class: StorageProvider\<TUser, TInstance, TUserCreate, TUserUpdate\>
 
-Defined in: [src/core/storage-provider.ts:24](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/storage-provider.ts#L24)
+Defined in: [src/core/storage-provider.ts:24](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/storage-provider.ts#L24)
 
 Abstract class for managing instance and user data storage.
 Implement this class to define how your integration stores and retrieves data.
@@ -65,7 +65,7 @@ Shape of data allowed for user updates
 
 > `abstract` **createInstance**(`instance`): `Promise`\<`TInstance`\>
 
-Defined in: [src/core/storage-provider.ts:36](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/storage-provider.ts#L36)
+Defined in: [src/core/storage-provider.ts:36](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/storage-provider.ts#L36)
 
 Creates a new instance in storage.
 
@@ -89,7 +89,7 @@ Promise resolving to the created instance
 
 > `abstract` **createUser**(`data`): `Promise`\<`TUser`\>
 
-Defined in: [src/core/storage-provider.ts:60](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/storage-provider.ts#L60)
+Defined in: [src/core/storage-provider.ts:60](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/storage-provider.ts#L60)
 
 Creates a new user in storage.
 
@@ -113,7 +113,7 @@ Promise resolving to the created user
 
 > `abstract` **findUser**(`identifier`): `Promise`\<`TUser` \| `null`\>
 
-Defined in: [src/core/storage-provider.ts:68](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/storage-provider.ts#L68)
+Defined in: [src/core/storage-provider.ts:68](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/storage-provider.ts#L68)
 
 Finds a user by identifier (usually email or username).
 
@@ -137,7 +137,7 @@ Promise resolving to the user or null if not found
 
 > `abstract` **getInstance**(`idInstance`): `Promise`\<`TInstance` \| `null`\>
 
-Defined in: [src/core/storage-provider.ts:44](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/storage-provider.ts#L44)
+Defined in: [src/core/storage-provider.ts:44](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/storage-provider.ts#L44)
 
 Retrieves an instance by its ID.
 
@@ -161,7 +161,7 @@ Promise resolving to the instance or null if not found
 
 > `abstract` **removeInstance**(`instanceId`): `Promise`\<`TInstance`\>
 
-Defined in: [src/core/storage-provider.ts:52](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/storage-provider.ts#L52)
+Defined in: [src/core/storage-provider.ts:52](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/storage-provider.ts#L52)
 
 Removes an instance from storage.
 
@@ -185,7 +185,7 @@ Promise resolving to the removed instance
 
 > `abstract` **updateUser**(`identifier`, `data`): `Promise`\<`TUser`\>
 
-Defined in: [src/core/storage-provider.ts:77](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/core/storage-provider.ts#L77)
+Defined in: [src/core/storage-provider.ts:77](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/core/storage-provider.ts#L77)
 
 Updates an existing user's data.
 

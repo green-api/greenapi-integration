@@ -6,7 +6,7 @@
 
 # Interface: TemplateButtonsReplyMessageData
 
-Defined in: [src/types/types.ts:363](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L363)
+Defined in: [src/types/types.ts:364](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L364)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:363](https://github.com/green-api/greenapi-integ
 
 > **selectedDisplayText**: `string`
 
-Defined in: [src/types/types.ts:367](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L367)
+Defined in: [src/types/types.ts:368](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L368)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:367](https://github.com/green-api/greenapi-integ
 
 > **selectedId**: `string`
 
-Defined in: [src/types/types.ts:366](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L366)
+Defined in: [src/types/types.ts:367](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L367)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:366](https://github.com/green-api/greenapi-integ
 
 > **selectedIndex**: `number`
 
-Defined in: [src/types/types.ts:365](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L365)
+Defined in: [src/types/types.ts:366](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L366)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [src/types/types.ts:365](https://github.com/green-api/greenapi-integ
 
 > **stanzaId**: `string`
 
-Defined in: [src/types/types.ts:364](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L364)
+Defined in: [src/types/types.ts:365](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L365)

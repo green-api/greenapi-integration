@@ -6,7 +6,7 @@
 
 # Interface: BaseMessage
 
-Defined in: [src/types/types.ts:25](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L25)
+Defined in: [src/types/types.ts:25](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L25)
 
 Common properties shared by all message types.
 
@@ -27,7 +27,7 @@ Common properties shared by all message types.
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:26](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L26)
+Defined in: [src/types/types.ts:26](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L26)
 
 ***
 
@@ -35,4 +35,4 @@ Defined in: [src/types/types.ts:26](https://github.com/green-api/greenapi-integr
 
 > `optional` **quotedMessageId?**: `string`
 
-Defined in: [src/types/types.ts:27](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L27)
+Defined in: [src/types/types.ts:27](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L27)

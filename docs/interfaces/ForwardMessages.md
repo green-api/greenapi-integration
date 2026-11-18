@@ -6,7 +6,7 @@
 
 # Interface: ForwardMessages
 
-Defined in: [src/types/types.ts:106](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L106)
+Defined in: [src/types/types.ts:106](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L106)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:106](https://github.com/green-api/greenapi-integ
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:107](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L107)
+Defined in: [src/types/types.ts:107](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L107)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:107](https://github.com/green-api/greenapi-integ
 
 > **chatIdFrom**: `string`
 
-Defined in: [src/types/types.ts:108](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L108)
+Defined in: [src/types/types.ts:108](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L108)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [src/types/types.ts:108](https://github.com/green-api/greenapi-integ
 
 > **messages**: `string`[]
 
-Defined in: [src/types/types.ts:109](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L109)
+Defined in: [src/types/types.ts:109](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L109)

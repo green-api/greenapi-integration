@@ -6,7 +6,7 @@
 
 # Interface: InteractiveButtonData
 
-Defined in: [src/types/types.ts:334](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L334)
+Defined in: [src/types/types.ts:335](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L335)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:334](https://github.com/green-api/greenapi-integ
 
 > **buttonId**: `string`
 
-Defined in: [src/types/types.ts:336](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L336)
+Defined in: [src/types/types.ts:337](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L337)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:336](https://github.com/green-api/greenapi-integ
 
 > **buttonText**: `string`
 
-Defined in: [src/types/types.ts:337](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L337)
+Defined in: [src/types/types.ts:338](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L338)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:337](https://github.com/green-api/greenapi-integ
 
 > `optional` **copyCode?**: `string`
 
-Defined in: [src/types/types.ts:338](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L338)
+Defined in: [src/types/types.ts:339](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L339)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [src/types/types.ts:338](https://github.com/green-api/greenapi-integ
 
 > `optional` **phoneNumber?**: `string`
 
-Defined in: [src/types/types.ts:339](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L339)
+Defined in: [src/types/types.ts:340](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L340)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [src/types/types.ts:339](https://github.com/green-api/greenapi-integ
 
 > **type**: `"copy"` \| `"call"` \| `"url"`
 
-Defined in: [src/types/types.ts:335](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L335)
+Defined in: [src/types/types.ts:336](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L336)
 
 ***
 
@@ -54,4 +54,4 @@ Defined in: [src/types/types.ts:335](https://github.com/green-api/greenapi-integ
 
 > `optional` **url?**: `string`
 
-Defined in: [src/types/types.ts:340](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L340)
+Defined in: [src/types/types.ts:341](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L341)

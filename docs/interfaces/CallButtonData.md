@@ -6,7 +6,7 @@
 
 # Interface: CallButtonData
 
-Defined in: [src/types/types.ts:309](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L309)
+Defined in: [src/types/types.ts:310](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L310)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:309](https://github.com/green-api/greenapi-integ
 
 > **displayText**: `string`
 
-Defined in: [src/types/types.ts:310](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L310)
+Defined in: [src/types/types.ts:311](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L311)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [src/types/types.ts:310](https://github.com/green-api/greenapi-integ
 
 > **phoneNumber**: `string`
 
-Defined in: [src/types/types.ts:311](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L311)
+Defined in: [src/types/types.ts:312](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L312)

@@ -6,7 +6,7 @@
 
 # Interface: ReadChatResponse
 
-Defined in: [src/types/types.ts:710](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L710)
+Defined in: [src/types/types.ts:754](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L754)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:710](https://github.com/green-api/greenapi-integ
 
 > **setRead**: `boolean`
 
-Defined in: [src/types/types.ts:711](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L711)
+Defined in: [src/types/types.ts:755](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L755)

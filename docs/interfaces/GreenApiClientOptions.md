@@ -6,7 +6,7 @@
 
 # Interface: GreenApiClientOptions
 
-Defined in: [src/types/types.ts:163](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L163)
+Defined in: [src/types/types.ts:163](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L163)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:163](https://github.com/green-api/greenapi-integ
 
 > `optional` **logger?**: [`GreenApiClientLogger`](GreenApiClientLogger.md) \| `null`
 
-Defined in: [src/types/types.ts:164](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L164)
+Defined in: [src/types/types.ts:164](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L164)

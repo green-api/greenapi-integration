@@ -6,7 +6,7 @@
 
 # Interface: GetStatusStatisticResponse
 
-Defined in: [src/types/types.ts:1013](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L1013)
+Defined in: [src/types/types.ts:1058](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L1058)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:1013](https://github.com/green-api/greenapi-inte
 
 > **participant**: `string`
 
-Defined in: [src/types/types.ts:1015](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L1015)
+Defined in: [src/types/types.ts:1060](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L1060)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:1015](https://github.com/green-api/greenapi-inte
 
 > **status**: `string`
 
-Defined in: [src/types/types.ts:1016](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L1016)
+Defined in: [src/types/types.ts:1061](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L1061)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [src/types/types.ts:1016](https://github.com/green-api/greenapi-inte
 
 > **timestamp**: `number`
 
-Defined in: [src/types/types.ts:1014](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L1014)
+Defined in: [src/types/types.ts:1059](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L1059)

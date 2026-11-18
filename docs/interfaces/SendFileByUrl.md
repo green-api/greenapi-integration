@@ -6,7 +6,7 @@
 
 # Interface: SendFileByUrl
 
-Defined in: [src/types/types.ts:51](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L51)
+Defined in: [src/types/types.ts:51](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L51)
 
 Common properties shared by all message types.
 
@@ -20,7 +20,7 @@ Common properties shared by all message types.
 
 > `optional` **caption?**: `string`
 
-Defined in: [src/types/types.ts:52](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L52)
+Defined in: [src/types/types.ts:52](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L52)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/types/types.ts:52](https://github.com/green-api/greenapi-integr
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:26](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L26)
+Defined in: [src/types/types.ts:26](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L26)
 
 #### Inherited from
 
@@ -40,7 +40,7 @@ Defined in: [src/types/types.ts:26](https://github.com/green-api/greenapi-integr
 
 > **file**: `object`
 
-Defined in: [src/types/types.ts:53](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L53)
+Defined in: [src/types/types.ts:53](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L53)
 
 #### fileName
 
@@ -56,7 +56,7 @@ Defined in: [src/types/types.ts:53](https://github.com/green-api/greenapi-integr
 
 > `optional` **quotedMessageId?**: `string`
 
-Defined in: [src/types/types.ts:27](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L27)
+Defined in: [src/types/types.ts:27](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L27)
 
 #### Inherited from
 

@@ -6,7 +6,7 @@
 
 # Interface: AccountSettings
 
-Defined in: [src/types/types.ts:866](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L866)
+Defined in: [src/types/types.ts:911](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L911)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:866](https://github.com/green-api/greenapi-integ
 
 > **avatar**: `string`
 
-Defined in: [src/types/types.ts:867](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L867)
+Defined in: [src/types/types.ts:912](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L912)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:867](https://github.com/green-api/greenapi-integ
 
 > **chatId**: `string`
 
-Defined in: [src/types/types.ts:870](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L870)
+Defined in: [src/types/types.ts:915](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L915)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:870](https://github.com/green-api/greenapi-integ
 
 > **historySyncProgress**: `number`
 
-Defined in: [src/types/types.ts:871](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L871)
+Defined in: [src/types/types.ts:916](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L916)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [src/types/types.ts:871](https://github.com/green-api/greenapi-integ
 
 > `optional` **logoutProcess?**: `boolean`
 
-Defined in: [src/types/types.ts:873](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L873)
+Defined in: [src/types/types.ts:918](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L918)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [src/types/types.ts:873](https://github.com/green-api/greenapi-integ
 
 > **phone**: `string`
 
-Defined in: [src/types/types.ts:868](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L868)
+Defined in: [src/types/types.ts:913](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L913)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [src/types/types.ts:868](https://github.com/green-api/greenapi-integ
 
 > **stateInstance**: [`InstanceState`](../type-aliases/InstanceState.md)
 
-Defined in: [src/types/types.ts:869](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L869)
+Defined in: [src/types/types.ts:914](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L914)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [src/types/types.ts:869](https://github.com/green-api/greenapi-integ
 
 > `optional` **suspendedUntil?**: `number`
 
-Defined in: [src/types/types.ts:874](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L874)
+Defined in: [src/types/types.ts:919](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L919)
 
 ***
 
@@ -70,4 +70,4 @@ Defined in: [src/types/types.ts:874](https://github.com/green-api/greenapi-integ
 
 > `optional` **username?**: `string`
 
-Defined in: [src/types/types.ts:872](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L872)
+Defined in: [src/types/types.ts:917](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L917)

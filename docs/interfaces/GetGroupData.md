@@ -6,7 +6,7 @@
 
 # Interface: GetGroupData
 
-Defined in: [src/types/types.ts:920](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L920)
+Defined in: [src/types/types.ts:965](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L965)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [src/types/types.ts:920](https://github.com/green-api/greenapi-integ
 
 > **groupId**: `string`
 
-Defined in: [src/types/types.ts:921](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L921)
+Defined in: [src/types/types.ts:966](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L966)

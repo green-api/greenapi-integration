@@ -6,7 +6,7 @@
 
 # Interface: GroupInviteMessageData
 
-Defined in: [src/types/types.ts:370](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L370)
+Defined in: [src/types/types.ts:380](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L380)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [src/types/types.ts:370](https://github.com/green-api/greenapi-integ
 
 > **caption**: `string`
 
-Defined in: [src/types/types.ts:375](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L375)
+Defined in: [src/types/types.ts:385](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L385)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/types.ts:375](https://github.com/green-api/greenapi-integ
 
 > **groupJid**: `string`
 
-Defined in: [src/types/types.ts:371](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L371)
+Defined in: [src/types/types.ts:381](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L381)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/types.ts:371](https://github.com/green-api/greenapi-integ
 
 > **groupName**: `string`
 
-Defined in: [src/types/types.ts:374](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L374)
+Defined in: [src/types/types.ts:384](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L384)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [src/types/types.ts:374](https://github.com/green-api/greenapi-integ
 
 > **inviteCode**: `string`
 
-Defined in: [src/types/types.ts:372](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L372)
+Defined in: [src/types/types.ts:382](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L382)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [src/types/types.ts:372](https://github.com/green-api/greenapi-integ
 
 > **inviteExpiration**: `string`
 
-Defined in: [src/types/types.ts:373](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L373)
+Defined in: [src/types/types.ts:383](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L383)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [src/types/types.ts:373](https://github.com/green-api/greenapi-integ
 
 > **jpegThumbnail**: `string`
 
-Defined in: [src/types/types.ts:377](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L377)
+Defined in: [src/types/types.ts:387](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L387)
 
 ***
 
@@ -62,4 +62,4 @@ Defined in: [src/types/types.ts:377](https://github.com/green-api/greenapi-integ
 
 > **name**: `string`
 
-Defined in: [src/types/types.ts:376](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L376)
+Defined in: [src/types/types.ts:386](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L386)

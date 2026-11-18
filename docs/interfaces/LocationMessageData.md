@@ -6,7 +6,7 @@
 
 # Interface: LocationMessageData
 
-Defined in: [src/types/types.ts:394](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L394)
+Defined in: [src/types/types.ts:404](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L404)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/types/types.ts:394](https://github.com/green-api/greenapi-integ
 
 > **address**: `string`
 
-Defined in: [src/types/types.ts:396](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L396)
+Defined in: [src/types/types.ts:406](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L406)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/types/types.ts:396](https://github.com/green-api/greenapi-integ
 
 > **forwardingScore**: `number`
 
-Defined in: [src/types/types.ts:248](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L248)
+Defined in: [src/types/types.ts:249](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L249)
 
 #### Inherited from
 
@@ -38,7 +38,7 @@ Defined in: [src/types/types.ts:248](https://github.com/green-api/greenapi-integ
 
 > **isForwarded**: `boolean`
 
-Defined in: [src/types/types.ts:249](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L249)
+Defined in: [src/types/types.ts:250](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L250)
 
 #### Inherited from
 
@@ -50,7 +50,7 @@ Defined in: [src/types/types.ts:249](https://github.com/green-api/greenapi-integ
 
 > **jpegThumbnail**: `string`
 
-Defined in: [src/types/types.ts:253](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L253)
+Defined in: [src/types/types.ts:254](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L254)
 
 #### Inherited from
 
@@ -62,7 +62,7 @@ Defined in: [src/types/types.ts:253](https://github.com/green-api/greenapi-integ
 
 > **latitude**: `number`
 
-Defined in: [src/types/types.ts:397](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L397)
+Defined in: [src/types/types.ts:407](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L407)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [src/types/types.ts:397](https://github.com/green-api/greenapi-integ
 
 > **longitude**: `number`
 
-Defined in: [src/types/types.ts:398](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L398)
+Defined in: [src/types/types.ts:408](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L408)
 
 ***
 
@@ -78,4 +78,4 @@ Defined in: [src/types/types.ts:398](https://github.com/green-api/greenapi-integ
 
 > **nameLocation**: `string`
 
-Defined in: [src/types/types.ts:395](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/types/types.ts#L395)
+Defined in: [src/types/types.ts:405](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/types/types.ts#L405)

@@ -27,8 +27,16 @@
 
 - [AuthenticationError](classes/AuthenticationError.md)
 - [BadRequestError](classes/BadRequestError.md)
+- [CallError](classes/CallError.md)
 - [IntegrationError](classes/IntegrationError.md)
 - [NotFoundError](classes/NotFoundError.md)
+
+### Calls
+
+- [BaseCallsAdapter](classes/BaseCallsAdapter.md)
+- [CallsRelay](classes/CallsRelay.md)
+- [CallsRtcConnection](classes/CallsRtcConnection.md)
+- [CallVoice](classes/CallVoice.md)
 
 ### Transformer
 
@@ -48,6 +56,15 @@
 - [ButtonData](interfaces/ButtonData.md)
 - [ButtonsMessageData](interfaces/ButtonsMessageData.md)
 - [CallButtonData](interfaces/CallButtonData.md)
+- [CallEvent](interfaces/CallEvent.md)
+- [CallIdResponse](interfaces/CallIdResponse.md)
+- [CallInfo](interfaces/CallInfo.md)
+- [CallParticipant](interfaces/CallParticipant.md)
+- [CallRecording](interfaces/CallRecording.md)
+- [CallsDial](interfaces/CallsDial.md)
+- [CallsRelayOptions](interfaces/CallsRelayOptions.md)
+- [CallState](interfaces/CallState.md)
+- [CallVoiceOptions](interfaces/CallVoiceOptions.md)
 - [CheckAccount](interfaces/CheckAccount.md)
 - [CheckAccountResponse](interfaces/CheckAccountResponse.md)
 - [CheckWhatsapp](interfaces/CheckWhatsapp.md)
@@ -70,6 +87,7 @@
 - [GetAuthorizationCode](interfaces/GetAuthorizationCode.md)
 - [GetAvatar](interfaces/GetAvatar.md)
 - [GetAvatarResponse](interfaces/GetAvatarResponse.md)
+- [GetCallRecording](interfaces/GetCallRecording.md)
 - [GetChatHistory](interfaces/GetChatHistory.md)
 - [GetGroupData](interfaces/GetGroupData.md)
 - [GetMessage](interfaces/GetMessage.md)
@@ -79,12 +97,15 @@
 - [GroupData](interfaces/GroupData.md)
 - [GroupInviteMessageData](interfaces/GroupInviteMessageData.md)
 - [GroupParticipant](interfaces/GroupParticipant.md)
+- [IceServer](interfaces/IceServer.md)
+- [IncomingCallJournal](interfaces/IncomingCallJournal.md)
 - [IncomingCallWebhook](interfaces/IncomingCallWebhook.md)
 - [IncomingJournalFields](interfaces/IncomingJournalFields.md)
 - [Instance](interfaces/Instance.md)
 - [InteractiveButtonData](interfaces/InteractiveButtonData.md)
 - [InteractiveButtonsData](interfaces/InteractiveButtonsData.md)
 - [InteractiveButtonsReplyData](interfaces/InteractiveButtonsReplyData.md)
+- [InteractiveButtonsResponseData](interfaces/InteractiveButtonsResponseData.md)
 - [InteractiveReplyButtonData](interfaces/InteractiveReplyButtonData.md)
 - [LeaveGroup](interfaces/LeaveGroup.md)
 - [LeaveGroupResponse](interfaces/LeaveGroupResponse.md)
@@ -95,6 +116,8 @@
 - [Logout](interfaces/Logout.md)
 - [MediaMessage](interfaces/MediaMessage.md)
 - [MessageWebhook](interfaces/MessageWebhook.md)
+- [OutgoingCallJournal](interfaces/OutgoingCallJournal.md)
+- [OutgoingCallWebhook](interfaces/OutgoingCallWebhook.md)
 - [OutgoingJournalFields](interfaces/OutgoingJournalFields.md)
 - [OutgoingMessageStatusWebhook](interfaces/OutgoingMessageStatusWebhook.md)
 - [PollMessageData](interfaces/PollMessageData.md)
@@ -156,7 +179,17 @@
 - [BaseIncomingJournalMessage](type-aliases/BaseIncomingJournalMessage.md)
 - [BaseJournalResponse](type-aliases/BaseJournalResponse.md)
 - [BaseOutgoingJournalMessage](type-aliases/BaseOutgoingJournalMessage.md)
+- [CallCommand](type-aliases/CallCommand.md)
+- [CallDirection](type-aliases/CallDirection.md)
+- [CallErrorCode](type-aliases/CallErrorCode.md)
+- [CallEventStatus](type-aliases/CallEventStatus.md)
+- [CallsRelayCommandFrame](type-aliases/CallsRelayCommandFrame.md)
+- [CallsRelayResultFrame](type-aliases/CallsRelayResultFrame.md)
+- [CallsRtcClientFrame](type-aliases/CallsRtcClientFrame.md)
+- [CallsRtcServerFrame](type-aliases/CallsRtcServerFrame.md)
+- [CallStateKind](type-aliases/CallStateKind.md)
 - [CallStatus](type-aliases/CallStatus.md)
+- [CallWebhook](type-aliases/CallWebhook.md)
 - [ContactType](type-aliases/ContactType.md)
 - [EphemeralExpiration](type-aliases/EphemeralExpiration.md)
 - [GreenApiWebhook](type-aliases/GreenApiWebhook.md)
@@ -175,6 +208,16 @@
 - [WebhookType](type-aliases/WebhookType.md)
 
 ## Functions
+
+### Calls
+
+- [describeCallEndReason](functions/describeCallEndReason.md)
+- [isCallWebhook](functions/isCallWebhook.md)
+- [runCallCommand](functions/runCallCommand.md)
+- [toCallError](functions/toCallError.md)
+- [toCallEvent](functions/toCallEvent.md)
+
+### Other
 
 - [extractPhoneNumberFromVCard](functions/extractPhoneNumberFromVCard.md)
 - [formatPhoneNumber](functions/formatPhoneNumber.md)

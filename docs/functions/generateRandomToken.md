@@ -8,7 +8,7 @@
 
 > **generateRandomToken**(`length?`): `string`
 
-Defined in: [src/utils/helpers.ts:37](https://github.com/green-api/greenapi-integration/blob/7c1a97bd2427657dbfaae76c191c9fbb984d05de/src/utils/helpers.ts#L37)
+Defined in: [src/utils/helpers.ts:37](https://github.com/green-api/greenapi-integration/blob/012488faf93e622e485ab4a513b22192561cd744/src/utils/helpers.ts#L37)
 
 Generates a cryptographically secure random token.
 
